@@ -26,10 +26,10 @@ struct TodoItem {
         id: String = UUID().uuidString,
         text: String,
         importance: Importance,
-        deadline: Date?,
+        deadline: Date? = nil,
         isCompleted: Bool,
         createdAt: Date,
-        editedAt: Date?
+        editedAt: Date? = nil
     ) {
         self.id = id
         self.text = text

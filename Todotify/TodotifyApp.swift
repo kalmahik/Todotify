@@ -14,4 +14,22 @@ struct TodotifyApp: App {
             ContentView()
         }
     }
+    
+    init() {
+        let todoItem = TodoItem(
+            text: "Позвонить бабушке",
+            importance: .important,
+            deadline: Date().addingTimeInterval(TimeInterval(3600)),
+            isCompleted: false,
+            createdAt: Date()
+        )
+        let json = todoItem.json
+        
+        let todoItemRestored = TodoItem.parse(json: json)
+        
+        print(todoItem)
+        print(json)
+        print(todoItemRestored ?? "")
+        
+    }
 }

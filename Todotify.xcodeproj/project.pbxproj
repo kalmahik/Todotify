@@ -13,6 +13,7 @@
 		842905AE2C1FF34B00159210 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842905AD2C1FF34B00159210 /* Preview Assets.xcassets */; };
 		842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B52C1FF4BC00159210 /* TodoItem.swift */; };
 		842905B82C1FF6D600159210 /* TodoItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */; };
+		842905BA2C21416400159210 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B92C21416400159210 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		842905AF2C1FF34B00159210 /* Todotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Todotify.entitlements; sourceTree = "<group>"; };
 		842905B52C1FF4BC00159210 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+Extensions.swift"; sourceTree = "<group>"; };
+		842905B92C21416400159210 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,8 +42,6 @@
 		8429059A2C1FF34A00159210 = {
 			isa = PBXGroup;
 			children = (
-				842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */,
-				842905B52C1FF4BC00159210 /* TodoItem.swift */,
 				842905A52C1FF34A00159210 /* Todotify */,
 				842905A42C1FF34A00159210 /* Products */,
 			);
@@ -58,6 +58,9 @@
 		842905A52C1FF34A00159210 /* Todotify */ = {
 			isa = PBXGroup;
 			children = (
+				842905B92C21416400159210 /* Date+Extensions.swift */,
+				842905B52C1FF4BC00159210 /* TodoItem.swift */,
+				842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */,
 				842905A62C1FF34A00159210 /* TodotifyApp.swift */,
 				842905A82C1FF34A00159210 /* ContentView.swift */,
 				842905AA2C1FF34B00159210 /* Assets.xcassets */,
@@ -148,6 +151,7 @@
 				842905B82C1FF6D600159210 /* TodoItem+Extensions.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
+				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,8 +297,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kalmahik.Todotify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -318,8 +325,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kalmahik.Todotify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
