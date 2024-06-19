@@ -10,36 +10,21 @@ import Foundation
 typealias JsonDictionary = [String: Any]
 
 extension TodoItem: Parsable {
-    private enum CodingKeys: CodingKey {
-          case id, text, isCompleted, createdAt, deadline, editedAt, importance
+    static func parse(json: Any) -> TodoItem? {
+        if json is Data {
+            return parse(jsonData: json as! Data)
+        }
+        
+        if json is JsonDictionary {
+            return parse(jsonDictionary: json as! JsonDictionary)
+        }
+        return nil
     }
     
-    static func parse(json: Any) -> TodoItem? {
+    static func parse(jsonData: Data) -> TodoItem? {
         do {
-            if let jsonObject = try JSONSerialization.jsonObject(with: json as! Data, options: []) as? JsonDictionary {
-                let id = jsonObject[CodingKeys.id.stringValue] as? String
-                let text = jsonObject[CodingKeys.text.stringValue] as? String
-                let isCompleted = jsonObject[CodingKeys.isCompleted.stringValue] as? Bool
-                let createdAt = jsonObject[CodingKeys.createdAt.stringValue] as? String
-                let deadline = jsonObject[CodingKeys.deadline.stringValue] as? String
-                let editedAt = jsonObject[CodingKeys.editedAt.stringValue] as? String
-                let importanceString = jsonObject[CodingKeys.importance.stringValue] as? String ?? Importance.usual.rawValue
-                let importance = Importance(rawValue: importanceString) ?? Importance.usual
-                
-                guard let id, let text, let isCompleted, let createdAt else {
-                    print("IS NOT VALID TODO ITEM")
-                    return nil
-                }
-
-                return TodoItem(
-                    id: id,
-                    text: text,
-                    importance: importance,
-                    deadline: Date.fromString(date: deadline),
-                    isCompleted: isCompleted,
-                    createdAt: Date.fromString(date: createdAt)!,
-                    editedAt: Date.fromString(date: editedAt)
-                )
+            if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JsonDictionary {
+                return parse(jsonDictionary: jsonObject)
             }
             print("THIS IS NOT TODO ITEM")
             return nil
@@ -47,6 +32,32 @@ extension TodoItem: Parsable {
             print("SMTH WENT GRONG: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    static func parse(jsonDictionary: JsonDictionary) -> TodoItem? {
+        let id = jsonDictionary[CodingKeys.id.stringValue] as? String
+        let text = jsonDictionary[CodingKeys.text.stringValue] as? String
+        let isCompleted = jsonDictionary[CodingKeys.isCompleted.stringValue] as? Bool
+        let createdAt = jsonDictionary[CodingKeys.createdAt.stringValue] as? String
+        let deadline = jsonDictionary[CodingKeys.deadline.stringValue] as? String
+        let editedAt = jsonDictionary[CodingKeys.editedAt.stringValue] as? String
+        let importanceString = jsonDictionary[CodingKeys.importance.stringValue] as? String ?? Importance.usual.rawValue
+        let importance = Importance(rawValue: importanceString) ?? Importance.usual
+        
+        guard let id, let text, let isCompleted, let createdAt else {
+            print("IS NOT VALID TODO ITEM")
+            return nil
+        }
+
+        return TodoItem(
+            id: id,
+            text: text,
+            importance: importance,
+            deadline: Date.fromString(date: deadline),
+            isCompleted: isCompleted,
+            createdAt: Date.fromString(date: createdAt)!,
+            editedAt: Date.fromString(date: editedAt)
+        )
     }
     
     var json: Any {
@@ -65,5 +76,9 @@ extension TodoItem: Parsable {
             dictionary[CodingKeys.editedAt.stringValue] = editedAt.asString()
         }
         return dictionary
+    }
+    
+    private enum CodingKeys: CodingKey {
+          case id, text, isCompleted, createdAt, deadline, editedAt, importance
     }
 }

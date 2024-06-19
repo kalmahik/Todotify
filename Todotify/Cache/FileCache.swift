@@ -31,6 +31,11 @@ final class FileCache: Cacheable {
                 print("FILE NOT FOUND")
                 return
             }
+            let isValid = JSONSerialization.isValidJSONObject(todosJson)
+            if !isValid {
+                print("NOT VALID OBJECT")
+                return
+            }
             let data = try JSONSerialization.data(withJSONObject: todosJson)
             try data.write(to: filename)
         } catch let error as NSError {
@@ -46,16 +51,11 @@ final class FileCache: Cacheable {
                 return []
             }
             let data = try Data(contentsOf: filename)
-            if let todosJson = try JSONSerialization.jsonObject(with: data, options: []) as? [JsonDictionary] {
-                return try todosJson.compactMap {
-                    let jsonData = try JSONSerialization.data(withJSONObject: $0)
-                    return TodoItem.parse(json: jsonData)
-                }
-            }
+            let todosJson = try JSONSerialization.jsonObject(with: data) as? [JsonDictionary] ?? []
+            return todosJson.compactMap { TodoItem.parse(json: $0) }
         } catch let error as NSError {
             print(error.localizedDescription)
             return []
         }
-        return []
     }
 }
