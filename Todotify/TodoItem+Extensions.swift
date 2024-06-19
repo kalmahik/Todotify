@@ -10,20 +10,20 @@ import Foundation
 typealias JsonDictionary = [String: Any]
 
 extension TodoItem {
+    private enum CodingKeys: CodingKey {
+          case id, text, isCompleted, createdAt, deadline, editedAt, importance
+    }
+    
     static func parse(json: Any) -> TodoItem? {
-//        guard JSONSerialization.isValidJSONObject(json) else {
-//            print("IS NOT VALID JSON OBJECT")
-//            return nil
-//        }
         do {
             if let jsonObject = try JSONSerialization.jsonObject(with: json as! Data, options: []) as? JsonDictionary {
-                let id = jsonObject["id"] as? String
-                let text = jsonObject["text"] as? String
-                let isCompleted = jsonObject["isCompleted"] as? Bool
-                let createdAt = jsonObject["createdAt"] as? String
-                let deadline = jsonObject["deadline"] as? String
-                let editedAt = jsonObject["editedAt"] as? String
-                let importanceString = jsonObject["importance"] as? String ?? Importance.usual.rawValue
+                let id = jsonObject[CodingKeys.id.stringValue] as? String
+                let text = jsonObject[CodingKeys.text.stringValue] as? String
+                let isCompleted = jsonObject[CodingKeys.isCompleted.stringValue] as? Bool
+                let createdAt = jsonObject[CodingKeys.createdAt.stringValue] as? String
+                let deadline = jsonObject[CodingKeys.deadline.stringValue] as? String
+                let editedAt = jsonObject[CodingKeys.editedAt.stringValue] as? String
+                let importanceString = jsonObject[CodingKeys.importance.stringValue] as? String ?? Importance.usual.rawValue
                 let importance = Importance(rawValue: importanceString) ?? Importance.usual
                 
                 guard let id, let text, let isCompleted, let createdAt else {
@@ -44,29 +44,26 @@ extension TodoItem {
             print("THIS IS NOT TODO ITEM")
             return nil
         } catch let error as NSError {
-            print("Failed to load: \(error.localizedDescription)")
+            print("SMTH WENT GRONG: \(error.localizedDescription)")
             return nil
         }
     }
     
     var json: Any {
         var dictionary: JsonDictionary = [:]
-        dictionary["id"] = id as NSString
-        dictionary["text"] = text as NSString
-        dictionary["isCompleted"] = isCompleted
-        dictionary["createdAt"] = createdAt.asString() as NSString
+        dictionary[CodingKeys.id.stringValue] = id
+        dictionary[CodingKeys.text.stringValue] = text
+        dictionary[CodingKeys.isCompleted.stringValue] = isCompleted
+        dictionary[CodingKeys.createdAt.stringValue] = createdAt.asString()
         if importance != .usual {
-            dictionary["importance"] = importance.rawValue
+            dictionary[CodingKeys.importance.stringValue] = importance.rawValue
         }
         if let deadline {
-            dictionary["deadline"] = deadline.asString()
+            dictionary[CodingKeys.deadline.stringValue] = deadline.asString()
         }
         if let editedAt {
-            dictionary["editedAt"] = editedAt.asString()
+            dictionary[CodingKeys.editedAt.stringValue] = editedAt.asString()
         }
-        if let data = try? JSONSerialization.data(withJSONObject: dictionary) {
-            return data
-        }
-        return Data()
+        return dictionary
     }
 }

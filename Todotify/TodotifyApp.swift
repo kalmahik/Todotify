@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct TodotifyApp: App {
+    var fileCache = FileCache()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -16,20 +18,46 @@ struct TodotifyApp: App {
     }
     
     init() {
-        let todoItem = TodoItem(
+        let todoItem1 = TodoItem(
             text: "Позвонить бабушке",
             importance: .important,
             deadline: Date().addingTimeInterval(TimeInterval(3600)),
             isCompleted: false,
             createdAt: Date()
         )
-        let json = todoItem.json
         
-        let todoItemRestored = TodoItem.parse(json: json)
+        let todoItem2 = TodoItem(
+            text: "Купить цветы",
+            importance: .important,
+            deadline: Date().addingTimeInterval(TimeInterval(3600)),
+            isCompleted: false,
+            createdAt: Date()
+        )
         
-        print(todoItem)
-        print(json)
-        print(todoItemRestored ?? "")
+        let todoItem3 = TodoItem(
+            text: "Взять спортивную форму",
+            importance: .important,
+            deadline: Date().addingTimeInterval(TimeInterval(3600)),
+            isCompleted: false,
+            createdAt: Date()
+        )
         
+        let todoItem4 = TodoItem(
+            text: "Оплатить абонемент",
+            importance: .important,
+            deadline: Date().addingTimeInterval(TimeInterval(3600)),
+            isCompleted: false,
+            createdAt: Date()
+        )
+        
+        fileCache.add(todo: todoItem1)
+        fileCache.add(todo: todoItem2)
+        fileCache.add(todo: todoItem3)
+        fileCache.add(todo: todoItem4)
+        
+//        fileCache.saveTo(file: "DB.txt")
+        let a = fileCache.readFromFile(fileName: "output.txt")
+        
+        print("------------------------a", a)
     }
 }
