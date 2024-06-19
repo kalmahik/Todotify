@@ -18,45 +18,18 @@ struct TodotifyApp: App {
     }
     
     init() {
-        let todoItem1 = TodoItem(
-            text: "Позвонить бабушке",
-            importance: .important,
-            deadline: Date().addingTimeInterval(TimeInterval(3600)),
-            isCompleted: false,
-            createdAt: Date()
-        )
-        
-        let todoItem2 = TodoItem(
-            text: "Купить цветы",
-            importance: .important,
-            deadline: Date().addingTimeInterval(TimeInterval(3600)),
-            isCompleted: false,
-            createdAt: Date()
-        )
-        
-        let todoItem3 = TodoItem(
-            text: "Взять спортивную форму",
-            importance: .important,
-            deadline: Date().addingTimeInterval(TimeInterval(3600)),
-            isCompleted: false,
-            createdAt: Date()
-        )
-        
-        let todoItem4 = TodoItem(
-            text: "Оплатить абонемент",
-            importance: .important,
-            deadline: Date().addingTimeInterval(TimeInterval(3600)),
-            isCompleted: false,
-            createdAt: Date()
-        )
+        let todoItem1 = TodoItem(text: "Позвонить бабушке")
+        let todoItem2 = TodoItem(text: "Купить цветы")
+        let todoItem3 = TodoItem(text: "Взять спортивную форму")
+        let todoItem4 = TodoItem(text: "Оплатить абонемент")
         
         fileCache.add(todo: todoItem1)
         fileCache.add(todo: todoItem2)
         fileCache.add(todo: todoItem3)
         fileCache.add(todo: todoItem4)
         
-//        fileCache.saveToFile(fileName: "output.txt")
-        let data = fileCache.readFromFile(fileName: "output.txt")
+        try? fileCache.saveToFile(fileName: "output.txt")
+        let data = try? fileCache.readFromFile(fileName: "output.txt")
         print(type(of: data))
         print(data)
     }

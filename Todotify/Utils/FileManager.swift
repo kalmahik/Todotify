@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum FileManagerError: Error {
+    case fileNotFound
+    case fileAlreadyExist
+    case error(String)
+}
+
 extension FileManager {
     static func getFile(name: String) -> URL? {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -14,5 +20,12 @@ extension FileManager {
             return fileURL
         }
         return nil
+    }
+    
+    static func isFileExist(name: String) -> Bool {
+        if let fileURL = getFile(name: name) {
+            FileManager.default.fileExists(atPath: fileURL.path)
+        }
+        return false
     }
 }

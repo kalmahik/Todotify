@@ -15,6 +15,7 @@ final class FileCache: Cacheable {
         let existedIndex = todos.firstIndex { $0.id == todo.id } ?? -1
         if existedIndex >= 0 {
             Logger.shared.info("ITEM EXIST, EDITING")
+            todos[existedIndex] = todo
         } else {
             todos.append(todo)
         }
@@ -24,38 +25,38 @@ final class FileCache: Cacheable {
         todos.removeAll { $0.id == id }
     }
     
-    func saveToFile(fileName: String) {
+    func saveToFile(fileName: String) throws {
         let todosJson = todos.map { $0.json }
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
-                Logger.shared.warning("FILE NOT FOUND")
-                return
+                throw FileManagerError.fileNotFound
+            }
+            let isFileExist = FileManager.isFileExist(name: fileName)
+            if isFileExist {
+                Logger.shared.info("ITEM EXIST, REPLACE")
             }
             let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJson)
             if isNotValidJson {
-                Logger.shared.warning("NOT VALID JSON OBJECT")
-                return
+                throw JsonError.notValidJsonObject
             }
             let data = try JSONSerialization.data(withJSONObject: todosJson)
             try data.write(to: filename)
         } catch let error as NSError {
-            Logger.shared.error(error.localizedDescription)
+            throw JsonError.error(error.localizedDescription)
         }
     }
 
     
-    func readFromFile(fileName: String) -> [TodoItem] {
+    func readFromFile(fileName: String) throws -> [TodoItem] {
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
-                Logger.shared.warning("NOT VALID JSON OBJECT")
-                return []
+                throw FileManagerError.fileNotFound
             }
             let data = try Data(contentsOf: filename)
             let todosJson = try JSONSerialization.jsonObject(with: data) as? [JsonDictionary] ?? []
             return todosJson.compactMap { TodoItem.parse(json: $0) }
         } catch let error as NSError {
-            Logger.shared.error(error.localizedDescription)
-            return []
+            throw JsonError.error(error.localizedDescription)
         }
     }
 }

@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias JsonDictionary = [String: Any]
-
 extension TodoItem: Parsable {
     static func parse(json: Any) -> TodoItem? {
         if let jsonData = json as? Data {
