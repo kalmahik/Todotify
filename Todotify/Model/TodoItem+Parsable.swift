@@ -11,12 +11,11 @@ typealias JsonDictionary = [String: Any]
 
 extension TodoItem: Parsable {
     static func parse(json: Any) -> TodoItem? {
-        if json is Data {
-            return parse(jsonData: json as! Data)
+        if let jsonData = json as? Data {
+            return parse(jsonData: jsonData)
         }
-        
-        if json is JsonDictionary {
-            return parse(jsonDictionary: json as! JsonDictionary)
+        if let jsonDictionary = json as? JsonDictionary {
+            return parse(jsonDictionary: jsonDictionary)
         }
         return nil
     }
@@ -26,10 +25,10 @@ extension TodoItem: Parsable {
             if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JsonDictionary {
                 return parse(jsonDictionary: jsonObject)
             }
-            print("THIS IS NOT TODO ITEM")
+            Logger.shared.warning("THIS IS NOT TODO ITEM")
             return nil
         } catch let error as NSError {
-            print("SMTH WENT GRONG: \(error.localizedDescription)")
+            Logger.shared.error(error.localizedDescription)
             return nil
         }
     }
@@ -45,7 +44,7 @@ extension TodoItem: Parsable {
         let importance = Importance(rawValue: importanceString) ?? Importance.usual
         
         guard let id, let text, let isCompleted, let createdAt else {
-            print("IS NOT VALID TODO ITEM")
+            Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
             return nil
         }
 

@@ -14,7 +14,7 @@ final class FileCache: Cacheable {
     func add(todo: TodoItem) {
         let existedIndex = todos.firstIndex { $0.id == todo.id } ?? -1
         if existedIndex >= 0 {
-            print("ITEM EXIST, EDITING?")
+            Logger.shared.info("ITEM EXIST, EDITING")
         } else {
             todos.append(todo)
         }
@@ -28,18 +28,18 @@ final class FileCache: Cacheable {
         let todosJson = todos.map { $0.json }
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
-                print("FILE NOT FOUND")
+                Logger.shared.warning("FILE NOT FOUND")
                 return
             }
-            let isValid = JSONSerialization.isValidJSONObject(todosJson)
-            if !isValid {
-                print("NOT VALID OBJECT")
+            let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJson)
+            if isNotValidJson {
+                Logger.shared.warning("NOT VALID JSON OBJECT")
                 return
             }
             let data = try JSONSerialization.data(withJSONObject: todosJson)
             try data.write(to: filename)
         } catch let error as NSError {
-            print(error.localizedDescription)
+            Logger.shared.error(error.localizedDescription)
         }
     }
 
@@ -47,14 +47,14 @@ final class FileCache: Cacheable {
     func readFromFile(fileName: String) -> [TodoItem] {
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
-                print("FILE NOT FOUND")
+                Logger.shared.warning("NOT VALID JSON OBJECT")
                 return []
             }
             let data = try Data(contentsOf: filename)
             let todosJson = try JSONSerialization.jsonObject(with: data) as? [JsonDictionary] ?? []
             return todosJson.compactMap { TodoItem.parse(json: $0) }
         } catch let error as NSError {
-            print(error.localizedDescription)
+            Logger.shared.error(error.localizedDescription)
             return []
         }
     }
