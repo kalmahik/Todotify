@@ -10,7 +10,7 @@ import Foundation
 typealias JsonDictionary = [String: Any]
 
 extension TodoItem: Parsable {
-     private enum CodingKeys: CodingKey {
+    private enum CodingKeys: CodingKey {
           case id, text, isCompleted, createdAt, deadline, editedAt, importance
     }
     

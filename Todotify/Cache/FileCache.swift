@@ -27,7 +27,7 @@ final class FileCache: Cacheable {
     func saveToFile(fileName: String) {
         let todosJson = todos.map { $0.json }
         do {
-            guard let filename = getDocument(by: fileName) else {
+            guard let filename = FileManager.getFile(name: fileName) else {
                 print("FILE NOT FOUND")
                 return
             }
@@ -41,7 +41,7 @@ final class FileCache: Cacheable {
     
     func readFromFile(fileName: String) -> [TodoItem] {
         do {
-            guard let filename = getDocument(by: "output.txt") else {
+            guard let filename = FileManager.getFile(name: fileName) else {
                 print("FILE NOT FOUND")
                 return []
             }
@@ -57,11 +57,5 @@ final class FileCache: Cacheable {
             return []
         }
         return []
-    }
-
-    
-    private func getDocument(by name: String) -> URL? {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        return paths?.appendingPathComponent(name)
     }
 }
