@@ -15,6 +15,8 @@
 		842905B82C1FF6D600159210 /* TodoItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */; };
 		842905BA2C21416400159210 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B92C21416400159210 /* Date+Extensions.swift */; };
 		842905D62C215AF500159210 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D52C215AF500159210 /* FileCache.swift */; };
+		842905D82C22A1C000159210 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D72C22A1BF00159210 /* Parsable.swift */; };
+		842905DA2C22AB5E00159210 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D92C22AB5E00159210 /* Cacheable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+Extensions.swift"; sourceTree = "<group>"; };
 		842905B92C21416400159210 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		842905D52C215AF500159210 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
+		842905D72C22A1BF00159210 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
+		842905D92C22AB5E00159210 /* Cacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +64,10 @@
 		842905A52C1FF34A00159210 /* Todotify */ = {
 			isa = PBXGroup;
 			children = (
-				842905B92C21416400159210 /* Date+Extensions.swift */,
-				842905B52C1FF4BC00159210 /* TodoItem.swift */,
-				842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */,
+				842905DD2C22B3E700159210 /* Extensions */,
+				842905DC2C22B39300159210 /* Cache */,
+				842905DB2C22B33D00159210 /* Model */,
 				842905A62C1FF34A00159210 /* TodotifyApp.swift */,
-				842905D52C215AF500159210 /* FileCache.swift */,
 				842905A82C1FF34A00159210 /* ContentView.swift */,
 				842905AA2C1FF34B00159210 /* Assets.xcassets */,
 				842905AF2C1FF34B00159210 /* Todotify.entitlements */,
@@ -79,6 +82,33 @@
 				842905AD2C1FF34B00159210 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		842905DB2C22B33D00159210 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				842905D72C22A1BF00159210 /* Parsable.swift */,
+				842905B52C1FF4BC00159210 /* TodoItem.swift */,
+				842905B72C1FF6D600159210 /* TodoItem+Extensions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842905DC2C22B39300159210 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				842905D92C22AB5E00159210 /* Cacheable.swift */,
+				842905D52C215AF500159210 /* FileCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		842905DD2C22B3E700159210 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				842905B92C21416400159210 /* Date+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +185,8 @@
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
 				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
+				842905DA2C22AB5E00159210 /* Cacheable.swift in Sources */,
+				842905D82C22A1C000159210 /* Parsable.swift in Sources */,
 				842905D62C215AF500159210 /* FileCache.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
 			);

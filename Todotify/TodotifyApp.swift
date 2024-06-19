@@ -55,9 +55,7 @@ struct TodotifyApp: App {
         fileCache.add(todo: todoItem3)
         fileCache.add(todo: todoItem4)
         
-//        fileCache.saveTo(file: "DB.txt")
-        let a = fileCache.readFromFile(fileName: "output.txt")
-        
-        print("------------------------a", a)
+        fileCache.saveToFile(fileName: "output.txt")
+        fileCache.readFromFile(fileName: "output.txt")
     }
 }
