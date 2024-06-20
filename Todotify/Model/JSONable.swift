@@ -1,5 +1,5 @@
 //
-//  Parsable.swift
+//  JSONable.swift
 //  Todotify
 //
 //  Created by kalmahik on 19.06.2024.
@@ -15,7 +15,7 @@ enum JsonError: Error {
 
 typealias JsonDictionary = [String: Any]
 
-protocol Parsable {
+protocol JSONable {
     static func parse(json: Any) -> Self?
     var json: Any { get }
 }

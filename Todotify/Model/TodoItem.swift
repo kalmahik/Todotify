@@ -40,3 +40,7 @@ struct TodoItem {
         self.editedAt = editedAt
     }
 }
+
+enum TodoCodingKeys: CodingKey, CaseIterable {
+      case id, text, importance, isCompleted, createdAt, deadline, editedAt
+}

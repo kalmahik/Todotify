@@ -12,13 +12,14 @@
 		842905AB2C1FF34B00159210 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842905AA2C1FF34B00159210 /* Assets.xcassets */; };
 		842905AE2C1FF34B00159210 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842905AD2C1FF34B00159210 /* Preview Assets.xcassets */; };
 		842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B52C1FF4BC00159210 /* TodoItem.swift */; };
-		842905B82C1FF6D600159210 /* TodoItem+Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B72C1FF6D600159210 /* TodoItem+Parsable.swift */; };
+		842905B82C1FF6D600159210 /* TodoItem+JSONable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B72C1FF6D600159210 /* TodoItem+JSONable.swift */; };
 		842905BA2C21416400159210 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905B92C21416400159210 /* Date+Extensions.swift */; };
 		842905D62C215AF500159210 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D52C215AF500159210 /* FileCache.swift */; };
-		842905D82C22A1C000159210 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D72C22A1BF00159210 /* Parsable.swift */; };
+		842905D82C22A1C000159210 /* JSONable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D72C22A1BF00159210 /* JSONable.swift */; };
 		842905DA2C22AB5E00159210 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905D92C22AB5E00159210 /* Cacheable.swift */; };
 		842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905DE2C22B92D00159210 /* TodoItem+CSVable.swift */; };
 		842905E12C22BCF300159210 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905E02C22BCF300159210 /* FileManager.swift */; };
+		842905E42C23773A00159210 /* CSVable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905E32C23773A00159210 /* CSVable.swift */; };
 		F58F511E2C2342730058B2E5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511D2C2342730058B2E5 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,13 +31,14 @@
 		842905AD2C1FF34B00159210 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		842905AF2C1FF34B00159210 /* Todotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Todotify.entitlements; sourceTree = "<group>"; };
 		842905B52C1FF4BC00159210 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		842905B72C1FF6D600159210 /* TodoItem+Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+Parsable.swift"; sourceTree = "<group>"; };
+		842905B72C1FF6D600159210 /* TodoItem+JSONable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+JSONable.swift"; sourceTree = "<group>"; };
 		842905B92C21416400159210 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		842905D52C215AF500159210 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
-		842905D72C22A1BF00159210 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
+		842905D72C22A1BF00159210 /* JSONable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONable.swift; sourceTree = "<group>"; };
 		842905D92C22AB5E00159210 /* Cacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
 		842905DE2C22B92D00159210 /* TodoItem+CSVable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoItem+CSVable.swift"; sourceTree = "<group>"; };
 		842905E02C22BCF300159210 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		842905E32C23773A00159210 /* CSVable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVable.swift; sourceTree = "<group>"; };
 		F58F511D2C2342730058B2E5 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,9 +96,10 @@
 		842905DB2C22B33D00159210 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				842905D72C22A1BF00159210 /* Parsable.swift */,
+				842905D72C22A1BF00159210 /* JSONable.swift */,
+				842905E32C23773A00159210 /* CSVable.swift */,
 				842905B52C1FF4BC00159210 /* TodoItem.swift */,
-				842905B72C1FF6D600159210 /* TodoItem+Parsable.swift */,
+				842905B72C1FF6D600159210 /* TodoItem+JSONable.swift */,
 				842905DE2C22B92D00159210 /* TodoItem+CSVable.swift */,
 			);
 			path = Model;
@@ -198,15 +201,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842905B82C1FF6D600159210 /* TodoItem+Parsable.swift in Sources */,
+				842905B82C1FF6D600159210 /* TodoItem+JSONable.swift in Sources */,
 				F58F511E2C2342730058B2E5 /* Logger.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
+				842905E42C23773A00159210 /* CSVable.swift in Sources */,
 				842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */,
 				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
 				842905E12C22BCF300159210 /* FileManager.swift in Sources */,
 				842905DA2C22AB5E00159210 /* Cacheable.swift in Sources */,
-				842905D82C22A1C000159210 /* Parsable.swift in Sources */,
+				842905D82C22A1C000159210 /* JSONable.swift in Sources */,
 				842905D62C215AF500159210 /* FileCache.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
 			);

@@ -29,8 +29,12 @@ struct TodotifyApp: App {
         fileCache.add(todo: todoItem4)
         
         try? fileCache.saveToFile(fileName: "output.txt")
-        let data = try? fileCache.readFromFile(fileName: "output.txt")
-        print(type(of: data))
-        print(data)
+        let data = try? fileCache.readFromFile(fileName: "output2.txt")
+        
+        let todoItem1Csv = todoItem1.csv
+        let todoItem1restored = TodoItem.parse(csv: todoItem1Csv)
+//        print(todoItem1Csv)
+//        print(todoItem1restored!)
+//        print(todoItem1)
     }
 }

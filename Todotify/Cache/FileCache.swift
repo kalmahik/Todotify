@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum Format {
+    case json
+    case csv
+}
+
 final class FileCache: Cacheable {
     
     private(set) var todos: [TodoItem] = []
@@ -14,7 +19,7 @@ final class FileCache: Cacheable {
     func add(todo: TodoItem) {
         let existedIndex = todos.firstIndex { $0.id == todo.id } ?? -1
         if existedIndex >= 0 {
-            Logger.shared.info("ITEM EXIST, EDITING")
+            Logger.shared.info("TODO EXIST, REPLACING")
             todos[existedIndex] = todo
         } else {
             todos.append(todo)
@@ -25,31 +30,41 @@ final class FileCache: Cacheable {
         todos.removeAll { $0.id == id }
     }
     
-    func saveToFile(fileName: String) throws {
-        let todosJson = todos.map { $0.json }
+    func saveToFile(fileName: String, format: Format = .json) throws {
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
                 throw FileManagerError.fileNotFound
             }
             let isFileExist = FileManager.isFileExist(name: fileName)
             if isFileExist {
-                Logger.shared.info("ITEM EXIST, REPLACE")
+                Logger.shared.info("FILE EXIST, REPLACING")
             }
-            let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJson)
-            if isNotValidJson {
-                throw JsonError.notValidJsonObject
+            switch format {
+            case .json:
+                let todosJSON = todos.map { $0.json }
+                let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJSON)
+                if isNotValidJson {
+                    throw JsonError.notValidJsonObject
+                }
+                let data = try JSONSerialization.data(withJSONObject: todosJSON)
+                try data.write(to: filename)
+            case .csv:
+                let CSVString = ([TodoItem.csvHeader] + todos.map { $0.csv }).joined(separator: "\n")
+                try CSVString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
             }
-            let data = try JSONSerialization.data(withJSONObject: todosJson)
-            try data.write(to: filename)
         } catch let error as NSError {
             throw JsonError.error(error.localizedDescription)
         }
     }
 
     
-    func readFromFile(fileName: String) throws -> [TodoItem] {
+    func readFromFile(fileName: String, format: Format = .json) throws -> [TodoItem] {
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
+                throw FileManagerError.fileNotFound
+            }
+            let isFileExist = FileManager.isFileExist(name: fileName)
+            if !isFileExist {
                 throw FileManagerError.fileNotFound
             }
             let data = try Data(contentsOf: filename)

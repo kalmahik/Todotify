@@ -1,62 +1,61 @@
-////
-////  TodoItem+Extensions.swift
-////  Todotify
-////
-////  Created by kalmahik on 17.06.2024.
-////
 //
-//import Foundation
+//  TodoItem+Extensions.swift
+//  Todotify
 //
-//typealias JsonDictionary = [String: Any]
+//  Created by kalmahik on 17.06.2024.
 //
-//extension TodoItem {
-//
-//    
-//    static func parse(csv: Any) -> TodoItem? {
-//
-//            //locate the file you want to use
-//            guard let filepath = Bundle.main.path(forResource: "data", ofType: "csv") else {
-//                return
-//            }
-//
-//            //convert that file into one long string
-//            var data = ""
-//            do {
-//                data = try String(contentsOfFile: filepath)
-//            } catch {
-//                print(error)
-//                return
-//            }
-//
-//            //now split that string into an array of "rows" of data.  Each row is a string.
-//            var rows = data.components(separatedBy: "\n")
-//
-//            //if you have a header row, remove it here
-//            rows.removeFirst()
-//
-//            //now loop around each row, and split it into each of its columns
-//            for row in rows {
-//                let columns = row.components(separatedBy: ",")
-//
-//                //check that we have enough columns
-//                if columns.count == 4 {
-//                    let firstName = columns[0]
-//                    let lastName = columns[1]
-//                    let age = Int(columns[2]) ?? 0
-//                    let isRegistered = columns[3] == "True"
-//
-//                    
-//                    let id = jsonObject[CodingKeys.id.stringValue] as? String
-//                    let text = jsonObject[CodingKeys.text.stringValue] as? String
-//                    let isCompleted = jsonObject[CodingKeys.isCompleted.stringValue] as? Bool
-//                    let createdAt = jsonObject[CodingKeys.createdAt.stringValue] as? String
-//                    let deadline = jsonObject[CodingKeys.deadline.stringValue] as? String
-//                    let editedAt = jsonObject[CodingKeys.editedAt.stringValue] as? String
-//                    let importanceString = jsonObject[CodingKeys.importance.stringValue] as? String ?? Importance.usual.rawValue
-//                    let importance = Importance(rawValue: importanceString) ?? Importance.usual
-//                    
-//                    return TodoItem(){}
-//                }
-//            }
-//        }
-//}
+
+import Foundation
+
+extension TodoItem: CSVable {    
+    static var csvHeader: String {
+        var columns: [String] = []
+        columns.append(TodoCodingKeys.id.stringValue)
+        columns.append(TodoCodingKeys.text.stringValue)
+        columns.append(TodoCodingKeys.importance.stringValue)
+        columns.append(TodoCodingKeys.isCompleted.stringValue)
+        columns.append(TodoCodingKeys.createdAt.stringValue)
+        columns.append(TodoCodingKeys.editedAt.stringValue)
+        columns.append(TodoCodingKeys.deadline.stringValue)
+        return columns.joined(separator: ",")
+    }
+    
+    static func parse(csv: String) -> TodoItem? {
+        let columns = csv.components(separatedBy: ",")
+        if columns.count == TodoCodingKeys.allCases.count {
+            let id = columns[0]
+            let text = columns[1]
+            let importanceString = columns[2]
+            let isCompleted = columns[3] == "true"
+            let createdAt = columns[4]
+            let editedAt = columns[5].isEmpty ? nil : columns[5]
+            let deadline = columns[6].isEmpty ? nil : columns[6]
+            let importance = Importance(rawValue: importanceString) ?? Importance.usual
+            
+            return TodoItem(
+                id: id,
+                text: text,
+                importance: importance,
+                deadline: Date.fromString(date: deadline),
+                isCompleted: isCompleted,
+                createdAt: Date.fromString(date: createdAt)!,
+                editedAt: Date.fromString(date: editedAt)
+            )
+        } else {
+            Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
+            return nil
+        }
+    }
+    
+    var csv: String {
+        var columns: [String] = []
+        columns.append(id)
+        columns.append(text)
+        columns.append(importance.rawValue)
+        columns.append("\(isCompleted)")
+        columns.append(createdAt.asString())
+        columns.append(editedAt?.asString() ?? "")
+        columns.append(deadline?.asString() ?? "")
+        return columns.joined(separator: ",")
+    }
+}

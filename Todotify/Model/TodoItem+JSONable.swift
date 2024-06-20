@@ -32,13 +32,13 @@ extension TodoItem: JSONable {
     }
     
     static func parse(jsonDictionary: JsonDictionary) -> TodoItem? {
-        let id = jsonDictionary[CodingKeys.id.stringValue] as? String
-        let text = jsonDictionary[CodingKeys.text.stringValue] as? String
-        let isCompleted = jsonDictionary[CodingKeys.isCompleted.stringValue] as? Bool
-        let createdAt = jsonDictionary[CodingKeys.createdAt.stringValue] as? String
-        let deadline = jsonDictionary[CodingKeys.deadline.stringValue] as? String
-        let editedAt = jsonDictionary[CodingKeys.editedAt.stringValue] as? String
-        let importanceString = jsonDictionary[CodingKeys.importance.stringValue] as? String ?? Importance.usual.rawValue
+        let id = jsonDictionary[TodoCodingKeys.id.stringValue] as? String
+        let text = jsonDictionary[TodoCodingKeys.text.stringValue] as? String
+        let isCompleted = jsonDictionary[TodoCodingKeys.isCompleted.stringValue] as? Bool
+        let createdAt = jsonDictionary[TodoCodingKeys.createdAt.stringValue] as? String
+        let deadline = jsonDictionary[TodoCodingKeys.deadline.stringValue] as? String
+        let editedAt = jsonDictionary[TodoCodingKeys.editedAt.stringValue] as? String
+        let importanceString = jsonDictionary[TodoCodingKeys.importance.stringValue] as? String ?? Importance.usual.rawValue
         let importance = Importance(rawValue: importanceString) ?? Importance.usual
         
         guard let id, let text, let isCompleted, let createdAt else {
@@ -59,23 +59,19 @@ extension TodoItem: JSONable {
     
     var json: Any {
         var dictionary: JsonDictionary = [:]
-        dictionary[CodingKeys.id.stringValue] = id
-        dictionary[CodingKeys.text.stringValue] = text
-        dictionary[CodingKeys.isCompleted.stringValue] = isCompleted
-        dictionary[CodingKeys.createdAt.stringValue] = createdAt.asString()
+        dictionary[TodoCodingKeys.id.stringValue] = id
+        dictionary[TodoCodingKeys.text.stringValue] = text
+        dictionary[TodoCodingKeys.isCompleted.stringValue] = isCompleted
+        dictionary[TodoCodingKeys.createdAt.stringValue] = createdAt.asString()
         if importance != .usual {
-            dictionary[CodingKeys.importance.stringValue] = importance.rawValue
+            dictionary[TodoCodingKeys.importance.stringValue] = importance.rawValue
         }
         if let deadline {
-            dictionary[CodingKeys.deadline.stringValue] = deadline.asString()
+            dictionary[TodoCodingKeys.deadline.stringValue] = deadline.asString()
         }
         if let editedAt {
-            dictionary[CodingKeys.editedAt.stringValue] = editedAt.asString()
+            dictionary[TodoCodingKeys.editedAt.stringValue] = editedAt.asString()
         }
         return dictionary
-    }
-    
-    private enum CodingKeys: CodingKey {
-          case id, text, isCompleted, createdAt, deadline, editedAt, importance
     }
 }
