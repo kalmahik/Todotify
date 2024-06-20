@@ -12,6 +12,6 @@ protocol Cacheable {
     
     func add(todo: TodoItem)
     func removeTodo(by id: String)
-    func saveToFile(fileName: String) throws
-    func readFromFile(fileName: String) throws -> [TodoItem]
+    func saveToFile(fileName: String, format: Format) throws
+    func readFromFile(fileName: String, format: Format) throws -> [TodoItem]
 }

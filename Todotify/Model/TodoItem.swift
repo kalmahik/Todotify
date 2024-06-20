@@ -23,7 +23,7 @@ struct TodoItem {
     let editedAt: Date?
     
     init(
-        id: String = UUID().uuidString,
+        id: String,
         text: String,
         importance: Importance = .usual,
         deadline: Date? = nil,
@@ -41,6 +41,12 @@ struct TodoItem {
     }
 }
 
-enum TodoCodingKeys: CodingKey, CaseIterable {
-      case id, text, importance, isCompleted, createdAt, deadline, editedAt
+enum TodoCodingKeys: String, CaseIterable {
+    case id = "id"
+    case text = "text"
+    case importance = "importance"
+    case isCompleted = "isCompleted"
+    case createdAt = "createdAt"
+    case deadline = "deadline"
+    case editedAt = "editedAt"
 }

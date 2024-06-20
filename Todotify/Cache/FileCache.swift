@@ -13,12 +13,10 @@ enum Format {
 }
 
 final class FileCache: Cacheable {
-    
     private(set) var todos: [TodoItem] = []
     
     func add(todo: TodoItem) {
-        let existedIndex = todos.firstIndex { $0.id == todo.id } ?? -1
-        if existedIndex >= 0 {
+        if let existedIndex = todos.firstIndex(where: { $0.id == todo.id }) {
             Logger.shared.info("TODO EXIST, REPLACING")
             todos[existedIndex] = todo
         } else {

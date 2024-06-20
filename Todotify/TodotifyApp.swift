@@ -18,10 +18,10 @@ struct TodotifyApp: App {
     }
     
     init() {
-        let todoItem1 = TodoItem(text: "Позвонить бабушке")
-        let todoItem2 = TodoItem(text: "Купить цветы")
-        let todoItem3 = TodoItem(text: "Взять спортивную форму")
-        let todoItem4 = TodoItem(text: "Оплатить абонемент")
+        let todoItem1 = TodoItem(id: UUID().uuidString, text: "Позвонить бабушке")
+        let todoItem2 = TodoItem(id: UUID().uuidString, text: "Купить цветы")
+        let todoItem3 = TodoItem(id: UUID().uuidString, text: "Взять спортивную форму")
+        let todoItem4 = TodoItem(id: UUID().uuidString, text: "Оплатить абонемент")
         
         fileCache.add(todo: todoItem1)
         fileCache.add(todo: todoItem2)

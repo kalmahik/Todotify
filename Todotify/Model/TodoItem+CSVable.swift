@@ -10,13 +10,13 @@ import Foundation
 extension TodoItem: CSVable {    
     static var csvHeader: String {
         var columns: [String] = []
-        columns.append(TodoCodingKeys.id.stringValue)
-        columns.append(TodoCodingKeys.text.stringValue)
-        columns.append(TodoCodingKeys.importance.stringValue)
-        columns.append(TodoCodingKeys.isCompleted.stringValue)
-        columns.append(TodoCodingKeys.createdAt.stringValue)
-        columns.append(TodoCodingKeys.editedAt.stringValue)
-        columns.append(TodoCodingKeys.deadline.stringValue)
+        columns.append(TodoCodingKeys.id.rawValue)
+        columns.append(TodoCodingKeys.text.rawValue)
+        columns.append(TodoCodingKeys.importance.rawValue)
+        columns.append(TodoCodingKeys.isCompleted.rawValue)
+        columns.append(TodoCodingKeys.createdAt.rawValue)
+        columns.append(TodoCodingKeys.editedAt.rawValue)
+        columns.append(TodoCodingKeys.deadline.rawValue)
         return columns.joined(separator: ",")
     }
     
@@ -36,10 +36,10 @@ extension TodoItem: CSVable {
                 id: id,
                 text: text,
                 importance: importance,
-                deadline: Date.fromString(date: deadline),
+                deadline: Date.fromString(deadline),
                 isCompleted: isCompleted,
-                createdAt: Date.fromString(date: createdAt)!,
-                editedAt: Date.fromString(date: editedAt)
+                createdAt: Date.fromString(createdAt) ?? Date(),
+                editedAt: Date.fromString(editedAt)
             )
         } else {
             Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
