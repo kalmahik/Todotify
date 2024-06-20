@@ -7,7 +7,9 @@
 
 import Foundation
 
-extension TodoItem: CSVable {    
+extension TodoItem: CSVable {
+    static let regexFindCommaNotInsideQuotes = #"(?!\B"[^"]*),(?![^"]*"\B)"# // регулярка, которая находит все запятые, кроме запятых внутри кавычек
+    
     static var csvHeader: String {
         var columns: [String] = []
         columns.append(TodoCodingKeys.id.rawValue)
@@ -21,7 +23,8 @@ extension TodoItem: CSVable {
     }
     
     static func parse(csv: String) -> TodoItem? {
-        let columns = csv.components(separatedBy: ",")
+        let columns = String.splitTextByRegex(text: csv, regexPattern: regexFindCommaNotInsideQuotes)
+        
         if columns.count == TodoCodingKeys.allCases.count {
             let id = columns[0]
             let text = columns[1]
@@ -50,7 +53,7 @@ extension TodoItem: CSVable {
     var csv: String {
         var columns: [String] = []
         columns.append(id)
-        columns.append(text)
+        columns.append(text.contains(",") ? "\"\(text)\"" : text)
         columns.append(importance.rawValue)
         columns.append("\(isCompleted)")
         columns.append(createdAt.asString())

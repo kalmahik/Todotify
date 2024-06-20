@@ -50,7 +50,7 @@ final class FileCache: Cacheable {
                 let CSVString = ([TodoItem.csvHeader] + todos.map { $0.csv }).joined(separator: "\n")
                 try CSVString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
             }
-        } catch let error as NSError {
+        } catch let error {
             throw JsonError.error(error.localizedDescription)
         }
     }
@@ -61,14 +61,23 @@ final class FileCache: Cacheable {
             guard let filename = FileManager.getFile(name: fileName) else {
                 throw FileManagerError.fileNotFound
             }
-            let isFileExist = FileManager.isFileExist(name: fileName)
-            if !isFileExist {
-                throw FileManagerError.fileNotFound
+//            let isFileExist = FileManager.isFileExist(name: fileName)
+//            if !isFileExist {
+//                throw FileManagerError.fileNotFound
+//            }
+            
+            switch format {
+            case .json:
+                let data = try Data(contentsOf: filename)
+                let todosJson = try JSONSerialization.jsonObject(with: data) as? [JsonDictionary] ?? []
+                return todosJson.compactMap { TodoItem.parse(json: $0) }
+            case .csv:
+                let data = try String(contentsOf: filename)
+                var rows = data.components(separatedBy: "\n")
+                rows.removeFirst()
+                return rows.compactMap { TodoItem.parse(csv: $0) }
             }
-            let data = try Data(contentsOf: filename)
-            let todosJson = try JSONSerialization.jsonObject(with: data) as? [JsonDictionary] ?? []
-            return todosJson.compactMap { TodoItem.parse(json: $0) }
-        } catch let error as NSError {
+        } catch let error {
             throw JsonError.error(error.localizedDescription)
         }
     }

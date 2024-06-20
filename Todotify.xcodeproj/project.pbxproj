@@ -21,6 +21,7 @@
 		842905E12C22BCF300159210 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905E02C22BCF300159210 /* FileManager.swift */; };
 		842905E42C23773A00159210 /* CSVable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905E32C23773A00159210 /* CSVable.swift */; };
 		F58F511E2C2342730058B2E5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511D2C2342730058B2E5 /* Logger.swift */; };
+		F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		842905E02C22BCF300159210 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		842905E32C23773A00159210 /* CSVable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVable.swift; sourceTree = "<group>"; };
 		F58F511D2C2342730058B2E5 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				842905D92C22AB5E00159210 /* Cacheable.swift */,
 				842905D52C215AF500159210 /* FileCache.swift */,
+				F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				842905B82C1FF6D600159210 /* TodoItem+JSONable.swift in Sources */,
+				F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */,
 				F58F511E2C2342730058B2E5 /* Logger.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,

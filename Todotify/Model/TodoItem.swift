@@ -23,7 +23,7 @@ struct TodoItem {
     let editedAt: Date?
     
     init(
-        id: String,
+        id: String = UUID().uuidString,
         text: String,
         importance: Importance = .usual,
         deadline: Date? = nil,
