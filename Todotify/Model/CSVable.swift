@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum CSVError: Error {
+    case notValidCSVObject
+    case notValidTodoItem
+    case error(String)
+}
+
 protocol CSVable {
     static var csvHeader: String { get }
     static func parse(csv: String) -> Self?

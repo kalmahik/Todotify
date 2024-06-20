@@ -12,7 +12,7 @@ extension TodoItem: JSONable {
         if let jsonData = json as? Data {
             return parse(jsonData: jsonData)
         }
-        if let jsonDictionary = json as? JsonDictionary {
+        if let jsonDictionary = json as? JSONDictionary {
             return parse(jsonDictionary: jsonDictionary)
         }
         return nil
@@ -20,7 +20,7 @@ extension TodoItem: JSONable {
     
     static func parse(jsonData: Data) -> TodoItem? {
         do {
-            if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JsonDictionary {
+            if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JSONDictionary {
                 return parse(jsonDictionary: jsonObject)
             }
             Logger.shared.warning("THIS IS NOT TODO ITEM")
@@ -31,7 +31,7 @@ extension TodoItem: JSONable {
         }
     }
     
-    static func parse(jsonDictionary: JsonDictionary) -> TodoItem? {
+    static func parse(jsonDictionary: JSONDictionary) -> TodoItem? {
         let id = jsonDictionary[TodoCodingKeys.id.rawValue] as? String
         let text = jsonDictionary[TodoCodingKeys.text.rawValue] as? String
         let isCompleted = jsonDictionary[TodoCodingKeys.isCompleted.rawValue] as? Bool
@@ -58,7 +58,7 @@ extension TodoItem: JSONable {
     }
     
     var json: Any {
-        var dictionary: JsonDictionary = [:]
+        var dictionary: JSONDictionary = [:]
         dictionary[TodoCodingKeys.id.rawValue] = id
         dictionary[TodoCodingKeys.text.rawValue] = text
         dictionary[TodoCodingKeys.isCompleted.rawValue] = isCompleted

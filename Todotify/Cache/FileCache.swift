@@ -37,12 +37,13 @@ final class FileCache: Cacheable {
             if isFileExist {
                 Logger.shared.info("FILE EXIST, REPLACING")
             }
+            // что-то мне кажется, что лучше это вынести из этого класса...
             switch format {
             case .json:
                 let todosJSON = todos.map { $0.json }
                 let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJSON)
                 if isNotValidJson {
-                    throw JsonError.notValidJsonObject
+                    throw JSONError.notValidJSONObject
                 }
                 let data = try JSONSerialization.data(withJSONObject: todosJSON)
                 try data.write(to: filename)
@@ -51,25 +52,24 @@ final class FileCache: Cacheable {
                 try CSVString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
             }
         } catch let error {
-            throw JsonError.error(error.localizedDescription)
+            throw JSONError.error(error.localizedDescription)
         }
     }
-
     
     func readFromFile(fileName: String, format: Format = .json) throws -> [TodoItem] {
         do {
             guard let filename = FileManager.getFile(name: fileName) else {
                 throw FileManagerError.fileNotFound
             }
-//            let isFileExist = FileManager.isFileExist(name: fileName)
-//            if !isFileExist {
-//                throw FileManagerError.fileNotFound
-//            }
-            
+            let isFileExist = FileManager.isFileExist(name: fileName)
+            if !isFileExist {
+                throw FileManagerError.fileNotFound
+            }
+            // что-то мне кажется, что лучше это вынести из этого класса...
             switch format {
             case .json:
                 let data = try Data(contentsOf: filename)
-                let todosJson = try JSONSerialization.jsonObject(with: data) as? [JsonDictionary] ?? []
+                let todosJson = try JSONSerialization.jsonObject(with: data) as? [JSONDictionary] ?? []
                 return todosJson.compactMap { TodoItem.parse(json: $0) }
             case .csv:
                 let data = try String(contentsOf: filename)
@@ -78,7 +78,10 @@ final class FileCache: Cacheable {
                 return rows.compactMap { TodoItem.parse(csv: $0) }
             }
         } catch let error {
-            throw JsonError.error(error.localizedDescription)
+            switch format {
+            case .json: throw JSONError.error(error.localizedDescription)
+            case.csv: throw CSVError.error(error.localizedDescription)
+            }
         }
     }
 }

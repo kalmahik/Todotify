@@ -29,7 +29,7 @@ extension TodoItem: CSVable {
             let id = columns[0]
             let text = columns[1]
             let importanceString = columns[2]
-            let isCompleted = columns[3] == "true"
+            let isCompleted = columns[3].lowercased() == "true"
             let createdAt = columns[4]
             let editedAt = columns[5].isEmpty ? nil : columns[5]
             let deadline = columns[6].isEmpty ? nil : columns[6]

@@ -24,8 +24,9 @@ extension FileManager {
     
     static func isFileExist(name: String) -> Bool {
         if let fileURL = getFile(name: name) {
-            FileManager.default.fileExists(atPath: fileURL.path)
+            return FileManager.default.fileExists(atPath: fileURL.path)
+        } else {
+            return false
         }
-        return false
     }
 }

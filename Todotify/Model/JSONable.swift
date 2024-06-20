@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum JsonError: Error {
-    case notValidJsonObject
+enum JSONError: Error {
+    case notValidJSONObject
     case notValidTodoItem
     case error(String)
 }
 
-typealias JsonDictionary = [String: Any]
+typealias JSONDictionary = [String: Any]
 
 protocol JSONable {
     static func parse(json: Any) -> Self?
