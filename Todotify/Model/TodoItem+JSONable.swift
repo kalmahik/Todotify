@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TodoItem: Parsable {
+extension TodoItem: JSONable {
     static func parse(json: Any) -> TodoItem? {
         if let jsonData = json as? Data {
             return parse(jsonData: jsonData)
