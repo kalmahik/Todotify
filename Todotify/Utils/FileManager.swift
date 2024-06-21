@@ -22,11 +22,19 @@ extension FileManager {
         return nil
     }
     
-    static func isFileExist(name: String) -> Bool {
-        if let fileURL = getFile(name: name) {
-            return FileManager.default.fileExists(atPath: fileURL.path)
-        } else {
-            return false
+    static func getFileURL(name: String) throws -> URL {
+        guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw FileManagerError.error("DOCUMENTS DIRECTORY DONT EXIST")
         }
+        return dir.appendingPathComponent(name)
     }
+    
+    static func isFileExist(name: String) -> Bool {
+         do {
+             let fileURL = try getFileURL(name: name)
+             return FileManager.default.fileExists(atPath: fileURL.path)
+         } catch {
+             return false
+         }
+     }
 }

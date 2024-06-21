@@ -23,7 +23,7 @@ extension TodoItem: JSONable {
             if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JSONDictionary {
                 return parse(jsonDictionary: jsonObject)
             }
-            Logger.shared.warning("THIS IS NOT TODO ITEM")
+            Logger.shared.warning("THIS IS NOT JSON")
             return nil
         } catch let error as NSError {
             Logger.shared.error(error.localizedDescription)

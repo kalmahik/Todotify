@@ -58,9 +58,7 @@ final class FileCache: Cacheable {
     
     func readFromFile(fileName: String, format: Format = .json) throws -> [TodoItem] {
         do {
-            guard let filename = FileManager.getFile(name: fileName) else {
-                throw FileManagerError.fileNotFound
-            }
+            let filename = try FileManager.getFileURL(name: fileName)
             let isFileExist = FileManager.isFileExist(name: fileName)
             if !isFileExist {
                 throw FileManagerError.fileNotFound

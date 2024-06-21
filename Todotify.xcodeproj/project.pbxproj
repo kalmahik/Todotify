@@ -20,9 +20,22 @@
 		842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905DE2C22B92D00159210 /* TodoItem+CSVable.swift */; };
 		842905E12C22BCF300159210 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905E02C22BCF300159210 /* FileManager.swift */; };
 		842905E42C23773A00159210 /* CSVable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905E32C23773A00159210 /* CSVable.swift */; };
+		842905EC2C253B4700159210 /* TodotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905EB2C253B4700159210 /* TodotifyTests.swift */; };
+		842905F32C25486000159210 /* Todotify+JSONAbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */; };
+		842905F52C25536B00159210 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F42C25536B00159210 /* DefaultValues.swift */; };
 		F58F511E2C2342730058B2E5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511D2C2342730058B2E5 /* Logger.swift */; };
 		F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		842905ED2C253B4700159210 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8429059B2C1FF34A00159210 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 842905A22C1FF34A00159210;
+			remoteInfo = Todotify;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		842905A32C1FF34A00159210 /* Todotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,12 +53,23 @@
 		842905DE2C22B92D00159210 /* TodoItem+CSVable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoItem+CSVable.swift"; sourceTree = "<group>"; };
 		842905E02C22BCF300159210 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		842905E32C23773A00159210 /* CSVable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVable.swift; sourceTree = "<group>"; };
+		842905E92C253B4700159210 /* TodotifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodotifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		842905EB2C253B4700159210 /* TodotifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodotifyTests.swift; sourceTree = "<group>"; };
+		842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todotify+JSONAbleTests.swift"; sourceTree = "<group>"; };
+		842905F42C25536B00159210 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		F58F511D2C2342730058B2E5 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		842905A02C1FF34A00159210 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		842905E62C253B4700159210 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				842905A52C1FF34A00159210 /* Todotify */,
+				842905EA2C253B4700159210 /* TodotifyTests */,
 				842905A42C1FF34A00159210 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				842905A32C1FF34A00159210 /* Todotify.app */,
+				842905E92C253B4700159210 /* TodotifyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +160,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		842905EA2C253B4700159210 /* TodotifyTests */ = {
+			isa = PBXGroup;
+			children = (
+				842905EB2C253B4700159210 /* TodotifyTests.swift */,
+				842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */,
+				842905F42C25536B00159210 /* DefaultValues.swift */,
+			);
+			path = TodotifyTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,6 +190,24 @@
 			productReference = 842905A32C1FF34A00159210 /* Todotify.app */;
 			productType = "com.apple.product-type.application";
 		};
+		842905E82C253B4700159210 /* TodotifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 842905F12C253B4700159210 /* Build configuration list for PBXNativeTarget "TodotifyTests" */;
+			buildPhases = (
+				842905E52C253B4700159210 /* Sources */,
+				842905E62C253B4700159210 /* Frameworks */,
+				842905E72C253B4700159210 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				842905EE2C253B4700159210 /* PBXTargetDependency */,
+			);
+			name = TodotifyTests;
+			productName = TodotifyTests;
+			productReference = 842905E92C253B4700159210 /* TodotifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -166,6 +220,10 @@
 				TargetAttributes = {
 					842905A22C1FF34A00159210 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					842905E82C253B4700159210 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 842905A22C1FF34A00159210;
 					};
 				};
 			};
@@ -183,6 +241,7 @@
 			projectRoot = "";
 			targets = (
 				842905A22C1FF34A00159210 /* Todotify */,
+				842905E82C253B4700159210 /* TodotifyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +253,13 @@
 			files = (
 				842905AE2C1FF34B00159210 /* Preview Assets.xcassets in Resources */,
 				842905AB2C1FF34B00159210 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		842905E72C253B4700159210 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +286,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		842905E52C253B4700159210 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				842905EC2C253B4700159210 /* TodotifyTests.swift in Sources */,
+				842905F52C25536B00159210 /* DefaultValues.swift in Sources */,
+				842905F32C25486000159210 /* Todotify+JSONAbleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		842905EE2C253B4700159210 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 842905A22C1FF34A00159210 /* Todotify */;
+			targetProxy = 842905ED2C253B4700159210 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		842905B02C1FF34B00159210 /* Debug */ = {
@@ -397,6 +481,45 @@
 			};
 			name = Release;
 		};
+		842905EF2C253B4700159210 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kalmahik.TodotifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todotify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Todotify";
+			};
+			name = Debug;
+		};
+		842905F02C253B4700159210 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kalmahik.TodotifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todotify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Todotify";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -414,6 +537,15 @@
 			buildConfigurations = (
 				842905B32C1FF34B00159210 /* Debug */,
 				842905B42C1FF34B00159210 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		842905F12C253B4700159210 /* Build configuration list for PBXNativeTarget "TodotifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				842905EF2C253B4700159210 /* Debug */,
+				842905F02C253B4700159210 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
