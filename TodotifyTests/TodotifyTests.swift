@@ -15,7 +15,7 @@ final class TodotifyTests: XCTestCase {
         let todo = TodoItem(text: text)
         XCTAssertNotNil(todo.id)
         XCTAssertEqual(todo.text, text)
-        XCTAssertEqual(todo.importance, Importance.usual)
+        XCTAssertEqual(todo.importance, .usual)
         XCTAssertNil(todo.deadline)
         XCTAssertFalse(todo.isCompleted)
         XCTAssertNotNil(todo.createdAt)

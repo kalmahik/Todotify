@@ -82,26 +82,26 @@ final class TodotifyJSONAbleTests: XCTestCase {
         XCTAssertNil(todoItem)
     }
     
-//    func testTodoItemToJSON() {
-//        let todoItem = TodoItem(
-//            id: TodoItemTestValues.id,
-//            text: TodoItemTestValues.text,
-//            importance: .important,
-//            deadline: Date(),
-//            isCompleted: true,
-//            createdAt: Date.fromString("2024-06-17T00:00:00Z")!,
-//            editedAt: Date.fromString("2024-06-19T00:00:00Z")
-//        )
-//        
-//        let json = todoItem.json as? JSONDictionary
-//        
-//        XCTAssertNotNil(json)
-//        XCTAssertEqual(json?["id"] as? String, "123")
-//        XCTAssertEqual(json?["text"] as? String, "Test Todo")
-//        XCTAssertEqual(json?["importance"] as? String, "important")
-//        XCTAssertEqual(json?["isCompleted"] as? Bool, true)
-//        XCTAssertEqual(json?["createdAt"] as? String, "2024-06-17T00:00:00Z")
-//        XCTAssertEqual(json?["deadline"] as? String, "2024-06-18T00:00:00Z")
-//        XCTAssertEqual(json?["editedAt"] as? String, "2024-06-19T00:00:00Z")
-//    }
+    func testTodoItemToJSON() {
+        let todoItem = TodoItem(
+            id: TodoItemTestValues.id,
+            text: TodoItemTestValues.text,
+            importance: .important,
+            deadline: Date(),
+            isCompleted: true,
+            createdAt: Date.fromString(TodoItemTestValues.date)!,
+            editedAt: Date.fromString(TodoItemTestValues.date)
+        )
+        
+        let json = todoItem.json as? JSONDictionary
+        
+        XCTAssertNotNil(json)
+        XCTAssertEqual(json?[TodoCodingKeys.id.rawValue] as? String, TodoItemTestValues.id)
+        XCTAssertEqual(json?[TodoCodingKeys.text.rawValue] as? String, TodoItemTestValues.text)
+        XCTAssertEqual(json?[TodoCodingKeys.importance.rawValue] as? String, TodoItemTestValues.important.rawValue)
+        XCTAssertEqual(json?[TodoCodingKeys.isCompleted.rawValue] as? Bool, true)
+        XCTAssertEqual(json?[TodoCodingKeys.createdAt.rawValue] as? String, TodoItemTestValues.date)
+        XCTAssertEqual(json?[TodoCodingKeys.deadline.rawValue] as? String, TodoItemTestValues.date)
+        XCTAssertEqual(json?[TodoCodingKeys.editedAt.rawValue] as? String, TodoItemTestValues.date)
+    }
 }

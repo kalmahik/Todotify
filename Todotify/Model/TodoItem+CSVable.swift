@@ -8,7 +8,8 @@
 import Foundation
 
 extension TodoItem: CSVable {
-    static let regexFindCommaNotInsideQuotes = #"(?!\B"[^"]*),(?![^"]*"\B)"# // регулярка, которая находит все запятые, кроме запятых внутри кавычек
+    // регулярка, которая находит все запятые, кроме запятых внутри кавычек
+    static let regexFindCommaNotInsideQuotes = #"(?!\B"[^"]*),(?![^"]*"\B)"#
     
     static var csvHeader: String {
         var columns: [String] = []
@@ -33,7 +34,7 @@ extension TodoItem: CSVable {
             let createdAt = columns[4]
             let editedAt = columns[5].isEmpty ? nil : columns[5]
             let deadline = columns[6].isEmpty ? nil : columns[6]
-            let importance = Importance(rawValue: importanceString) ?? Importance.usual
+            let importance = Importance(rawValue: importanceString) ?? .usual
             
             return TodoItem(
                 id: id,

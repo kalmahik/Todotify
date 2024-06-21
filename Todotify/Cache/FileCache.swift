@@ -29,57 +29,46 @@ final class FileCache: Cacheable {
     }
     
     func saveToFile(fileName: String, format: Format = .json) throws {
-        do {
-            guard let filename = FileManager.getFile(name: fileName) else {
-                throw FileManagerError.fileNotFound
+        guard let filename = try? FileManager.getFileURL(name: fileName) else {
+            throw FileManagerError.fileNotFound
+        }
+        let isFileExist = FileManager.isFileExist(name: fileName)
+        if isFileExist {
+            Logger.shared.info("FILE EXIST, REPLACING")
+        }
+        // что-то мне кажется, что лучше это вынести из этого класса...
+        switch format {
+        case .json:
+            let todosJSON = todos.map { $0.json }
+            let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJSON)
+            if isNotValidJson {
+                throw JSONError.notValidJSONObject
             }
-            let isFileExist = FileManager.isFileExist(name: fileName)
-            if isFileExist {
-                Logger.shared.info("FILE EXIST, REPLACING")
-            }
-            // что-то мне кажется, что лучше это вынести из этого класса...
-            switch format {
-            case .json:
-                let todosJSON = todos.map { $0.json }
-                let isNotValidJson = !JSONSerialization.isValidJSONObject(todosJSON)
-                if isNotValidJson {
-                    throw JSONError.notValidJSONObject
-                }
-                let data = try JSONSerialization.data(withJSONObject: todosJSON)
-                try data.write(to: filename)
-            case .csv:
-                let CSVString = ([TodoItem.csvHeader] + todos.map { $0.csv }).joined(separator: "\n")
-                try CSVString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-            }
-        } catch let error {
-            throw JSONError.error(error.localizedDescription)
+            let data = try JSONSerialization.data(withJSONObject: todosJSON)
+            try data.write(to: filename)
+        case .csv:
+            let CSVString = ([TodoItem.csvHeader] + todos.map { $0.csv }).joined(separator: "\n")
+            try CSVString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
         }
     }
     
     func readFromFile(fileName: String, format: Format = .json) throws -> [TodoItem] {
-        do {
-            let filename = try FileManager.getFileURL(name: fileName)
-            let isFileExist = FileManager.isFileExist(name: fileName)
-            if !isFileExist {
-                throw FileManagerError.fileNotFound
-            }
-            // что-то мне кажется, что лучше это вынести из этого класса...
-            switch format {
-            case .json:
-                let data = try Data(contentsOf: filename)
-                let todosJson = try JSONSerialization.jsonObject(with: data) as? [JSONDictionary] ?? []
-                return todosJson.compactMap { TodoItem.parse(json: $0) }
-            case .csv:
-                let data = try String(contentsOf: filename)
-                var rows = data.components(separatedBy: "\n")
-                rows.removeFirst()
-                return rows.compactMap { TodoItem.parse(csv: $0) }
-            }
-        } catch let error {
-            switch format {
-            case .json: throw JSONError.error(error.localizedDescription)
-            case.csv: throw CSVError.error(error.localizedDescription)
-            }
+        let filename = try FileManager.getFileURL(name: fileName)
+        let isFileExist = FileManager.isFileExist(name: fileName)
+        if !isFileExist {
+            throw FileManagerError.fileNotFound
+        }
+        // что-то мне кажется, что лучше это вынести из этого класса...
+        switch format {
+        case .json:
+            let data = try Data(contentsOf: filename)
+            let todosJson = try JSONSerialization.jsonObject(with: data) as? [JSONDictionary] ?? []
+            return todosJson.compactMap { TodoItem.parse(json: $0) }
+        case .csv:
+            let data = try String(contentsOf: filename)
+            var rows = data.components(separatedBy: "\n")
+            rows.removeFirst()
+            return rows.compactMap { TodoItem.parse(csv: $0) }
         }
     }
 }

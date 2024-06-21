@@ -32,16 +32,16 @@ extension TodoItem: JSONable {
     }
     
     static func parse(jsonDictionary: JSONDictionary) -> TodoItem? {
-        let id = jsonDictionary[TodoCodingKeys.id.rawValue] as? String
+        let id = jsonDictionary[TodoCodingKeys.id.rawValue] as? String ?? UUID().uuidString
         let text = jsonDictionary[TodoCodingKeys.text.rawValue] as? String
-        let isCompleted = jsonDictionary[TodoCodingKeys.isCompleted.rawValue] as? Bool
+        let isCompleted = jsonDictionary[TodoCodingKeys.isCompleted.rawValue] as? Bool ?? false
         let createdAt = jsonDictionary[TodoCodingKeys.createdAt.rawValue] as? String
         let deadline = jsonDictionary[TodoCodingKeys.deadline.rawValue] as? String
         let editedAt = jsonDictionary[TodoCodingKeys.editedAt.rawValue] as? String
         let importanceString = jsonDictionary[TodoCodingKeys.importance.rawValue] as? String ?? Importance.usual.rawValue
-        let importance = Importance(rawValue: importanceString) ?? Importance.usual
+        let importance = Importance(rawValue: importanceString) ?? .usual
         
-        guard let id, let text, let isCompleted, let createdAt else {
+        guard let text else {
             Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
             return nil
         }
