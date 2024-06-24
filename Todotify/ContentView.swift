@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var text = ""
+    @State private var isDeadlineEnabled = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ScrollView {
+            TextEditor(text: $text)
+                .frame(minHeight: 120)
+                .border(Color.black)
+            
+            RowItem(title: "Важность") {
+                ImportancePicker()
+            }
+            RowItem(title: "Сделать до") {
+                Toggle("", isOn: $isDeadlineEnabled)
+            }
+            
+            Button(role: .destructive, action: {}) {
+                Text("Delete")
+                    .frame(maxWidth: .infinity)
+            }
+                .frame(height: 56)
+                .border(Color.black)
+                .disabled(true)
         }
-        .padding()
     }
 }
 

@@ -25,6 +25,8 @@
 		842905F52C25536B00159210 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F42C25536B00159210 /* DefaultValues.swift */; };
 		F58F511E2C2342730058B2E5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511D2C2342730058B2E5 /* Logger.swift */; };
 		F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */; };
+		F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51212C29447C0058B2E5 /* ImportancePicker.swift */; };
+		F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51242C2949D50058B2E5 /* RowItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		842905F42C25536B00159210 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		F58F511D2C2342730058B2E5 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F58F51212C29447C0058B2E5 /* ImportancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancePicker.swift; sourceTree = "<group>"; };
+		F58F51242C2949D50058B2E5 /* RowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		842905A52C1FF34A00159210 /* Todotify */ = {
 			isa = PBXGroup;
 			children = (
+				F58F51232C2949A20058B2E5 /* Components */,
 				842905E22C22C1F000159210 /* Utils */,
 				842905DD2C22B3E700159210 /* Extensions */,
 				842905DC2C22B39300159210 /* Cache */,
@@ -168,6 +173,15 @@
 				842905F42C25536B00159210 /* DefaultValues.swift */,
 			);
 			path = TodotifyTests;
+			sourceTree = "<group>";
+		};
+		F58F51232C2949A20058B2E5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F58F51212C29447C0058B2E5 /* ImportancePicker.swift */,
+				F58F51242C2949D50058B2E5 /* RowItem.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +289,7 @@
 				F58F511E2C2342730058B2E5 /* Logger.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
+				F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */,
 				842905E42C23773A00159210 /* CSVable.swift in Sources */,
 				842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */,
 				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
@@ -283,6 +298,7 @@
 				842905D82C22A1C000159210 /* JSONable.swift in Sources */,
 				842905D62C215AF500159210 /* FileCache.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
+				F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
