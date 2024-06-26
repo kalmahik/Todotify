@@ -31,6 +31,7 @@
 		F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51292C29C5130058B2E5 /* TodoRow.swift */; };
 		F58F51602C29F6360058B2E5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F515F2C29F6360058B2E5 /* TodoList.swift */; };
 		F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */; };
+		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		F58F51572C29D7CD0058B2E5 /* Todotify.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Todotify.entitlements; path = Todotify/Todotify.entitlements; sourceTree = SOURCE_ROOT; };
 		F58F515F2C29F6360058B2E5 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
+		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F58F51262C29C2A80058B2E5 /* TodoDetail.swift */,
+				F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */,
 				F58F515F2C29F6360058B2E5 /* TodoList.swift */,
 				F58F51292C29C5130058B2E5 /* TodoRow.swift */,
 			);
@@ -313,6 +316,7 @@
 				F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */,
 				842905E42C23773A00159210 /* CSVable.swift in Sources */,
 				F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */,
+				F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */,
 				842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */,
 				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
 				842905E12C22BCF300159210 /* FileManager.swift in Sources */,

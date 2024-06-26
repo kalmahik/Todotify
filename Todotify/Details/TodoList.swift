@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct TodoList: View {
-    @StateObject private var viewModel = FileCache()
+    @StateObject private var todoDetailModel = FileCache()
     
-    @State private var selectedTodo: TodoItem?
-    @State private var isModalPresented = false
+    @State private var isCreationModalPresented = false
+    @State private var isEditionModalPresented = false
     
     var body: some View {
         NavigationSplitView {
-            List(viewModel.todos) { todo in
-                Button(action: {
-                    selectedTodo = todo
-                    isModalPresented = true
-                }) {
-                    TodoRow(todo: todo)
+            List(todoDetailModel.todos) { todoItem in
+                Button(action: { isEditionModalPresented = true }) {
+                    TodoRow(todo: todoItem)
                 }
-                
+                .sheet(isPresented: $isEditionModalPresented) {
+                    TodoDetail(
+                        viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel),
+                        isPresented: $isEditionModalPresented
+                    )
+                }
             }
-            .navigationTitle("Todos")
+            .navigationTitle("Мои дела")
             
-            Button(role: .destructive, action: { isModalPresented = true }) {
+            Button(role: .destructive, action: { isCreationModalPresented = true }) {
                 Text("Add")
                     .frame(maxWidth: .infinity)
             }
@@ -36,8 +38,8 @@ struct TodoList: View {
         } detail: {
             Text("Select a todo")
         }
-        .sheet(isPresented: $isModalPresented, onDismiss: { selectedTodo = nil }) {
-            TodoDetail(todo: selectedTodo, isPresented: $isModalPresented, viewModel: viewModel)
+        .sheet(isPresented: $isCreationModalPresented) {
+            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel), isPresented: $isCreationModalPresented)
         }
     }
 }

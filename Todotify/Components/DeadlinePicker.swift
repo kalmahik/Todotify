@@ -12,7 +12,7 @@ struct DeadlinePicker: View {
     @Binding var isDeadlineEnabled: Bool
     
     var body: some View {
-        DatePicker("", selection: $deadline, displayedComponents: .date)
+        DatePicker("", selection: $deadline, in: Date()..., displayedComponents: .date)
             .datePickerStyle(.graphical)
             .frame(height: isDeadlineEnabled ? nil : 0, alignment: .top)
             .clipped()
