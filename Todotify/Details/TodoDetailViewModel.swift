@@ -12,6 +12,7 @@ final class TodoDetailViewModel: ObservableObject {
     @Published var text: String
     @Published var importance: Importance
     @Published var deadline: Date
+    @Published var isPickerShowed: Bool
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
     
@@ -23,32 +24,41 @@ final class TodoDetailViewModel: ObservableObject {
         self.text = todoItem?.text ?? ""
         self.importance = todoItem?.importance ?? .usual
         self.deadline = todoItem?.deadline ?? Date().addingTimeInterval(24 * 60 * 60) // TODO: переделать на календарь
+        self.isPickerShowed = false
         self.isDeadlineEnabled = todoItem?.deadline != nil
     }
     
     func saveTodo() {
         let todo = TodoItem(
-            id: todoItem?.id ?? UUID().uuidString,
+            id: todoItem?.id,
             text: text,
             importance: importance,
-            deadline: isDeadlineEnabled ? deadline : nil,
-            isCompleted: todoItem?.isCompleted ?? false,
-            createdAt: todoItem?.createdAt ?? Date(),
+            deadline: isPickerShowed ? deadline : nil,
+            isCompleted: todoItem?.isCompleted,
+            createdAt: todoItem?.createdAt,
             editedAt: Date()
         )
         todoDetailModel.add(todo: todo)
     }
     
     func deleteTodo() {
-        let todo = TodoItem(
-            id: todoItem?.id ?? UUID().uuidString,
-            text: text,
-            importance: importance,
-            deadline: isDeadlineEnabled ? deadline : nil,
-            isCompleted: todoItem?.isCompleted ?? false,
-            createdAt: todoItem?.createdAt ?? Date(),
-            editedAt: Date()
-        )
-        todoDetailModel.removeTodo(by: todo.id)
+        guard let id = todoItem?.id else { return }
+        todoDetailModel.removeTodo(by: id)
+    }
+    
+    func getDeadlineString() -> String? {
+        isDeadlineEnabled ? deadline.asHumanString() : nil
+    }
+    
+    func pickerToggle() {
+        isPickerShowed = !isPickerShowed
+    }
+    
+    func showPicker() {
+        isPickerShowed = true
+    }
+    
+    func deadlineToggle() {
+        isDeadlineEnabled = !isDeadlineEnabled
     }
 }

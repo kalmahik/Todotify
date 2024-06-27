@@ -18,4 +18,12 @@ extension Date {
         let dateFormatter = ISO8601DateFormatter()
         return dateFormatter.string(from: self)
     }
+    
+    func asHumanString() -> String {
+        let dateFormatter = DateFormatter()
+        let ident = DeviceUtils.getPreferredLocale().identifier
+        dateFormatter.locale = Locale(identifier: ident)
+        dateFormatter.dateStyle = .medium
+        return dateFormatter.string(from: self)
+    }
 }

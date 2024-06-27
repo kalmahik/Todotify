@@ -14,20 +14,45 @@ struct TodoDetail: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                TextEditor(text: $viewModel.text)
-                    .frame(minHeight: 120)
-                    .border(Color.black)
-                
-                RowItem(title: "Важность") {
-                    ImportancePicker(importance: $viewModel.importance)
-                }
-                
-                RowItem(title: "Сделать до") {
-                    Toggle("", isOn: $viewModel.isDeadlineEnabled)
-                }
-                
-                VStack {
-                    DeadlinePicker(deadline: $viewModel.deadline, isDeadlineEnabled: $viewModel.isDeadlineEnabled)
+                VStack(spacing: 16) {
+                    TextEditor(text: $viewModel.text)
+                        .frame(minHeight: 120)
+                        .contentMargins(.all, 16)
+                        .background(.white)
+                        .cornerRadius(16)
+                        .padding(.horizontal)
+                    
+                    VStack(spacing: 0) { // TODO: разобраться со спейсингом
+                        RowItem(title: "Важность") {
+                            ImportancePicker(importance: $viewModel.importance)
+                        }
+                        
+                        Divider()
+                            .padding(.horizontal)
+                        
+                        RowItem(
+                            title: "Сделать до",
+                            subtitle: viewModel.getDeadlineString(),
+                            action: viewModel.pickerToggle
+                        ) {
+                            Toggle("", isOn: $viewModel.isDeadlineEnabled)
+                                .onChange(of: viewModel.isDeadlineEnabled) {
+                                    viewModel.showPicker()
+                                }
+                        }
+                        
+                        if viewModel.isDeadlineEnabled && viewModel.isPickerShowed {
+                            Divider()
+                                .padding(.horizontal)
+                            
+                            DeadlinePicker(deadline: $viewModel.deadline)
+                                .padding(.horizontal)
+                                .animation(.easeInOut, value: viewModel.isPickerShowed)
+                        }
+                    }
+                    .background(.white)
+                    .cornerRadius(16)
+                    .padding(.horizontal)
                     
                     Button(role: .destructive, action: {
                         viewModel.deleteTodo()
@@ -37,12 +62,11 @@ struct TodoDetail: View {
                             .frame(maxWidth: .infinity)
                     }
                     .frame(height: 56)
-                    .border(Color.black)
+                    .background(.white)
+                    .cornerRadius(16)
+                    .padding(.horizontal)
                     .disabled(viewModel.todoItem?.id == nil)
                 }
-                .animation(.easeOut, value: viewModel.isDeadlineEnabled)
-                
-                
             }
             .navigationTitle("Дело")
             .navigationBarTitleDisplayMode(.inline)
@@ -61,8 +85,11 @@ struct TodoDetail: View {
                     }
                 }
             })
+            .background(Color.background)
         }
+        
     }
+    
 }
 
 #Preview {

@@ -9,26 +9,33 @@ import SwiftUI
 
 struct RowItem<Content: View>: View {
     let title: String
+    let subtitle: String?
     let component: Content
+    let action: (() -> Void)?
     
-    init(title: String, @ViewBuilder component: () -> Content) {
+    init(title: String, subtitle: String? = nil, action: (() -> Void)? = nil,  @ViewBuilder component: () -> Content) {
         self.title = title
+        self.subtitle = subtitle
         self.component = component()
+        self.action = action
     }
     
     var body: some View {
         HStack {
-            Text(title)
-                .font(.headline)
+            VStack(alignment: .leading) {
+                Text(title)
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.system(size: 13))
+                        .foregroundStyle(Color.accentColor)
+                }
+            }
+            .onTapGesture { action?() }
             Spacer()
             component
         }
-        .padding()
-        .border(Color.black, width: 1)
+        .frame(height: 56)
+        .padding(.horizontal)
+        .animation(.easeInOut, value: subtitle)
     }
-}
-
-
-#Preview {
-    ContentView()
 }

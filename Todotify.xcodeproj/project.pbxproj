@@ -32,6 +32,8 @@
 		F58F51602C29F6360058B2E5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F515F2C29F6360058B2E5 /* TodoList.swift */; };
 		F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */; };
 		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
+		F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */; };
+		F5E2FFB02C2D38A200776DB5 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAF2C2D38A200776DB5 /* Binding+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		F58F515F2C29F6360058B2E5 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
+		F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
+		F5E2FFAF2C2D38A200776DB5 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				842905B92C21416400159210 /* Date+Extensions.swift */,
+				F5E2FFAF2C2D38A200776DB5 /* Binding+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			children = (
 				842905E02C22BCF300159210 /* FileManager.swift */,
 				F58F511D2C2342730058B2E5 /* Logger.swift */,
+				F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 				F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */,
 				F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */,
 				F58F511E2C2342730058B2E5 /* Logger.swift in Sources */,
+				F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
 				F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */,
@@ -323,6 +330,7 @@
 				842905DA2C22AB5E00159210 /* Cacheable.swift in Sources */,
 				842905D82C22A1C000159210 /* JSONable.swift in Sources */,
 				F58F51602C29F6360058B2E5 /* TodoList.swift in Sources */,
+				F5E2FFB02C2D38A200776DB5 /* Binding+Extension.swift in Sources */,
 				842905D62C215AF500159210 /* FileCache.swift in Sources */,
 				F58F51272C29C2A80058B2E5 /* TodoDetail.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
@@ -483,6 +491,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,7 +504,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -513,6 +522,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,7 +535,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
