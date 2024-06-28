@@ -35,7 +35,7 @@ struct RowItem<Content: View>: View {
             component
         }
         .frame(height: 56)
-        .padding(.horizontal)
         .animation(.easeInOut, value: subtitle)
+        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
     }
 }

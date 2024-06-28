@@ -13,65 +13,54 @@ struct TodoDetail: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
+            List {
+                Section {
                     TextEditor(text: $viewModel.text)
                         .frame(minHeight: 120)
-                        .contentMargins(.all, 16)
-                        .background(.white)
-                        .cornerRadius(16)
-                        .padding(.horizontal)
-                    
-                    VStack(spacing: 0) { // TODO: разобраться со спейсингом
-                        RowItem(title: "Важность") {
-                            ImportancePicker(importance: $viewModel.importance)
-                        }
-                        
-                        Divider()
-                            .padding(.horizontal)
-                        
-                        RowItem(
-                            title: "Сделать до",
-                            subtitle: viewModel.getDeadlineString(),
-                            action: viewModel.pickerToggle
-                        ) {
-                            Toggle("", isOn: $viewModel.isDeadlineEnabled)
-                                .onChange(of: viewModel.isDeadlineEnabled) {
-                                    viewModel.showPicker()
-                                }
-                        }
-                        
-                        if viewModel.isDeadlineEnabled && viewModel.isPickerShowed {
-                            Divider()
-                                .padding(.horizontal)
-                            
-                            DeadlinePicker(deadline: $viewModel.deadline)
-                                .padding(.horizontal)
-                                .animation(.easeInOut, value: viewModel.isPickerShowed)
-                        }
+                        .contentMargins(.vertical, 16)
+                }
+                
+                Section() {
+                    RowItem(title: "Важность") {
+                        ImportancePicker(importance: $viewModel.importance)
                     }
-                    .background(.white)
-                    .cornerRadius(16)
-                    .padding(.horizontal)
+                                        
+                    RowItem(
+                        title: "Сделать до",
+                        subtitle: viewModel.getDeadlineString(),
+                        action: viewModel.pickerToggle
+                    ) {
+                        Toggle("", isOn: $viewModel.isDeadlineEnabled)
+                            .onChange(of: viewModel.isDeadlineEnabled) {
+                                viewModel.showPicker()
+                            }
+                    }
                     
+                    if viewModel.isDeadlineEnabled && viewModel.isPickerShowed {
+                        DeadlinePicker(deadline: $viewModel.deadline)
+                            .animation(.easeInOut, value: viewModel.isPickerShowed)
+                            .transition(.slide)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                    }
+                }
+                
+                Section {
                     Button(role: .destructive, action: {
                         viewModel.deleteTodo()
                         isPresented = false
                     }) {
                         Text("Удалить")
+                            .frame(height: 56)
                             .frame(maxWidth: .infinity)
                     }
-                    .frame(height: 56)
-                    .background(.white)
-                    .cornerRadius(16)
-                    .padding(.horizontal)
+                    .listRowInsets(EdgeInsets())
                     .disabled(viewModel.todoItem?.id == nil)
                 }
+    
             }
             .navigationTitle("Дело")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Отменить") {
                         isPresented = false
@@ -85,11 +74,8 @@ struct TodoDetail: View {
                     }
                 }
             })
-            .background(Color.background)
         }
-        
     }
-    
 }
 
 #Preview {
