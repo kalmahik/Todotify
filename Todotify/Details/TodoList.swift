@@ -16,9 +16,8 @@ struct TodoList: View {
     var body: some View {
         NavigationSplitView {
             List(todoDetailModel.todos) { todoItem in
-                Button(action: { isEditionModalPresented = true }) {
-                    TodoRow(todo: todoItem)
-                }
+        
+                Button(action: { isEditionModalPresented = true }) { TodoRow(todo: todoItem) }
                 .sheet(isPresented: $isEditionModalPresented) {
                     TodoDetail(
                         viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel),
