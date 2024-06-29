@@ -20,41 +20,48 @@ struct TodoList: View {
                 Color.background
                     .edgesIgnoringSafeArea(.all)
                 
-                List(todoDetailModel.todos) { todoItem in
-                    let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel)
-                    Button(action: {
-                        isEditionModalPresented = true
-                    }) {
-                        TodoRow(todo: todoItem)
-                    }
-                    .swipeActions(allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            viewModel.deleteTodo()
-                        } label: {
-                            Label("Удалить", systemImage: "trash.fill")
+                List() {
+                    Section {
+                        ForEach(todoDetailModel.todos) { todoItem in
+                            let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel)
+                            Button(action: {
+                                isEditionModalPresented = true
+                            }) {
+                                TodoRow(todo: todoItem)
+                            }
+                            .swipeActions(allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    viewModel.deleteTodo()
+                                } label: {
+                                    Label("Удалить", systemImage: "trash.fill")
+                                }
+                                .tint(.red)
+                                Button {
+                                    viewModel.deleteTodo()
+                                } label: {
+                                    Label("Инфо", systemImage: "info.fill")
+                                }
+                                .tint(.gray)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button {
+                                    viewModel.completeTodo()
+                                }
+                            label: { Image(systemName: "checkmark.circle") }
+                            }
+                            .tint(.green)
+                            
+                            .sheet(isPresented: $isEditionModalPresented) {
+                                TodoDetail(
+                                    viewModel: viewModel,
+                                    isPresented: $isEditionModalPresented
+                                )
+                            }
                         }
-                        .tint(.red)
-                        Button {
-                            viewModel.deleteTodo()
-                        } label: {
-                            Label("Инфо", systemImage: "info.fill")
-                        }
-                        .tint(.gray)
+                    } header: {
+                        Text("Выполнено – \(todoDetailModel.todos.filter { $0.isCompleted}.count)")
                     }
-                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                        Button {
-                            viewModel.completeTodo()
-                        }
-                    label: { Image(systemName: "checkmark.circle") }
-                    }
-                    .tint(.green)
                     
-                    .sheet(isPresented: $isEditionModalPresented) {
-                        TodoDetail(
-                            viewModel: viewModel,
-                            isPresented: $isEditionModalPresented
-                        )
-                    }
                 }
                 .navigationTitle("Мои дела")
                 
