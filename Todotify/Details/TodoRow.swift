@@ -20,7 +20,6 @@ struct TodoRow: View {
             Image(isCompleted ? "checkOn" : "checkOff")
             
             Image(isImportant ? "importanceImportant" : isUnimportant ? "importanceUnimportant" : "")
-                .border(Color.black)
             
             VStack(alignment: .leading) {
                 Text(todo.text)
@@ -38,6 +37,10 @@ struct TodoRow: View {
             }
             
             Spacer()
+            
+            Rectangle()
+                .fill(Color(hex: todo.hexColor))
+                .frame(width: 5)
             
             Image(systemName: "chevron.right")
         }

@@ -11,8 +11,9 @@ import Combine
 final class TodoDetailViewModel: ObservableObject {
     @Published var text: String
     @Published var importance: Importance
+    @Published var hexColor: Color
     @Published var deadline: Date
-    @Published var isPickerShowed: Bool
+    @Published var isDatePickerShowed: Bool
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
     
@@ -23,8 +24,9 @@ final class TodoDetailViewModel: ObservableObject {
         self.todoDetailModel = todoDetailModel
         self.text = todoItem?.text ?? ""
         self.importance = todoItem?.importance ?? .usual
+        self.hexColor = Color(hex: todoItem?.hexColor ?? "FFFFFF")
         self.deadline = todoItem?.deadline ?? Date().addingTimeInterval(24 * 60 * 60) // TODO: переделать на календарь
-        self.isPickerShowed = false
+        self.isDatePickerShowed = false
         self.isDeadlineEnabled = todoItem?.deadline != nil
     }
     
@@ -33,7 +35,7 @@ final class TodoDetailViewModel: ObservableObject {
             id: todoItem?.id,
             text: text,
             importance: importance,
-            deadline: isPickerShowed ? deadline : nil,
+            deadline: isDatePickerShowed ? deadline : nil,
             isCompleted: todoItem?.isCompleted,
             createdAt: todoItem?.createdAt,
             editedAt: Date()
@@ -63,12 +65,12 @@ final class TodoDetailViewModel: ObservableObject {
         isDeadlineEnabled ? deadline.asHumanString() : nil
     }
     
-    func pickerToggle() {
-        isPickerShowed = !isPickerShowed
+    func datePickerToggle() {
+        isDatePickerShowed = !isDatePickerShowed
     }
     
-    func showPicker() {
-        isPickerShowed = true
+    func showDatePicker() {
+        isDatePickerShowed = true
     }
     
     func deadlineToggle() {

@@ -21,6 +21,7 @@ struct TodoItem: Identifiable {
     let isCompleted: Bool
     let createdAt: Date
     let editedAt: Date?
+    let hexColor: String
     
     init(
         id: String? = nil,
@@ -29,7 +30,8 @@ struct TodoItem: Identifiable {
         deadline: Date? = nil,
         isCompleted: Bool? = nil,
         createdAt: Date? = nil,
-        editedAt: Date? = nil
+        editedAt: Date? = nil,
+        hexColor: String? = nil
     ) {
         self.id = id ?? UUID().uuidString
         self.text = text
@@ -38,6 +40,7 @@ struct TodoItem: Identifiable {
         self.isCompleted = isCompleted ?? false
         self.createdAt = createdAt ?? Date()
         self.editedAt = editedAt
+        self.hexColor = hexColor ?? "#FFFFFF"
     }
 }
 
