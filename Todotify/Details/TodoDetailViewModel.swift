@@ -38,7 +38,8 @@ final class TodoDetailViewModel: ObservableObject {
             deadline: isDatePickerShowed ? deadline : nil,
             isCompleted: todoItem?.isCompleted,
             createdAt: todoItem?.createdAt,
-            editedAt: Date()
+            editedAt: Date(),
+            hexColor: hexColor.toHexString()
         )
         todoDetailModel.add(todo: todo)
     }
@@ -56,7 +57,8 @@ final class TodoDetailViewModel: ObservableObject {
             deadline: todoItem?.deadline,
             isCompleted: true,
             createdAt: todoItem?.createdAt,
-            editedAt: todoItem?.editedAt
+            editedAt: todoItem?.editedAt,
+            hexColor: todoItem?.hexColor
         )
         todoDetailModel.add(todo: todo)
     }
