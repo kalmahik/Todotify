@@ -39,7 +39,7 @@ struct TodoList: View {
                                 Button {
                                     viewModel.deleteTodo()
                                 } label: {
-                                    Label("Инфо", systemImage: "info.fill")
+                                    Label("Инфо", systemImage: "info.circle.fill")
                                 }
                                 .tint(.gray)
                             }
@@ -50,7 +50,7 @@ struct TodoList: View {
                             label: { Image(systemName: "checkmark.circle") }
                             }
                             .tint(.green)
-                            
+                            .listRowInsets(EdgeInsets(.zero))
                             .sheet(isPresented: $isEditionModalPresented) {
                                 TodoDetail(
                                     viewModel: viewModel,
@@ -58,8 +58,14 @@ struct TodoList: View {
                                 )
                             }
                         }
+                        
                     } header: {
-                        Text("Выполнено – \(todoDetailModel.todos.filter { $0.isCompleted}.count)")
+                        HStack {
+                            Text("Выполнено – \(todoDetailModel.todos.filter { $0.isCompleted}.count)")
+                            Spacer()
+                            Text("Показать")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                 }

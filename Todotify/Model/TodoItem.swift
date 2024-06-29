@@ -35,7 +35,7 @@ struct TodoItem: Identifiable {
     ) {
         self.id = id ?? UUID().uuidString
         self.text = text
-        self.importance = importance ?? .important
+        self.importance = importance ?? .usual
         self.deadline = deadline
         self.isCompleted = isCompleted ?? false
         self.createdAt = createdAt ?? Date()

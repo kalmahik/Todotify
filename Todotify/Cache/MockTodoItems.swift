@@ -16,6 +16,8 @@ struct MockTodoItems {
         TodoItem(text: "Высокий приоритет", importance: .important, hexColor: "#FF00FF"),
         TodoItem(text: "Выполненный айтем", isCompleted: true, hexColor: "#00FF00"),
         TodoItem(text: "Айтем с дедлайном", deadline: Date(), hexColor: "#0000FF"),
-
+        TodoItem(text: "Купить что-то, где-то, зачем-то, но зачем не очень понятно, но точно чтобы пок…", deadline: Date(), hexColor: "#00FFFF"),
+        TodoItem(text: "Купить что-то, где-то, зачем-то, но зачем не очень понятно, но точно чтобы пок…", hexColor: "#FFFF00"),
+        TodoItem(text: "Задание", hexColor: "#0FF0FF")
     ]
 }
