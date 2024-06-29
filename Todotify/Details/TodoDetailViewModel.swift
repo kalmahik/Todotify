@@ -78,4 +78,8 @@ final class TodoDetailViewModel: ObservableObject {
     func deadlineToggle() {
         isDeadlineEnabled = !isDeadlineEnabled
     }
+    
+    func isSaveDisabled() -> Bool {
+        text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
 }

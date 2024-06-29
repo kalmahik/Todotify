@@ -93,7 +93,7 @@ struct TodoDetail: View {
                     Button("Сохранить") {
                         viewModel.saveTodo()
                         isPresented = false
-                    }
+                    }.disabled(viewModel.isSaveDisabled())
                 }
             })
         }

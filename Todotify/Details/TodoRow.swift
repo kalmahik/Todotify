@@ -10,8 +10,6 @@ import SwiftUI
 struct TodoRow: View {
     var todo: TodoItem
     
-    
-    
     var body: some View {
         let isCompleted = todo.isCompleted
         let isImportant = todo.importance == .important
@@ -35,15 +33,19 @@ struct TodoRow: View {
                     .foregroundColor(.gray)
                 }
             }
+            .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
             
             Spacer()
+            
+            Image("chevron")
+                .foregroundColor(.red)
             
             Rectangle()
                 .fill(Color(hex: todo.hexColor))
                 .frame(width: 5)
-            
-            Image(systemName: "chevron.right")
         }
+        .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
+
     }
 }
 
