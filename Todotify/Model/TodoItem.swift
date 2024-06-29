@@ -13,7 +13,7 @@ enum Importance: String {
     case important
 }
 
-struct TodoItem {
+struct TodoItem: Identifiable {
     let id: String
     let text: String
     let importance: Importance
@@ -21,23 +21,26 @@ struct TodoItem {
     let isCompleted: Bool
     let createdAt: Date
     let editedAt: Date?
+    let hexColor: String
     
     init(
-        id: String = UUID().uuidString,
+        id: String? = nil,
         text: String,
-        importance: Importance = .usual,
+        importance: Importance? = nil,
         deadline: Date? = nil,
-        isCompleted: Bool = false,
-        createdAt: Date = Date(),
-        editedAt: Date? = nil
+        isCompleted: Bool? = nil,
+        createdAt: Date? = nil,
+        editedAt: Date? = nil,
+        hexColor: String? = nil
     ) {
-        self.id = id
+        self.id = id ?? UUID().uuidString
         self.text = text
-        self.importance = importance
+        self.importance = importance ?? .important
         self.deadline = deadline
-        self.isCompleted = isCompleted
-        self.createdAt = createdAt
+        self.isCompleted = isCompleted ?? false
+        self.createdAt = createdAt ?? Date()
         self.editedAt = editedAt
+        self.hexColor = hexColor ?? "#FFFFFF"
     }
 }
 

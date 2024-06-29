@@ -12,8 +12,8 @@ enum Format {
     case csv
 }
 
-final class FileCache: Cacheable {
-    private(set) var todos: [TodoItem] = []
+final class FileCache: ObservableObject, Cacheable {
+    @Published private(set) var todos: [TodoItem] = MockTodoItems.items
     
     func add(todo: TodoItem) {
         if let existedIndex = todos.firstIndex(where: { $0.id == todo.id }) {
@@ -52,7 +52,7 @@ final class FileCache: Cacheable {
         }
     }
     
-    func readFromFile(fileName: String, format: Format = .json) throws -> [TodoItem] {
+    func readFromFile(fileName: String, format: Format = .json) throws {
         let filename = try FileManager.getFileURL(name: fileName)
         let isFileExist = FileManager.isFileExist(name: fileName)
         if !isFileExist {
@@ -63,12 +63,18 @@ final class FileCache: Cacheable {
         case .json:
             let data = try Data(contentsOf: filename)
             let todosJson = try JSONSerialization.jsonObject(with: data) as? [JSONDictionary] ?? []
-            return todosJson.compactMap { TodoItem.parse(json: $0) }
+            todosJson.forEach {
+                guard let todo = TodoItem.parse(json: $0) else { return }
+                add(todo: todo)
+            }
         case .csv:
             let data = try String(contentsOf: filename)
             var rows = data.components(separatedBy: "\n")
             rows.removeFirst()
-            return rows.compactMap { TodoItem.parse(csv: $0) }
+            rows.forEach {
+                guard let todo = TodoItem.parse(csv: $0) else { return }
+                add(todo: todo)
+            }
         }
     }
 }
