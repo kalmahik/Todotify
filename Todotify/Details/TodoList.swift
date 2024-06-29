@@ -56,18 +56,20 @@ struct TodoList: View {
                         )
                     }
                 }
-//                .listRowBackground(Color.clear)
-//                .listStyle(PlainListStyle())
                 .navigationTitle("Мои дела")
                 
                 Button {
                     isCreationModalPresented = true
                 } label: {
-                    Image("plus")
+                    Image(systemName: "plus.circle.fill")
                         .resizable()
+                        .scaledToFit()
+                        .background(.white)
+                        .frame(width: 44)
+                        .foregroundColor(.blue)
+                        .clipShape(Circle())
                         .shadow(radius: 4, x: 0, y: 4)
                 }
-                .frame(width: 44, height: 44)
                 .padding()
             }
         } detail: {
