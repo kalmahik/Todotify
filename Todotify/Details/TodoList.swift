@@ -14,31 +14,70 @@ struct TodoList: View {
     @State private var isEditionModalPresented = false
     
     var body: some View {
-        NavigationSplitView {
-            List(todoDetailModel.todos) { todoItem in
         
-                Button(action: { isEditionModalPresented = true }) { TodoRow(todo: todoItem) }
-                .sheet(isPresented: $isEditionModalPresented) {
-                    TodoDetail(
-                        viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel),
-                        isPresented: $isEditionModalPresented
-                    )
+        NavigationSplitView {
+            ZStack(alignment: .bottom) {
+                Color.background
+                    .edgesIgnoringSafeArea(.all)
+                
+                List(todoDetailModel.todos) { todoItem in
+                    let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel)
+                    Button(action: {
+                        isEditionModalPresented = true
+                    }) {
+                        TodoRow(todo: todoItem)
+                    }
+                    .swipeActions(allowsFullSwipe: true) {
+                        Button(role: .destructive) {
+                            viewModel.deleteTodo()
+                        } label: {
+                            Label("Удалить", systemImage: "trash.fill")
+                        }
+                        .tint(.red)
+                        Button {
+                            viewModel.deleteTodo()
+                        } label: {
+                            Label("Инфо", systemImage: "info.fill")
+                        }
+                        .tint(.gray)
+                    }
+                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                        Button {
+                            viewModel.completeTodo()
+                        }
+                    label: { Image(systemName: "checkmark.circle") }
+                    }
+                    .tint(.green)
+                    
+                    .sheet(isPresented: $isEditionModalPresented) {
+                        TodoDetail(
+                            viewModel: viewModel,
+                            isPresented: $isEditionModalPresented
+                        )
+                    }
                 }
+//                .listRowBackground(Color.clear)
+//                .listStyle(PlainListStyle())
+                .navigationTitle("Мои дела")
+                
+                Button {
+                    isCreationModalPresented = true
+                } label: {
+                    Image("plus")
+                        .resizable()
+                        .shadow(radius: 4, x: 0, y: 4)
+                }
+                .frame(width: 44, height: 44)
+                .padding()
             }
-            .navigationTitle("Мои дела")
-            
-            Button(role: .destructive, action: { isCreationModalPresented = true }) {
-                Text("Add")
-                    .frame(maxWidth: .infinity)
-            }
-            .frame(height: 56)
-            .border(Color.black)
-            
         } detail: {
-            Text("Select a todo")
+            Text("")
         }
         .sheet(isPresented: $isCreationModalPresented) {
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel), isPresented: $isCreationModalPresented)
+            TodoDetail(
+                viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel),
+                isPresented: $isCreationModalPresented
+            )
         }
     }
 }

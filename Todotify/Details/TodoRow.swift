@@ -48,7 +48,7 @@ struct TodoRow: View {
     Group {
         TodoRow(
             todo: TodoItem(
-                text: "123123123123123rkjfwlerkjfw lkerjflwkjerhf lkwjer hflkwjher flkwjher flkjwher flkwjher flkwjehrf lkwjhr flkwjehrf lkwjehr fkljwher flkjwher flkjwhe rlkfjehwrlkfjhwelr kjf hwelkrjfh wlkjerh flwjker",
+                text: "123123123123123",
                 importance: .important,
                 deadline: Date(),
                 isCompleted: true

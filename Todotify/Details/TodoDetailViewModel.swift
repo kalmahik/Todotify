@@ -46,6 +46,19 @@ final class TodoDetailViewModel: ObservableObject {
         todoDetailModel.removeTodo(by: id)
     }
     
+    func completeTodo() {
+        let todo = TodoItem(
+            id: todoItem?.id,
+            text: text,
+            importance: todoItem?.importance,
+            deadline: todoItem?.deadline,
+            isCompleted: true,
+            createdAt: todoItem?.createdAt,
+            editedAt: todoItem?.editedAt
+        )
+        todoDetailModel.add(todo: todo)
+    }
+    
     func getDeadlineString() -> String? {
         isDeadlineEnabled ? deadline.asHumanString() : nil
     }

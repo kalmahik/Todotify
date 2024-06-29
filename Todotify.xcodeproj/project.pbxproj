@@ -34,6 +34,7 @@
 		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
 		F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */; };
 		F5E2FFB02C2D38A200776DB5 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAF2C2D38A200776DB5 /* Binding+Extension.swift */; };
+		F5E2FFB42C2F5B7800776DB5 /* MockTodoItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
 		F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
 		F5E2FFAF2C2D38A200776DB5 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
+		F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTodoItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				842905D52C215AF500159210 /* FileCache.swift */,
 				F58F51572C29D7CD0058B2E5 /* Todotify.entitlements */,
 				F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */,
+				F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */,
 				F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */,
 				842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */,
+				F5E2FFB42C2F5B7800776DB5 /* MockTodoItems.swift in Sources */,
 				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
 				842905E12C22BCF300159210 /* FileManager.swift in Sources */,
 				842905DA2C22AB5E00159210 /* Cacheable.swift in Sources */,
