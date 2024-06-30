@@ -62,6 +62,7 @@ struct TodoList: View {
                     }
                     
                 }
+                .safeAreaPadding(.bottom, 66)
                 .navigationTitle("Мои дела")
                 
                 Button {
