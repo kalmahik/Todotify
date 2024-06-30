@@ -13,7 +13,6 @@ struct TodoDetail: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
     @ObservedObject var viewModel: TodoDetailViewModel
-    @Binding var isPresented: Bool
     
     var body: some View {
         NavigationStack {
@@ -69,7 +68,7 @@ struct TodoDetail: View {
                 Section {
                     Button(role: .destructive, action: {
                         viewModel.deleteTodo()
-                        isPresented = false
+                        dismiss()
                     }) {
                         Text("Удалить")
                             .frame(height: 56)
@@ -85,14 +84,14 @@ struct TodoDetail: View {
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Отменить") {
-                        isPresented = false
+                        dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Сохранить") {
                         viewModel.saveTodo()
-                        isPresented = false
+                        dismiss()
                     }.disabled(viewModel.isSaveDisabled())
                 }
             })
@@ -101,8 +100,7 @@ struct TodoDetail: View {
 }
 
 #Preview {
-    @State var isPresented = true
-    @State var todo = TodoItem(text: "123") as TodoItem?
+    @State var todo = TodoItem(text: "preview") as TodoItem?
     let viewModel = TodoDetailViewModel(todoItem: todo, todoDetailModel: FileCache())
-    return TodoDetail(viewModel: viewModel, isPresented: $isPresented)
+    return TodoDetail(viewModel: viewModel)
 }
