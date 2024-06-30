@@ -15,7 +15,7 @@ struct TodoRow: View {
         let isImportant = todo.importance == .important
         let isUnimportant = todo.importance == .unimportant
         HStack {
-            Image(isCompleted ? "checkOn" : "checkOff")
+            Image(isCompleted ? "checkOn" : isImportant ? "checkAlert" : "checkOff")
             
             Image(isImportant ? "importanceImportant" : isUnimportant ? "importanceUnimportant" : "")
             
