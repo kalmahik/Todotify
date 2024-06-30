@@ -14,15 +14,30 @@ struct TodoRow: View {
         let isCompleted = todo.isCompleted
         let isImportant = todo.importance == .important
         let isUnimportant = todo.importance == .unimportant
-        HStack {
-            Image(isCompleted ? "checkOn" : isImportant ? "checkAlert" : "checkOff")
-            
-            Image(isImportant ? "importanceImportant" : isUnimportant ? "importanceUnimportant" : "")
-            
+        HStack() {
+            Button {
+                
+            } label: {
+                Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(isCompleted ? .green : isImportant ? .red : .gray)
+                    .background(!isCompleted && isImportant ? .red.opacity(0.1) : .clear)
+                    .clipShape(Circle())
+            }
+        
             VStack(alignment: .leading) {
-                Text(todo.text)
-                    .strikethrough(todo.isCompleted)
-                    .lineLimit(3)
+                HStack {
+                    if !isCompleted && (isImportant || isUnimportant) {
+                        Image(systemName: isImportant ? "exclamationmark.2" : isUnimportant ? "arrow.down" : "")
+                            .fontWeight(.bold)
+                            .frame(minWidth: 16)
+                            .foregroundColor(isImportant ? .red : .secondary)
+                            .padding(EdgeInsets())
+                    }
+                    
+                    Text(todo.text)
+                        .strikethrough(todo.isCompleted)
+                        .lineLimit(3)
+                }
                 
                 if let deadline = todo.deadline {
                     HStack {
@@ -35,6 +50,7 @@ struct TodoRow: View {
             }
             .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
             
+            
             Spacer()
             
             Image("chevron")
@@ -45,19 +61,10 @@ struct TodoRow: View {
                 .frame(width: 5)
         }
         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
-
+        
     }
 }
 
 #Preview {
-    Group {
-        TodoRow(
-            todo: TodoItem(
-                text: "123123123123123",
-                importance: .important,
-                deadline: Date(),
-                isCompleted: true
-            )
-        )
-    }
+    TodoList()
 }
