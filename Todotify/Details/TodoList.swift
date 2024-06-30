@@ -36,7 +36,7 @@ struct TodoList: View {
                                 }
                                 .tint(.red)
                                 Button {
-                                    viewModel.deleteTodo()
+                                    selectedTodoItem = todoItem
                                 } label: {
                                     Label("Инфо", systemImage: "info.circle.fill")
                                 }
