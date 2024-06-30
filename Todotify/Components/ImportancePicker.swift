@@ -12,9 +12,9 @@ struct ImportancePicker: View {
 
     var body: some View {
         Picker("", selection: $importance) {
-            Image("importanceUnimportant").tag(Importance.unimportant)
+            Image("custom.arrow.down").tag(Importance.unimportant)
             Text("нет").tag(Importance.usual)
-            Image("importanceImportant").tag(Importance.important)
+            Image("custom.exclamationmark.2").tag(Importance.important)
         }
         .pickerStyle(.segmented)
         .frame(width: 150)

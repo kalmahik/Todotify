@@ -27,10 +27,7 @@ struct TodoRow: View {
             VStack(alignment: .leading) {
                 HStack {
                     if !isCompleted && (isImportant || isUnimportant) {
-                        Image(systemName: isImportant ? "exclamationmark.2" : isUnimportant ? "arrow.down" : "")
-                            .fontWeight(.bold)
-                            .frame(minWidth: 16)
-                            .foregroundColor(isImportant ? .red : .secondary)
+                        Image(isImportant ? "custom.exclamationmark.2" : isUnimportant ? "custom.arrow.down" : "")
                             .padding(EdgeInsets())
                     }
                     
