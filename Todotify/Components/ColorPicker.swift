@@ -1,5 +1,5 @@
 //
-//  CustomColorPicker.swift
+//  ColorPicker.swift
 //  Todotify
 //
 //  Created by Murad Azimov on 22.06.2024.
@@ -43,18 +43,11 @@ struct ColorPicker: View {
                 }
             
             GeometryReader { proxy in
-                HStack {} // just an empty container to triggers the onAppear
+                HStack {}
                     .onAppear {
                         size = proxy.size
                     }
             }
-            
-            //            Rectangle()
-            //                .fill(selectedColor)
-            //                .frame(height: 100)
-            //                .cornerRadius(16)
-            //                .padding()
-            
         }
         .padding()
     }
