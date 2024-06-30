@@ -49,13 +49,13 @@ final class TodoDetailViewModel: ObservableObject {
         todoDetailModel.removeTodo(by: id)
     }
     
-    func completeTodo() {
+    func completeToggle() {
         let todo = TodoItem(
             id: todoItem?.id,
             text: text,
             importance: todoItem?.importance,
             deadline: todoItem?.deadline,
-            isCompleted: true,
+            isCompleted: !(todoItem?.isCompleted ?? false),
             createdAt: todoItem?.createdAt,
             editedAt: todoItem?.editedAt,
             hexColor: todoItem?.hexColor

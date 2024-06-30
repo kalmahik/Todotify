@@ -44,7 +44,7 @@ struct TodoList: View {
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button {
-                                    viewModel.completeTodo()
+                                    viewModel.completeToggle()
                                 }
                             label: { Image(systemName: "checkmark.circle") }
                             }
