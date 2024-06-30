@@ -9,21 +9,20 @@ import SwiftUI
 
 struct TodoRow: View {
     var todo: TodoItem
+    var completeToggle: () -> Void
     
     var body: some View {
         let isCompleted = todo.isCompleted
         let isImportant = todo.importance == .important
         let isUnimportant = todo.importance == .unimportant
         HStack() {
-            Button {
-                
-            } label: {
+            Button(action: completeToggle) {
                 Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(isCompleted ? .green : isImportant ? .red : .gray)
                     .background(!isCompleted && isImportant ? .red.opacity(0.1) : .clear)
                     .clipShape(Circle())
             }
-        
+    
             VStack(alignment: .leading) {
                 HStack {
                     if !isCompleted && (isImportant || isUnimportant) {
@@ -46,7 +45,6 @@ struct TodoRow: View {
                 }
             }
             .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
-            
             
             Spacer()
             

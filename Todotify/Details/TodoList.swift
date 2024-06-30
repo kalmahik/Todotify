@@ -12,7 +12,7 @@ struct TodoList: View {
     
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
-
+    
     var body: some View {
         NavigationSplitView {
             ZStack(alignment: .bottom) {
@@ -26,29 +26,25 @@ struct TodoList: View {
                             Button(action: {
                                 selectedTodoItem = todoItem
                             }) {
-                                TodoRow(todo: todoItem)
+                                TodoRow(todo: todoItem, completeToggle: viewModel.completeToggle)
                             }
                             .swipeActions(allowsFullSwipe: true) {
-                                Button(role: .destructive) {
-                                    viewModel.deleteTodo()
-                                } label: {
-                                    Label("Удалить", systemImage: "trash.fill")
+                                Button(role: .destructive, action: viewModel.deleteTodo) {
+                                    Image(systemName: "trash.fill")
                                 }
                                 .tint(.red)
-                                Button {
-                                    selectedTodoItem = todoItem
-                                } label: {
-                                    Label("Инфо", systemImage: "info.circle.fill")
+                                
+                                Button(action: { selectedTodoItem = todoItem }) {
+                                    Image(systemName: "info.circle.fill")
                                 }
                                 .tint(.gray)
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                Button {
-                                    viewModel.completeToggle()
+                                Button(action: viewModel.completeToggle) {
+                                    Image(systemName: "checkmark.circle")
                                 }
-                            label: { Image(systemName: "checkmark.circle") }
+                                .tint(.green)
                             }
-                            .tint(.green)
                             .listRowInsets(EdgeInsets(.zero))
                         }
                         
