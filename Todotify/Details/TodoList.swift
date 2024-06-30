@@ -11,10 +11,9 @@ struct TodoList: View {
     @StateObject private var todoDetailModel = FileCache()
     
     @State private var isCreationModalPresented = false
-    @State private var isEditionModalPresented = false
-    
+    @State private var selectedTodoItem: TodoItem?
+
     var body: some View {
-        
         NavigationSplitView {
             ZStack(alignment: .bottom) {
                 Color.background
@@ -25,7 +24,7 @@ struct TodoList: View {
                         ForEach(todoDetailModel.todos) { todoItem in
                             let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel)
                             Button(action: {
-                                isEditionModalPresented = true
+                                selectedTodoItem = todoItem
                             }) {
                                 TodoRow(todo: todoItem)
                             }
@@ -51,12 +50,6 @@ struct TodoList: View {
                             }
                             .tint(.green)
                             .listRowInsets(EdgeInsets(.zero))
-                            .sheet(isPresented: $isEditionModalPresented) {
-                                TodoDetail(
-                                    viewModel: viewModel,
-                                    isPresented: $isEditionModalPresented
-                                )
-                            }
                         }
                         
                     } header: {
@@ -88,11 +81,11 @@ struct TodoList: View {
         } detail: {
             Text("")
         }
+        .sheet(item: $selectedTodoItem) { todoItem in
+            TodoDetail(viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel))
+        }
         .sheet(isPresented: $isCreationModalPresented) {
-            TodoDetail(
-                viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel),
-                isPresented: $isCreationModalPresented
-            )
+            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel))
         }
     }
 }
