@@ -13,7 +13,7 @@ enum Format {
 }
 
 final class FileCache: ObservableObject, Cacheable {
-    @Published private(set) var todos: [TodoItem] = MockTodoItems.items
+    @Published var todos: [TodoItem] = MockTodoItems.items
     
     func add(todo: TodoItem) {
         if let existedIndex = todos.firstIndex(where: { $0.id == todo.id }) {

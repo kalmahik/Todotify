@@ -8,6 +8,8 @@
 import Foundation
 
 extension Date {
+    static let calendarFormatCell = "dd MMM"
+    
     static func fromString(_ date: String?) -> Date? {
         guard let date else { return nil }
         let dateFormatter = ISO8601DateFormatter()
@@ -19,11 +21,15 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    func asHumanString() -> String {
+    func asHumanString(format: String? = nil, style: DateFormatter.Style? = .medium) -> String {
         let dateFormatter = DateFormatter()
         let ident = DeviceUtils.getPreferredLocale().identifier
         dateFormatter.locale = Locale(identifier: ident)
-        dateFormatter.dateStyle = .medium
+        if let format {
+            dateFormatter.dateFormat = format
+        } else {
+            dateFormatter.dateStyle = .medium
+        }
         return dateFormatter.string(from: self)
     }
 }

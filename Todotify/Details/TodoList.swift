@@ -60,6 +60,21 @@ struct TodoList: View {
                 }
                 .safeAreaPadding(.bottom, 66)
                 .navigationTitle("Мои дела")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar(content: {
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        //                        NavigationLink("123", destination: CalendarViewWrapper())
+                        
+                        NavigationLink("Detail") {
+                            CalendarViewWrapper(todos: $todoDetailModel.todos)
+                                .navigationTitle("Мои дела")
+                                .toolbarRole(.editor)
+                            
+                        }
+                    }
+                })
+                
                 
                 Button {
                     isCreationModalPresented = true
