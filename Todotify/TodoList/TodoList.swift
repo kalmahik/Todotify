@@ -22,13 +22,16 @@ struct TodoList: View {
                 List() {
                     Section {
                         ForEach(store.todos) { todoItem in
-                            let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: store)
                             Button(action: {
                                 selectedTodoItem = todoItem
                             }) {
+                                let model = TodoDetailModel(store: store)
+                                let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
                                 TodoRow(todo: todoItem, completeToggle: viewModel.completeToggle)
                             }
                             .swipeActions(allowsFullSwipe: true) {
+                                let model = TodoDetailModel(store: store)
+                                let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
                                 Button(role: .destructive, action: viewModel.deleteTodo) {
                                     Image(systemName: "trash.fill")
                                 }
@@ -40,6 +43,8 @@ struct TodoList: View {
                                 .tint(.gray)
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                let model = TodoDetailModel(store: store)
+                                let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
                                 Button(action: viewModel.completeToggle) {
                                     Image(systemName: "checkmark.circle")
                                 }
@@ -90,10 +95,14 @@ struct TodoList: View {
             Text("")
         }
         .sheet(item: $selectedTodoItem) { todoItem in
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: store))
+            let model = TodoDetailModel(store: store)
+            let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
+            TodoDetail(viewModel:viewModel)
         }
         .sheet(isPresented: $isCreationModalPresented) {
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: store))
+            let model = TodoDetailModel(store: store)
+            let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
+            TodoDetail(viewModel:viewModel)
         }.environmentObject(store)
     }
 }

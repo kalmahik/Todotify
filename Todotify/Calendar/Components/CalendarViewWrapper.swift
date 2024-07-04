@@ -15,7 +15,7 @@ struct CalendarViewWrapper : UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         let model = CalendarModel(store: store)
         let viewModel = CalendarViewModel(for: model)
-        let view = CalendarViewController(for: viewModel)
+        let view = CalendarViewController(for: viewModel, store: store)
         return view
     }
 }

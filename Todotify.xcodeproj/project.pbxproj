@@ -48,6 +48,7 @@
 		F5E515C82C3660230026FC07 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515C72C3660230026FC07 /* Store.swift */; };
 		F5E515CC2C36B6110026FC07 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515CB2C36B6110026FC07 /* UIColor+Extension.swift */; };
 		F5E515D02C36C97A0026FC07 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515CF2C36C97A0026FC07 /* UILabel+Extension.swift */; };
+		F5E515D32C3732FD0026FC07 /* TodoDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515D22C3732FD0026FC07 /* TodoDetailModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		F5E515C72C3660230026FC07 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F5E515CB2C36B6110026FC07 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F5E515CF2C36C97A0026FC07 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		F5E515D22C3732FD0026FC07 /* TodoDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoDetailModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				F58F51262C29C2A80058B2E5 /* TodoDetail.swift */,
+				F5E515D22C3732FD0026FC07 /* TodoDetailModel.swift */,
 				F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */,
 			);
 			path = Details;
@@ -429,6 +432,7 @@
 				F5E2FFB02C2D38A200776DB5 /* Binding+Extension.swift in Sources */,
 				F5E515CC2C36B6110026FC07 /* UIColor+Extension.swift in Sources */,
 				842905D62C215AF500159210 /* FileCache.swift in Sources */,
+				F5E515D32C3732FD0026FC07 /* TodoDetailModel.swift in Sources */,
 				F58F51272C29C2A80058B2E5 /* TodoDetail.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
 				F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */,

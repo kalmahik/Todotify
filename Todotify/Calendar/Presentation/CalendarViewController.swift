@@ -11,12 +11,13 @@ import SwiftUI
 // MARK: - UIViewController
 
 final class CalendarViewController: UIViewController {
-    
+    private var store: Store
     private var viewModel: CalendarViewModel
     private var sections: TodosGrouped = []
     
-    init(for viewModel: CalendarViewModel) {
+    init(for viewModel: CalendarViewModel, store: Store) {
         self.viewModel = viewModel
+        self.store = store
         super.init(nibName: nil, bundle: nil)
         bind()
         viewModel.loadTodos()
@@ -39,11 +40,23 @@ final class CalendarViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var plusButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "custom.plus.circle.fill"), for: .normal)
+        button.addTarget(self, action: #selector(didTapPlusButton), for: .touchUpInside)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 4
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.delegate = self
         setupViews()
         setupConstraints()
+        
     }
     
     private func bind() {
@@ -54,6 +67,14 @@ final class CalendarViewController: UIViewController {
                 self.calendarView = HorizontalCalendar(days: sections.map { $0.0 })
             }
         }
+    }
+    
+    @objc private func didTapPlusButton() {
+        let model = TodoDetailModel(store: store)
+        let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
+        let swiftUIView = TodoDetail(viewModel:viewModel)
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        navigationController?.present(hostingController, animated: true)
     }
 }
 
@@ -86,20 +107,11 @@ extension CalendarViewController: UITableViewDataSource {
 extension CalendarViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todoItem = sections[indexPath.section].1[indexPath.row]
-        navigateToSwiftUI()
-    }
-    
-    @objc func navigateToSwiftUI() {
-        // Create the SwiftUI view
-
-
-        let swiftUIView = TodoDetail(viewModel: viewModel as! TodoDetailViewModel)
-        
-        // Wrap it in a UIHostingController
+        let model = TodoDetailModel(store: store)
+        let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
+        let swiftUIView = TodoDetail(viewModel:viewModel)
         let hostingController = UIHostingController(rootView: swiftUIView)
-        
-        // Present the UIHostingController
-        navigationController?.pushViewController(hostingController, animated: true)
+        navigationController?.present(hostingController, animated: true)
     }
 }
 
@@ -116,7 +128,7 @@ extension CalendarViewController: CalendarCellDelegate {
 
 extension CalendarViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating) { // ignore programmatically scroll
+        if (scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating) { // игнорим скролл из кода
             if let topSection = tableView.indexPathsForVisibleRows?.first {
                 calendarView.scrollToItem(at: topSection.section)
             }
@@ -137,7 +149,7 @@ extension CalendarViewController {
         action.backgroundColor = UIColor(Color.green)
         return UISwipeActionsConfiguration(actions: [action])
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "Incomplete") { (action, view, completionHandler) in
             let todo = self.sections[indexPath.section].1[indexPath.row]
@@ -147,7 +159,7 @@ extension CalendarViewController {
         action.backgroundColor = UIColor(Color.green)
         return UISwipeActionsConfiguration(actions: [action])
     }
-
+    
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
         tableView.reloadRows(at: [indexPath], with: .fade)
@@ -160,6 +172,7 @@ extension CalendarViewController {
     private func setupViews() {
         view.setupView(calendarView)
         view.setupView(tableView)
+        view.setupView(plusButton)
     }
     
     private func setupConstraints() {
@@ -172,8 +185,11 @@ extension CalendarViewController {
             tableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+
+            plusButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            plusButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
 }

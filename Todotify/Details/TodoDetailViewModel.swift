@@ -17,9 +17,9 @@ final class TodoDetailViewModel: ObservableObject {
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
     
-    private var todoDetailModel: Store
+    private var todoDetailModel: TodoDetailModel
     
-    init(todoItem: TodoItem?, todoDetailModel: Store) {
+    init(todoDetailModel: TodoDetailModel, todoItem: TodoItem?) {
         self.todoItem = todoItem
         self.todoDetailModel = todoDetailModel
         self.text = todoItem?.text ?? ""

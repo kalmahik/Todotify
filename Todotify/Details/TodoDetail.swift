@@ -100,7 +100,9 @@ struct TodoDetail: View {
 }
 
 #Preview {
-    @State var todo = TodoItem(text: "preview") as TodoItem?
-    let viewModel = TodoDetailViewModel(todoItem: todo, todoDetailModel: Store())
+    @State var todoItem = TodoItem(text: "preview") as TodoItem?
+    @State var store = Store()
+    let model = TodoDetailModel(store: store)
+    let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
     return TodoDetail(viewModel: viewModel)
 }
