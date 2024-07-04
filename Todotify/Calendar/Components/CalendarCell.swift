@@ -20,8 +20,7 @@ final class CalendarCell: UICollectionViewCell {
     
     func setupCell(label: String) {
         dateLabel.text = label.split(separator: " ").joined(separator: "\n")
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.gray.cgColor
+        layer.borderColor = UIColor.lightGray.cgColor
         layer.cornerRadius = 12
         setupViews()
         setupConstraints()
@@ -29,10 +28,13 @@ final class CalendarCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? .red : .yellow
+            backgroundColor = isSelected ? .gray.withAlphaComponent(0.2) : .clear
+            layer.borderWidth = isSelected ? 2 : 0
          }
     }
 }
+
+// MARK: - Configure
 
 extension CalendarCell {
     private func setupViews() {

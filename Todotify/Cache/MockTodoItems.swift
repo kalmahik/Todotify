@@ -9,7 +9,7 @@ import Foundation
 
 struct MockTodoItems {
     static let items = [
-        TodoItem(text: "Тест айтема в одну строку", deadline: Date().addingTimeInterval(2 * 86400), hexColor: "#FFFFFF"),
+        TodoItem(text: "Тест айтема в одну строку", deadline: Date().addingTimeInterval(2 * 86400), isCompleted: true, hexColor: "#FFFFFF"),
         TodoItem(text: "Тест айтема в \n 2 строки", deadline: Date().addingTimeInterval(3 * 86400), hexColor: "#FF0000"),
         TodoItem(text: "Тест айтема в \n 3 строки \n и более \n тут типа должно обрезаться", deadline: Date().addingTimeInterval(2 * 86400), hexColor: "#FFFF00"),
         TodoItem(text: "Низкий приоритет", importance: .unimportant, deadline: Date().addingTimeInterval(4 * 86400), hexColor: "#FF00FF"),

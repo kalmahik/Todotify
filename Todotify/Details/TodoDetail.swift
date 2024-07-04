@@ -101,6 +101,6 @@ struct TodoDetail: View {
 
 #Preview {
     @State var todo = TodoItem(text: "preview") as TodoItem?
-    let viewModel = TodoDetailViewModel(todoItem: todo, todoDetailModel: FileCache())
+    let viewModel = TodoDetailViewModel(todoItem: todo, todoDetailModel: Store())
     return TodoDetail(viewModel: viewModel)
 }

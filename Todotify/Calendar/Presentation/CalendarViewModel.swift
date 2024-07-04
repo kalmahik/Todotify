@@ -1,26 +1,30 @@
 //
-//  CalendarViewWrapper.swift
+//  CalendarViewModel.swift
 //  Todotify
 //
-//  Created by Murad Azimov on 02.07.2024.
+//  Created by Murad Azimov on 04.07.2024.
 //
 
-import SwiftUI
+import Foundation
 
-struct CalendarViewWrapper : UIViewControllerRepresentable {
-    @Binding var todos: [TodoItem]
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        guard let vc = uiViewController as? CalendarViewController else { return }
-        vc.sections = convertData(todos: todos)
+typealias CustomBinding<T> = (T) -> Void
+typealias TodosGrouped = [(String, [TodoItem])]
+
+final class CalendarViewModel {
+    var todosBinding: CustomBinding<TodosGrouped>?
+
+    private let model: CalendarModel
+
+    init(for model: CalendarModel) {
+        self.model = model
     }
     
-    func makeUIViewController(context: Context) -> some UIViewController {
-        return CalendarViewController(sections: convertData(todos: todos))
+    func loadTodos() {
+        self.todosBinding?(convertData(todos: model.getTodos()))
     }
-    
-    func convertData(todos: [TodoItem]) -> [(String, [TodoItem])] {
-        var sections: [(String, [TodoItem])] = []
+
+    func convertData(todos: [TodoItem]) -> TodosGrouped {
+        var sections: TodosGrouped = []
         todos.forEach { todo in
             guard let deadline = todo.deadline else {
                 if let existedIndex = sections.firstIndex(where: { $0.0 == "Другое" }) {
@@ -38,4 +42,10 @@ struct CalendarViewWrapper : UIViewControllerRepresentable {
         }
         return sections
     }
+    
+    func setCompleted(todo: TodoItem, isCompleted: Bool) {
+        model.setCompleted(todo: todo, isCompleted: isCompleted)
+        self.todosBinding?(convertData(todos: model.getTodos()))
+    }
 }
+

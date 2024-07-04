@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodoList: View {
-    @StateObject private var todoDetailModel = FileCache()
+    @StateObject var store = Store()
     
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
@@ -21,8 +21,8 @@ struct TodoList: View {
                 
                 List() {
                     Section {
-                        ForEach(todoDetailModel.todos) { todoItem in
-                            let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel)
+                        ForEach(store.todos) { todoItem in
+                            let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: store)
                             Button(action: {
                                 selectedTodoItem = todoItem
                             }) {
@@ -50,7 +50,7 @@ struct TodoList: View {
                         
                     } header: {
                         HStack {
-                            Text("Выполнено – \(todoDetailModel.todos.filter { $0.isCompleted}.count)")
+                            Text("Выполнено – \(store.todos.filter { $0.isCompleted}.count)")
                             Spacer()
                             Text("Показать")
                                 .foregroundColor(.accentColor)
@@ -62,20 +62,16 @@ struct TodoList: View {
                 .navigationTitle("Мои дела")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(content: {
-                    
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        //                        NavigationLink("123", destination: CalendarViewWrapper())
-                        
-                        NavigationLink("Detail") {
-                            CalendarViewWrapper(todos: $todoDetailModel.todos)
+                        NavigationLink() {
+                            CalendarViewWrapper(store: store)
                                 .navigationTitle("Мои дела")
                                 .toolbarRole(.editor)
-                            
+                        } label: {
+                            Image(systemName: "calendar")
                         }
                     }
                 })
-                
-                
                 Button {
                     isCreationModalPresented = true
                 } label: {
@@ -94,11 +90,11 @@ struct TodoList: View {
             Text("")
         }
         .sheet(item: $selectedTodoItem) { todoItem in
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel))
+            TodoDetail(viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: store))
         }
         .sheet(isPresented: $isCreationModalPresented) {
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel))
-        }
+            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: store))
+        }.environmentObject(store)
     }
 }
 

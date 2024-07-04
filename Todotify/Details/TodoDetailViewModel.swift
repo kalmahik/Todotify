@@ -17,9 +17,9 @@ final class TodoDetailViewModel: ObservableObject {
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
     
-    private var todoDetailModel: FileCache
+    private var todoDetailModel: Store
     
-    init(todoItem: TodoItem?, todoDetailModel: FileCache) {
+    init(todoItem: TodoItem?, todoDetailModel: Store) {
         self.todoItem = todoItem
         self.todoDetailModel = todoDetailModel
         self.text = todoItem?.text ?? ""

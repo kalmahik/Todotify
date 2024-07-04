@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol HorizontalCalendarDelegate: AnyObject {
+protocol CalendarCellDelegate: AnyObject {
     func didSelectItem(at index: Int)
 }
 
 class HorizontalCalendar: UIView {
     
-    weak var delegate: HorizontalCalendarDelegate?
+    weak var delegate: CalendarCellDelegate?
     
     var days: [String] = []
     
@@ -37,14 +37,7 @@ class HorizontalCalendar: UIView {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = false
-        collectionView.backgroundColor = .yellow
         return collectionView
-    }()
-    
-    private lazy var divider: UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        return view
     }()
     
     private func setupCollectionView() {
@@ -87,11 +80,12 @@ extension HorizontalCalendar: UICollectionViewDelegateFlowLayout {
     
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension HorizontalCalendar: UICollectionViewDelegate {
     
     // manually select cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
         delegate?.didSelectItem(at: indexPath.item)
     }
     
@@ -107,23 +101,20 @@ extension HorizontalCalendar: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Configure
+
 extension HorizontalCalendar {
     private func setupViews() {
-        setupView(divider)
+        backgroundColor = .gray
         setupView(collectionView)
-        setupView(divider)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 1),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            divider.leadingAnchor.constraint(equalTo: leadingAnchor),
-            divider.trailingAnchor.constraint(equalTo: trailingAnchor),
-            divider.heightAnchor.constraint(equalToConstant: 1),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
         ])
     }
 }

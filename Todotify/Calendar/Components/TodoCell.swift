@@ -25,11 +25,14 @@ final class TodoCell: UITableViewCell {
 
     func setupCell(text: String, isCompleted: Bool, color: UIColor) {
         title.text = text
+        title.strikeThrough(isCompleted)
         dot.backgroundColor = color
         setupViews()
         setupConstraints()
     }
 }
+
+// MARK: - Configure
 
 extension TodoCell {
     private func setupViews() {
