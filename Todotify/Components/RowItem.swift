@@ -30,10 +30,12 @@ struct RowItem<Content: View>: View {
                         .foregroundStyle(Color.accentColor)
                 }
             }
+            .border(Color.black)
             .onTapGesture { action?() }
             Spacer()
             component
         }
+        .border(Color.black)
         .frame(height: 56)
         .animation(.easeInOut, value: subtitle)
         .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))

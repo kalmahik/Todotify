@@ -7,11 +7,11 @@
 
 import Foundation
 
-typealias CustomBinding<T> = (T) -> Void
+typealias CalendarBinding<T> = (T) -> Void
 typealias TodosGrouped = [(Date, [TodoItem])]
 
 final class CalendarViewModel {
-    var todosBinding: CustomBinding<TodosGrouped>?
+    var todosBinding: CalendarBinding<TodosGrouped>?
 
     private let model: CalendarModel
 
@@ -31,11 +31,9 @@ final class CalendarViewModel {
     func convertData(todos: [TodoItem]) -> TodosGrouped {
         var sections: TodosGrouped = []
         todos.forEach { todo in
-            if let deadline = todo.deadline {
-            
-            }
             let deadline = todo.deadline ?? Date(timeIntervalSince1970: 0)
-            if let existedIndex = sections.firstIndex(where: { $0.0 == deadline }) {
+        
+            if let existedIndex = sections.firstIndex { Calendar.current.isDate($0.0, equalTo: deadline, toGranularity: .day) } {
                 sections[existedIndex].1.append(todo)
             } else {
                 sections.append((deadline, [todo]))

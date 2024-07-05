@@ -14,6 +14,8 @@ struct TodoDetail: View {
     
     @ObservedObject var viewModel: TodoDetailViewModel
     
+    @State private var isCategoryModalPresented: Bool = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -56,6 +58,20 @@ struct TodoDetail: View {
                                 viewModel.showDatePicker()
                             }
                     }
+                    
+                    RowItem(
+                        title: "Выберите категорию",
+                        subtitle: viewModel.category?.name,
+                        action: { isCategoryModalPresented = true }
+                    ) {
+                        CategoryPicker(selectedCategory: $viewModel.category, categories: viewModel.getCategories())
+                    }
+                    
+
+//                    .sheet(isPresented: $isCategoryModalPresented) {
+//                        CategoriesWrapper(selectedCategory: $viewModel.category)
+//                            .navigationTitle("Категории")
+//                    }
                     
                     if viewModel.isDeadlineEnabled && viewModel.isDatePickerShowed {
                         DeadlinePicker(deadline: $viewModel.deadline)
@@ -103,6 +119,6 @@ struct TodoDetail: View {
     @State var todoItem = TodoItem(text: "preview") as TodoItem?
     @State var store = Store()
     let model = TodoDetailModel(store: store)
-    let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
-    return TodoDetail(viewModel: viewModel)
+    let todoViewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
+    return TodoDetail(viewModel: todoViewModel)
 }

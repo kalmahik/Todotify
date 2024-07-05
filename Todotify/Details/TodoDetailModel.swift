@@ -32,12 +32,17 @@ final class TodoDetailModel {
             isCompleted: isCompleted,
             createdAt: todo.createdAt,
             editedAt: todo.editedAt,
-            hexColor: todo.hexColor
+            hexColor: todo.hexColor,
+            category: todo.category
         )
         store.add(todo: updatedTodo)
     }
     
     func removeTodo(by id: String) {
         store.removeTodo(by: id)
+    }
+    
+    func getCategories() -> [Category] {
+        store.categories
     }
 }

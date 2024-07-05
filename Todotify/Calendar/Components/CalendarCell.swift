@@ -28,7 +28,7 @@ final class CalendarCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = isSelected ? .gray.withAlphaComponent(0.2) : .clear
+            backgroundColor = isSelected ? .gray.withAlphaComponent(0.4) : .clear
             layer.borderWidth = isSelected ? 2 : 0
          }
     }

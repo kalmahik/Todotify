@@ -34,7 +34,6 @@ final class CalendarViewController: UIViewController {
         tableView.register(TodoCell.self, forCellReuseIdentifier: TodoCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .none
         tableView.separatorStyle = .singleLine
         tableView.contentInset.bottom = 500
         return tableView
@@ -153,28 +152,25 @@ extension CalendarViewController {
 extension CalendarViewController {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
+        let action = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
             let todo = self.sections[indexPath.section].1[indexPath.row]
             self.viewModel.setCompleted(todo: todo, isCompleted: true)
-            completionHandler(true)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
+        action.image = UIImage(systemName: "checkmark.circle.fill")
         action.backgroundColor = UIColor(Color.green)
         return UISwipeActionsConfiguration(actions: [action])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Incomplete") { (action, view, completionHandler) in
+        let action = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
             let todo = self.sections[indexPath.section].1[indexPath.row]
             self.viewModel.setCompleted(todo: todo, isCompleted: false)
-            completionHandler(true)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
+        action.image = UIImage(systemName: "checkmark.gobackward")
         action.backgroundColor = UIColor(Color.green)
         return UISwipeActionsConfiguration(actions: [action])
-    }
-    
-    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        guard let indexPath = indexPath else { return }
-        tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }
 

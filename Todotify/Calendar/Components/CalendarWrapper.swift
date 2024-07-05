@@ -1,5 +1,5 @@
 //
-//  CalendarViewWrapper.swift
+//  CalendarWrapper.swift
 //  Todotify
 //
 //  Created by Murad Azimov on 02.07.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CalendarViewWrapper : UIViewControllerRepresentable {
+struct CalendarWrapper : UIViewControllerRepresentable {
     @ObservedObject var store: Store
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

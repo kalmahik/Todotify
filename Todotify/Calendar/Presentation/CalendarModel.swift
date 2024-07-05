@@ -32,7 +32,8 @@ final class CalendarModel {
             isCompleted: isCompleted,
             createdAt: todo.createdAt,
             editedAt: todo.editedAt,
-            hexColor: todo.hexColor
+            hexColor: todo.hexColor,
+            category: todo.category
         )
         store.add(todo: updatedTodo)
     }

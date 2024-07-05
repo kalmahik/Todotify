@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodoList: View {
     @StateObject var store = Store()
-    
+        
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
     
@@ -69,7 +69,7 @@ struct TodoList: View {
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink() {
-                            CalendarViewWrapper(store: store)
+                            CalendarWrapper(store: store)
                                 .navigationTitle("Мои дела")
                                 .toolbarRole(.editor)
                         } label: {
@@ -103,7 +103,8 @@ struct TodoList: View {
             let model = TodoDetailModel(store: store)
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
             TodoDetail(viewModel:viewModel)
-        }.environmentObject(store)
+        }
+        .environmentObject(store)
     }
 }
 
