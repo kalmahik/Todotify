@@ -9,6 +9,7 @@ import Foundation
 
 extension Date {
     static let calendarFormatCell = "dd MMM"
+    static let zeroDay = Date(timeIntervalSince1970: 0)
     
     static func fromString(_ date: String?) -> Date? {
         guard let date else { return nil }

@@ -52,7 +52,7 @@ struct TodoRow: View {
                 .foregroundColor(.red)
             
             Rectangle()
-                .fill(Color(hex: todo.hexColor))
+                .fill(Color(hex: todo.hexColor) ?? .clear)
                 .frame(width: 5)
         }
         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))

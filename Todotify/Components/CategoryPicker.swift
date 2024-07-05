@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct CategoryPicker: View {
-    @Binding var selectedCategory: Category?
+    @Binding var selectedCategory: Category
     var categories: [Category]
-
+    
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(categories) { category in
+        VStack {
+            ForEach(categories) { category in
+                HStack {
+                    Text(category.name)
+                    Spacer()
                     CategoryView(category: category)
-                        .onTapGesture {
-                            selectedCategory = category
-                        }
                         .overlay(
                             Circle()
-                                .stroke(selectedCategory == category ? .black : .clear, lineWidth: 2)
+                                .stroke(selectedCategory.name == category.name ? .black : .clear, lineWidth: 2)
                         )
-                        .padding(4)
+                }
+                .onTapGesture {
+                    selectedCategory = category
                 }
             }
         }
@@ -32,10 +33,10 @@ struct CategoryPicker: View {
 
 struct CategoryView: View {
     let category: Category
-
+    
     var body: some View {
         Circle()
-            .fill(Color(hex: category.hexColor))
+            .fill(Color(hex: category.hexColor) ?? .clear)
             .frame(width: 24, height: 24)
             .overlay(
                 Circle()
@@ -43,9 +44,3 @@ struct CategoryView: View {
             )
     }
 }
-
-
-//#Preview {
-//    @State var selectedCategory = Category(name: "123", hexColor: "#FF00FF")
-//    return CategoryPicker(selectedCategory: $selectedCategory, categories: [])
-//}

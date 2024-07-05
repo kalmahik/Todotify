@@ -8,10 +8,10 @@ import SwiftUI
 
 final class CategoryModel: ObservableObject {
     @Published var categories: [Category] = [
-        Category(name: "Work", hexColor: Color.red.toHexString()),
-        Category(name: "Personal", hexColor: Color.green.toHexString()),
-        Category(name: "Shopping", hexColor: Color.blue.toHexString()),
-        Category(name: "Fitness", hexColor: Color.yellow.toHexString())
+        Category(name: "Work", hexColor: Color.red.toHex()),
+        Category(name: "Personal", hexColor: Color.green.toHex()),
+        Category(name: "Shopping", hexColor: Color.blue.toHex()),
+        Category(name: "Fitness", hexColor: Color.yellow.toHex())
     ]
 
     func add(category: Category) {

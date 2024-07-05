@@ -31,9 +31,9 @@ final class CalendarViewModel {
     func convertData(todos: [TodoItem]) -> TodosGrouped {
         var sections: TodosGrouped = []
         todos.forEach { todo in
-            let deadline = todo.deadline ?? Date(timeIntervalSince1970: 0)
+            let deadline = todo.deadline ?? .zeroDay
         
-            if let existedIndex = sections.firstIndex { Calendar.current.isDate($0.0, equalTo: deadline, toGranularity: .day) } {
+            if let existedIndex = sections.firstIndex(where: { Calendar.current.isDate($0.0, equalTo: deadline, toGranularity: .day) }) {
                 sections[existedIndex].1.append(todo)
             } else {
                 sections.append((deadline, [todo]))
@@ -47,7 +47,7 @@ final class CalendarViewModel {
     
     func convertTitles(sections: TodosGrouped) -> [String] {
         sections.map {
-            let isOtherSection = $0.0 == Date(timeIntervalSince1970: 0)
+            let isOtherSection = $0.0 == .zeroDay
             return isOtherSection ? "Другое" : $0.0.asHumanString(format: Date.calendarFormatCell)
         }
     }

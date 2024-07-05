@@ -10,7 +10,7 @@ import SwiftUI
 struct RowItem<Content: View>: View {
     let title: String
     let subtitle: String?
-    let component: Content
+    let component: Content?
     let action: (() -> Void)?
     
     init(title: String, subtitle: String? = nil, action: (() -> Void)? = nil,  @ViewBuilder component: () -> Content) {
@@ -30,14 +30,12 @@ struct RowItem<Content: View>: View {
                         .foregroundStyle(Color.accentColor)
                 }
             }
-            .border(Color.black)
             .onTapGesture { action?() }
             Spacer()
             component
         }
-        .border(Color.black)
         .frame(height: 56)
         .animation(.easeInOut, value: subtitle)
-        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+        .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
     }
 }

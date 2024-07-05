@@ -11,10 +11,10 @@ final class Store: ObservableObject {
     @Published var todos: [TodoItem] = MockTodoItems.items
     
     @Published var categories: [Category] = [
-        Category(name: "Work", hexColor: Color.red.toHexString()),
-        Category(name: "Personal", hexColor: Color.green.toHexString()),
-        Category(name: "Shopping", hexColor: Color.blue.toHexString()),
-        Category(name: "Fitness", hexColor: Color.yellow.toHexString())
+        Category(name: "Работа", hexColor: Color.red.toHex()),
+        Category(name: "Учеба", hexColor: Color.blue.toHex()),
+        Category(name: "Хобби", hexColor: Color.green.toHex()),
+        Category.defaultCategory,
     ]
     
     func add(todo: TodoItem) {

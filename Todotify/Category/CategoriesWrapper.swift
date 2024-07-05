@@ -10,11 +10,7 @@ import SwiftUI
 struct CategoriesWrapper : UIViewControllerRepresentable {
     @Binding var selectedCategory: Category?
     
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//        if let view = uiViewController as? CategoriesViewController  {
-//            view.updateData(store: store)
-//        }
-    }
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let model = CategoryModel()

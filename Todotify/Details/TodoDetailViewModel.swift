@@ -16,7 +16,7 @@ final class TodoDetailViewModel: ObservableObject {
     @Published var isDatePickerShowed: Bool
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
-    @Published var category: Category?
+    @Published var category: Category
     
     private var todoDetailModel: TodoDetailModel
     
@@ -25,11 +25,11 @@ final class TodoDetailViewModel: ObservableObject {
         self.todoDetailModel = todoDetailModel
         self.text = todoItem?.text ?? ""
         self.importance = todoItem?.importance ?? .usual
-        self.hexColor = Color(hex: todoItem?.hexColor ?? "FFFFFF")
+        self.hexColor = Color(hex: todoItem?.hexColor ?? Color.clear.toHex()) ?? .clear // отрефакторить!!
         self.deadline = todoItem?.deadline ?? Date().addingTimeInterval(24 * 60 * 60) // TODO: переделать на календарь
         self.isDatePickerShowed = false
         self.isDeadlineEnabled = todoItem?.deadline != nil
-        self.category = todoItem?.category
+        self.category = todoItem?.category ?? Category.defaultCategory
     }
     
     func saveTodo() {
@@ -41,8 +41,8 @@ final class TodoDetailViewModel: ObservableObject {
             isCompleted: todoItem?.isCompleted,
             createdAt: todoItem?.createdAt,
             editedAt: Date(),
-            hexColor: hexColor.toHexString(),
-            category: todoItem?.category
+            hexColor: hexColor.toHex(),
+            category: category
         )
         todoDetailModel.add(todo: todo)
     }

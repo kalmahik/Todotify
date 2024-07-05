@@ -39,7 +39,7 @@ struct TodoDetail: View {
                     
                     RowItem(
                         title: "Цвет",
-                        subtitle: viewModel.hexColor.toHexString()
+                        subtitle: viewModel.hexColor.toHex()
                     ) {
                         Circle()
                             .fill(viewModel.hexColor)
@@ -47,6 +47,17 @@ struct TodoDetail: View {
                     }
                     
                     ColorPicker(selectedColor: $viewModel.hexColor)
+                    
+                    VStack {
+                        RowItem(
+                            title: "Выберите категорию",
+                            subtitle: viewModel.category.name,
+                            action: { isCategoryModalPresented = true }
+                        ) {
+                            CategoryView(category: viewModel.category)
+                        }
+                        CategoryPicker(selectedCategory: $viewModel.category, categories: viewModel.getCategories())
+                    }
                     
                     RowItem(
                         title: "Сделать до",
@@ -59,25 +70,11 @@ struct TodoDetail: View {
                             }
                     }
                     
-                    RowItem(
-                        title: "Выберите категорию",
-                        subtitle: viewModel.category?.name,
-                        action: { isCategoryModalPresented = true }
-                    ) {
-                        CategoryPicker(selectedCategory: $viewModel.category, categories: viewModel.getCategories())
-                    }
-                    
-
-//                    .sheet(isPresented: $isCategoryModalPresented) {
-//                        CategoriesWrapper(selectedCategory: $viewModel.category)
-//                            .navigationTitle("Категории")
-//                    }
-                    
                     if viewModel.isDeadlineEnabled && viewModel.isDatePickerShowed {
                         DeadlinePicker(deadline: $viewModel.deadline)
                             .animation(.easeInOut, value: viewModel.isDatePickerShowed)
                             .transition(.slide)
-                            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     }
                 }
                 
@@ -108,7 +105,8 @@ struct TodoDetail: View {
                     Button("Сохранить") {
                         viewModel.saveTodo()
                         dismiss()
-                    }.disabled(viewModel.isSaveDisabled())
+                    }
+                    .disabled(viewModel.isSaveDisabled())
                 }
             })
         }

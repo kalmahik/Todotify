@@ -5,7 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
-import Foundation
+import SwiftUI
 
 enum Importance: String {
     case unimportant
@@ -22,7 +22,7 @@ struct TodoItem: Identifiable {
     let createdAt: Date
     let editedAt: Date?
     let hexColor: String
-    let category: Category?
+    let category: Category
     
     init(
         id: String? = nil,
@@ -42,8 +42,8 @@ struct TodoItem: Identifiable {
         self.isCompleted = isCompleted ?? false
         self.createdAt = createdAt ?? Date()
         self.editedAt = editedAt
-        self.hexColor = hexColor ?? "#FFFFFF"
-        self.category = category ?? Category(name: "other", hexColor: "#FFFFFF")
+        self.hexColor = hexColor ?? Color.clear.toHex()
+        self.category = category ?? Category.defaultCategory
     }
 }
 

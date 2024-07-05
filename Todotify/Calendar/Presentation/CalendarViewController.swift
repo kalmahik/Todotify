@@ -104,7 +104,11 @@ extension CalendarViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TodoCell.identifier, for: indexPath)
         guard let trackerCell = cell as? TodoCell else { return UITableViewCell() }
         let todoItem = sections[indexPath.section].1[indexPath.row]
-        trackerCell.setupCell(text: todoItem.text, isCompleted: todoItem.isCompleted, color: UIColor(hex: todoItem.hexColor) ?? .clear)
+        trackerCell.setupCell(
+            text: todoItem.text,
+            isCompleted: todoItem.isCompleted,
+            color: UIColor(hex: todoItem.category.hexColor) ?? .clear
+        )
         return trackerCell
     }
     

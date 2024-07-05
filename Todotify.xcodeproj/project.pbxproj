@@ -47,7 +47,6 @@
 		F5E515C62C365FB30026FC07 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515C52C365FB30026FC07 /* CalendarModel.swift */; };
 		F5E515C82C3660230026FC07 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515C72C3660230026FC07 /* Store.swift */; };
 		F5E515CC2C36B6110026FC07 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515CB2C36B6110026FC07 /* UIColor+Extension.swift */; };
-		F5E515D02C36C97A0026FC07 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515CF2C36C97A0026FC07 /* UILabel+Extension.swift */; };
 		F5E515D32C3732FD0026FC07 /* TodoDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515D22C3732FD0026FC07 /* TodoDetailModel.swift */; };
 		F5E515D52C37DA6B0026FC07 /* CategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515D42C37DA6B0026FC07 /* CategoryPicker.swift */; };
 		F5E515D72C37E1960026FC07 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515D62C37E1960026FC07 /* Category.swift */; };
@@ -117,7 +116,6 @@
 		F5E515C52C365FB30026FC07 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		F5E515C72C3660230026FC07 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F5E515CB2C36B6110026FC07 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		F5E515CF2C36C97A0026FC07 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		F5E515D22C3732FD0026FC07 /* TodoDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoDetailModel.swift; sourceTree = "<group>"; };
 		F5E515D42C37DA6B0026FC07 /* CategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPicker.swift; sourceTree = "<group>"; };
 		F5E515D62C37E1960026FC07 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				F5E2FFBB2C2FB51F00776DB5 /* Color+Extensions.swift */,
 				F55E93192C3488980015AA98 /* UIView+Extension.swift */,
 				F5E515CB2C36B6110026FC07 /* UIColor+Extension.swift */,
-				F5E515CF2C36C97A0026FC07 /* UILabel+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -473,7 +470,6 @@
 				F5E515E32C37EAF00026FC07 /* CategoryViewModel.swift in Sources */,
 				F5E2FFBC2C2FB51F00776DB5 /* Color+Extensions.swift in Sources */,
 				F5E515E22C37EAF00026FC07 /* CategoryModel.swift in Sources */,
-				F5E515D02C36C97A0026FC07 /* UILabel+Extension.swift in Sources */,
 				842905D82C22A1C000159210 /* JSONable.swift in Sources */,
 				F5E515F02C37F4B70026FC07 /* CategoriesWrapper.swift in Sources */,
 				F58F51602C29F6360058B2E5 /* TodoList.swift in Sources */,

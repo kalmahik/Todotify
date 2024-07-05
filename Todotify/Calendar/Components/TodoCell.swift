@@ -27,15 +27,13 @@ final class TodoCell: UITableViewCell {
     }()
 
     func setupCell(text: String, isCompleted: Bool, color: UIColor) {
-        let attributes: [NSAttributedString.Key: Any] = isCompleted ? 
+        let attributes: [NSAttributedString.Key: Any] = isCompleted ?
         [ .strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray] :
         [ .foregroundColor: UIColor.label ]
                
         title.attributedText = NSAttributedString(string: text, attributes: attributes)
-        
-//        title.text = text
         title.textColor = isCompleted ? .gray : .label
-        dot.backgroundColor = .red
+        dot.backgroundColor = color
         setupViews()
         setupConstraints()
     }
