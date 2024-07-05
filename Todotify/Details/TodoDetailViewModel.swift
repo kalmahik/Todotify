@@ -16,18 +16,20 @@ final class TodoDetailViewModel: ObservableObject {
     @Published var isDatePickerShowed: Bool
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
+    @Published var category: Category
     
-    private var todoDetailModel: FileCache
+    private var todoDetailModel: TodoDetailModel
     
-    init(todoItem: TodoItem?, todoDetailModel: FileCache) {
+    init(todoDetailModel: TodoDetailModel, todoItem: TodoItem?) {
         self.todoItem = todoItem
         self.todoDetailModel = todoDetailModel
         self.text = todoItem?.text ?? ""
         self.importance = todoItem?.importance ?? .usual
-        self.hexColor = Color(hex: todoItem?.hexColor ?? "FFFFFF")
+        self.hexColor = Color(hex: todoItem?.hexColor ?? Color.clear.toHex()) ?? .clear // отрефакторить!!
         self.deadline = todoItem?.deadline ?? Date().addingTimeInterval(24 * 60 * 60) // TODO: переделать на календарь
         self.isDatePickerShowed = false
         self.isDeadlineEnabled = todoItem?.deadline != nil
+        self.category = todoItem?.category ?? Category.defaultCategory
     }
     
     func saveTodo() {
@@ -35,11 +37,12 @@ final class TodoDetailViewModel: ObservableObject {
             id: todoItem?.id,
             text: text,
             importance: importance,
-            deadline: isDatePickerShowed ? deadline : nil,
+            deadline: isDeadlineEnabled ? deadline : nil,
             isCompleted: todoItem?.isCompleted,
             createdAt: todoItem?.createdAt,
             editedAt: Date(),
-            hexColor: hexColor.toHexString()
+            hexColor: hexColor.toHex(),
+            category: category
         )
         todoDetailModel.add(todo: todo)
     }
@@ -58,7 +61,8 @@ final class TodoDetailViewModel: ObservableObject {
             isCompleted: !(todoItem?.isCompleted ?? false),
             createdAt: todoItem?.createdAt,
             editedAt: todoItem?.editedAt,
-            hexColor: todoItem?.hexColor
+            hexColor: todoItem?.hexColor,
+            category: todoItem?.category
         )
         todoDetailModel.add(todo: todo)
     }
@@ -81,5 +85,9 @@ final class TodoDetailViewModel: ObservableObject {
     
     func isSaveDisabled() -> Bool {
         text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    func getCategories() -> [Category] {
+        todoDetailModel.getCategories()
     }
 }

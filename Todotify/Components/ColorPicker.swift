@@ -34,7 +34,7 @@ struct ColorPicker: View {
                             selectedColor = convertColor(hue: hue)
                         }
                 )
-                .frame(height: 100)
+                .frame(height: 56)
                 .cornerRadius(12)
             
             Slider(value: $brightness, in: 0...1)
@@ -49,7 +49,7 @@ struct ColorPicker: View {
                     }
             }
         }
-        .padding()
+        .padding(.top)
     }
     
     func convertColor(hue: Double) -> Color {

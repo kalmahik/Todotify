@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TodoList: View {
-    @StateObject private var todoDetailModel = FileCache()
-    
+    @StateObject var store = Store()
+        
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
     
@@ -21,14 +21,17 @@ struct TodoList: View {
                 
                 List() {
                     Section {
-                        ForEach(todoDetailModel.todos) { todoItem in
-                            let viewModel = TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel)
+                        ForEach(store.todos) { todoItem in
                             Button(action: {
                                 selectedTodoItem = todoItem
                             }) {
+                                let model = TodoDetailModel(store: store)
+                                let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
                                 TodoRow(todo: todoItem, completeToggle: viewModel.completeToggle)
                             }
                             .swipeActions(allowsFullSwipe: true) {
+                                let model = TodoDetailModel(store: store)
+                                let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
                                 Button(role: .destructive, action: viewModel.deleteTodo) {
                                     Image(systemName: "trash.fill")
                                 }
@@ -40,6 +43,8 @@ struct TodoList: View {
                                 .tint(.gray)
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                let model = TodoDetailModel(store: store)
+                                let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
                                 Button(action: viewModel.completeToggle) {
                                     Image(systemName: "checkmark.circle")
                                 }
@@ -50,7 +55,7 @@ struct TodoList: View {
                         
                     } header: {
                         HStack {
-                            Text("Выполнено – \(todoDetailModel.todos.filter { $0.isCompleted}.count)")
+                            Text("Выполнено – \(store.todos.filter { $0.isCompleted}.count)")
                             Spacer()
                             Text("Показать")
                                 .foregroundColor(.accentColor)
@@ -59,7 +64,26 @@ struct TodoList: View {
                     
                 }
                 .safeAreaPadding(.bottom, 66)
+                .overlay(Group {
+                    if store.todos.isEmpty {
+                        Text("Ой, кажется тут ничего нет...")
+                    }
+                })
                 .navigationTitle("Мои дела")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if (!store.todos.isEmpty) {
+                            NavigationLink() {
+                                CalendarWrapper(store: store)
+                                    .navigationTitle("Мои дела")
+                                    .toolbarRole(.editor)
+                            } label: {
+                                Image(systemName: "calendar")
+                            }
+                        }
+                    }
+                })
                 
                 Button {
                     isCreationModalPresented = true
@@ -79,11 +103,16 @@ struct TodoList: View {
             Text("")
         }
         .sheet(item: $selectedTodoItem) { todoItem in
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: todoItem, todoDetailModel: todoDetailModel))
+            let model = TodoDetailModel(store: store)
+            let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
+            TodoDetail(store: store, viewModel:viewModel)
         }
         .sheet(isPresented: $isCreationModalPresented) {
-            TodoDetail(viewModel: TodoDetailViewModel(todoItem: nil, todoDetailModel: todoDetailModel))
+            let model = TodoDetailModel(store: store)
+            let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
+            TodoDetail(store: store, viewModel:viewModel)
         }
+        .environmentObject(store)
     }
 }
 

@@ -11,9 +11,12 @@ struct TodoDetail: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    
+        
+    @ObservedObject var store: Store
     @ObservedObject var viewModel: TodoDetailViewModel
     
+    @State private var isCategoryModalPresented = false
+
     var body: some View {
         NavigationStack {
             List {
@@ -37,7 +40,7 @@ struct TodoDetail: View {
                     
                     RowItem(
                         title: "Цвет",
-                        subtitle: viewModel.hexColor.toHexString()
+                        subtitle: viewModel.hexColor.toHex()
                     ) {
                         Circle()
                             .fill(viewModel.hexColor)
@@ -45,6 +48,31 @@ struct TodoDetail: View {
                     }
                     
                     ColorPicker(selectedColor: $viewModel.hexColor)
+                    
+                    VStack {
+                        RowItem(
+                            title: "Выберите категорию",
+                            subtitle: viewModel.category.name,
+                            action: {  }
+                        ) {
+                            CategoryView(category: viewModel.category)
+                            
+                            Button {
+                                isCategoryModalPresented = true
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24)
+                                    .foregroundColor(.blue)
+                            }
+                            
+                        }
+                        CategoryPicker(selectedCategory: $viewModel.category, categories: store.categories)
+                    }
+                    .sheet(isPresented: $isCategoryModalPresented) {
+                        CategoryList(store: store)
+                    }
                     
                     RowItem(
                         title: "Сделать до",
@@ -61,7 +89,7 @@ struct TodoDetail: View {
                         DeadlinePicker(deadline: $viewModel.deadline)
                             .animation(.easeInOut, value: viewModel.isDatePickerShowed)
                             .transition(.slide)
-                            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     }
                 }
                 
@@ -92,7 +120,8 @@ struct TodoDetail: View {
                     Button("Сохранить") {
                         viewModel.saveTodo()
                         dismiss()
-                    }.disabled(viewModel.isSaveDisabled())
+                    }
+                    .disabled(viewModel.isSaveDisabled())
                 }
             })
         }
@@ -100,7 +129,9 @@ struct TodoDetail: View {
 }
 
 #Preview {
-    @State var todo = TodoItem(text: "preview") as TodoItem?
-    let viewModel = TodoDetailViewModel(todoItem: todo, todoDetailModel: FileCache())
-    return TodoDetail(viewModel: viewModel)
+    @State var todoItem = TodoItem(text: "preview") as TodoItem?
+    @State var store = Store()
+    let model = TodoDetailModel(store: store)
+    let todoViewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
+    return TodoDetail(store: store, viewModel: todoViewModel)
 }
