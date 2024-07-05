@@ -8,7 +8,7 @@
 import Foundation
 
 typealias CustomBinding<T> = (T) -> Void
-typealias TodosGrouped = [(String, [TodoItem])]
+typealias TodosGrouped = [(Date, [TodoItem])]
 
 final class CalendarViewModel {
     var todosBinding: CustomBinding<TodosGrouped>?
@@ -19,28 +19,39 @@ final class CalendarViewModel {
         self.model = model
     }
     
+    // чет сложно, надо упростить
     func loadTodos() {
         self.todosBinding?(convertData(todos: model.getTodos()))
+    }
+    
+    func updateTodos(store: Store) {
+        self.todosBinding?(convertData(todos: store.todos))
     }
 
     func convertData(todos: [TodoItem]) -> TodosGrouped {
         var sections: TodosGrouped = []
         todos.forEach { todo in
-            guard let deadline = todo.deadline else {
-                if let existedIndex = sections.firstIndex(where: { $0.0 == "Другое" }) {
-                    sections[existedIndex].1.append(todo)
-                } else {
-                    sections.append(("Другое", [todo]))
-                }
-                return
+            if let deadline = todo.deadline {
+            
             }
-            if let existedIndex = sections.firstIndex(where: { $0.0 == deadline.asHumanString(format: Date.calendarFormatCell) }) {
+            let deadline = todo.deadline ?? Date(timeIntervalSince1970: 0)
+            if let existedIndex = sections.firstIndex(where: { $0.0 == deadline }) {
                 sections[existedIndex].1.append(todo)
             } else {
-                sections.append((deadline.asHumanString(format: Date.calendarFormatCell), [todo]))
+                sections.append((deadline, [todo]))
             }
         }
+        sections.sort { $0.0 < $1.0 }
+        let withoutDate = sections.removeFirst()
+        sections.append(withoutDate)
         return sections
+    }
+    
+    func convertTitles(sections: TodosGrouped) -> [String] {
+        sections.map {
+            let isOtherSection = $0.0 == Date(timeIntervalSince1970: 0)
+            return isOtherSection ? "Другое" : $0.0.asHumanString(format: Date.calendarFormatCell)
+        }
     }
     
     func setCompleted(todo: TodoItem, isCompleted: Bool) {

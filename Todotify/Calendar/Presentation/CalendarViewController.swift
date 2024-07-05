@@ -59,12 +59,24 @@ final class CalendarViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        calendarView.scrollToItem(at: 0)
+    }
+    
+    // кажется это не круто, но пока так
+    func updateData(store: Store) {
+        viewModel.updateTodos(store: store)
+        tableView.reloadData()
+        calendarView.updateData(days: viewModel.convertTitles(sections: sections))
+    }
+    
     private func bind() {
         viewModel.todosBinding = { [weak self] sections in
             guard let self else { return }
             self.sections = sections
             if self.calendarView == nil {
-                self.calendarView = HorizontalCalendar(days: sections.map { $0.0 })
+                self.calendarView = HorizontalCalendar(days: viewModel.convertTitles(sections: sections))
             }
         }
     }
@@ -98,7 +110,7 @@ extension CalendarViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        sections[section].0
+        viewModel.convertTitles(sections: [sections[section]]).first
     }
 }
 
@@ -118,7 +130,7 @@ extension CalendarViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension CalendarViewController: CalendarCellDelegate {
-    // select day in a calendar
+    // была нажата дата в календаре
     func didSelectItem(at index: Int) {
         tableView.scrollToRow(at: IndexPath(item: 0, section: index), at: .top, animated: true)
     }

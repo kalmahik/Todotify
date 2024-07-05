@@ -40,6 +40,11 @@ class HorizontalCalendar: UIView {
         return collectionView
     }()
     
+    func updateData(days: [String]) {
+        self.days = days
+        collectionView.reloadData()
+    }
+    
     private func setupCollectionView() {
         setupViews()
         setupConstraints()
