@@ -64,19 +64,27 @@ struct TodoList: View {
                     
                 }
                 .safeAreaPadding(.bottom, 66)
+                .overlay(Group {
+                    if store.todos.isEmpty {
+                        Text("Ой, кажется тут ничего нет...")
+                    }
+                })
                 .navigationTitle("Мои дела")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink() {
-                            CalendarWrapper(store: store)
-                                .navigationTitle("Мои дела")
-                                .toolbarRole(.editor)
-                        } label: {
-                            Image(systemName: "calendar")
+                        if (!store.todos.isEmpty) {
+                            NavigationLink() {
+                                CalendarWrapper(store: store)
+                                    .navigationTitle("Мои дела")
+                                    .toolbarRole(.editor)
+                            } label: {
+                                Image(systemName: "calendar")
+                            }
                         }
                     }
                 })
+                
                 Button {
                     isCreationModalPresented = true
                 } label: {
@@ -97,12 +105,12 @@ struct TodoList: View {
         .sheet(item: $selectedTodoItem) { todoItem in
             let model = TodoDetailModel(store: store)
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
-            TodoDetail(viewModel:viewModel)
+            TodoDetail(store: store, viewModel:viewModel)
         }
         .sheet(isPresented: $isCreationModalPresented) {
             let model = TodoDetailModel(store: store)
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
-            TodoDetail(viewModel:viewModel)
+            TodoDetail(store: store, viewModel:viewModel)
         }
         .environmentObject(store)
     }

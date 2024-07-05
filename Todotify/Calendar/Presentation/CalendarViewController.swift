@@ -68,6 +68,7 @@ final class CalendarViewController: UIViewController {
         viewModel.updateTodos(store: store)
         tableView.reloadData()
         calendarView.updateData(days: viewModel.convertTitles(sections: sections))
+        calendarView.scrollToItem(at: 0)
     }
     
     private func bind() {
@@ -83,7 +84,7 @@ final class CalendarViewController: UIViewController {
     @objc private func didTapPlusButton() {
         let model = TodoDetailModel(store: store)
         let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
-        let swiftUIView = TodoDetail(viewModel:viewModel)
+        let swiftUIView = TodoDetail(store: store, viewModel:viewModel)
         let hostingController = UIHostingController(rootView: swiftUIView)
         navigationController?.present(hostingController, animated: true)
     }
@@ -124,7 +125,7 @@ extension CalendarViewController: UITableViewDelegate {
         let todoItem = sections[indexPath.section].1[indexPath.row]
         let model = TodoDetailModel(store: store)
         let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
-        let swiftUIView = TodoDetail(viewModel:viewModel)
+        let swiftUIView = TodoDetail(store: store, viewModel:viewModel)
         let hostingController = UIHostingController(rootView: swiftUIView)
         navigationController?.present(hostingController, animated: true)
     }

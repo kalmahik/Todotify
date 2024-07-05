@@ -28,4 +28,12 @@ final class Store: ObservableObject {
     func removeTodo(by id: String) {
         todos.removeAll { $0.id == id }
     }
+    
+    func add(category: Category) {
+        if let existedIndex = categories.firstIndex(where: { $0.name == category.name }) {
+            categories[existedIndex] = category
+        } else {
+            categories.append(category)
+        }
+    }
 }

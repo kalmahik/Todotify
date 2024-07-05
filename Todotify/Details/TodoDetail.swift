@@ -11,11 +11,12 @@ struct TodoDetail: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    
+        
+    @ObservedObject var store: Store
     @ObservedObject var viewModel: TodoDetailViewModel
     
-    @State private var isCategoryModalPresented: Bool = false
-    
+    @State private var isCategoryModalPresented = false
+
     var body: some View {
         NavigationStack {
             List {
@@ -52,11 +53,25 @@ struct TodoDetail: View {
                         RowItem(
                             title: "Выберите категорию",
                             subtitle: viewModel.category.name,
-                            action: { isCategoryModalPresented = true }
+                            action: {  }
                         ) {
                             CategoryView(category: viewModel.category)
+                            
+                            Button {
+                                isCategoryModalPresented = true
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24)
+                                    .foregroundColor(.blue)
+                            }
+                            
                         }
-                        CategoryPicker(selectedCategory: $viewModel.category, categories: viewModel.getCategories())
+                        CategoryPicker(selectedCategory: $viewModel.category, categories: store.categories)
+                    }
+                    .sheet(isPresented: $isCategoryModalPresented) {
+                        CategoryList(store: store)
                     }
                     
                     RowItem(
@@ -118,5 +133,5 @@ struct TodoDetail: View {
     @State var store = Store()
     let model = TodoDetailModel(store: store)
     let todoViewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
-    return TodoDetail(viewModel: todoViewModel)
+    return TodoDetail(store: store, viewModel: todoViewModel)
 }

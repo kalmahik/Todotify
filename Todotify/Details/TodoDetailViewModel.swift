@@ -37,7 +37,7 @@ final class TodoDetailViewModel: ObservableObject {
             id: todoItem?.id,
             text: text,
             importance: importance,
-            deadline: isDatePickerShowed ? deadline : nil,
+            deadline: isDeadlineEnabled ? deadline : nil,
             isCompleted: todoItem?.isCompleted,
             createdAt: todoItem?.createdAt,
             editedAt: Date(),

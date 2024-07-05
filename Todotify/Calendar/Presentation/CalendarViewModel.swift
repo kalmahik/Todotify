@@ -40,8 +40,10 @@ final class CalendarViewModel {
             }
         }
         sections.sort { $0.0 < $1.0 }
-        let withoutDate = sections.removeFirst()
-        sections.append(withoutDate)
+        if !sections.isEmpty {
+            let withoutDate = sections.removeFirst()
+            sections.append(withoutDate)
+        }
         return sections
     }
     
