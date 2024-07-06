@@ -78,6 +78,7 @@ struct TodoList: View {
                                 CalendarWrapper(store: store)
                                     .navigationTitle("Мои дела")
                                     .toolbarRole(.editor)
+                                    .ignoresSafeArea()
                             } label: {
                                 Image(systemName: "calendar")
                             }
