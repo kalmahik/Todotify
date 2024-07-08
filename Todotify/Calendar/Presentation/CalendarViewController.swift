@@ -5,8 +5,8 @@
 //  Created by Murad Azimov on 01.07.2024.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 // MARK: - UIViewController
 

@@ -5,8 +5,8 @@
 //  Created by Murad Azimov on 26.06.2024.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 final class TodoDetailViewModel: ObservableObject {
     @Published var text: String
