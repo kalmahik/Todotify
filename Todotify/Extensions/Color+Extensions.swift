@@ -5,6 +5,8 @@
 //  Created by Murad Azimov on 22.06.2024.
 //
 
+// swiftlint:disable identifier_name
+
 import SwiftUI
 
 extension Color {

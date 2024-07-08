@@ -5,6 +5,8 @@
 //  Created by Murad Azimov on 04.07.2024.
 //
 
+// swiftlint:disable identifier_name
+
 import UIKit
 
 extension UIColor {
