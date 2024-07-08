@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7558809AE4A6B1599F5AAC84 /* Pods_Todotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70946EF8126F7B2603310B92 /* Pods_Todotify.framework */; };
 		842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905A62C1FF34A00159210 /* TodotifyApp.swift */; };
 		842905A92C1FF34A00159210 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905A82C1FF34A00159210 /* ContentView.swift */; };
 		842905AB2C1FF34B00159210 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842905AA2C1FF34B00159210 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		842905EC2C253B4700159210 /* TodotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905EB2C253B4700159210 /* TodotifyTests.swift */; };
 		842905F32C25486000159210 /* Todotify+JSONAbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */; };
 		842905F52C25536B00159210 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F42C25536B00159210 /* DefaultValues.swift */; };
+		98999DAEF0351B392438ADAE /* Pods_TodotifyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC620C45FE382A549C355E01 /* Pods_TodotifyTests.framework */; };
 		F55E931E2C3488980015AA98 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E93182C3488980015AA98 /* CalendarViewController.swift */; };
 		F55E931F2C3488980015AA98 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E93192C3488980015AA98 /* UIView+Extension.swift */; };
 		F55E93202C3488980015AA98 /* HorizontalCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E931A2C3488980015AA98 /* HorizontalCalendar.swift */; };
@@ -69,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E74F97E4119921D20868FB9 /* Pods-TodotifyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodotifyTests.debug.xcconfig"; path = "Target Support Files/Pods-TodotifyTests/Pods-TodotifyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		10724FDE1A45C1D8254A9505 /* Pods-Todotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todotify.release.xcconfig"; path = "Target Support Files/Pods-Todotify/Pods-Todotify.release.xcconfig"; sourceTree = "<group>"; };
+		2BC6CF6314719B8319F55576 /* Pods-TodotifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodotifyTests.release.xcconfig"; path = "Target Support Files/Pods-TodotifyTests/Pods-TodotifyTests.release.xcconfig"; sourceTree = "<group>"; };
+		70946EF8126F7B2603310B92 /* Pods_Todotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842905A32C1FF34A00159210 /* Todotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842905A62C1FF34A00159210 /* TodotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodotifyApp.swift; sourceTree = "<group>"; };
 		842905A82C1FF34A00159210 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +93,8 @@
 		842905EB2C253B4700159210 /* TodotifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodotifyTests.swift; sourceTree = "<group>"; };
 		842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todotify+JSONAbleTests.swift"; sourceTree = "<group>"; };
 		842905F42C25536B00159210 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
+		8AA23DB9F0C9E94B503C33EE /* Pods-Todotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todotify.debug.xcconfig"; path = "Target Support Files/Pods-Todotify/Pods-Todotify.debug.xcconfig"; sourceTree = "<group>"; };
+		AC620C45FE382A549C355E01 /* Pods_TodotifyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodotifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55E93182C3488980015AA98 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		F55E93192C3488980015AA98 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F55E931A2C3488980015AA98 /* HorizontalCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalCalendar.swift; sourceTree = "<group>"; };
@@ -128,6 +136,7 @@
 				F5E515F92C3C49EF0026FC07 /* CocoaLumberjackSwift in Frameworks */,
 				F5E515FB2C3C49EF0026FC07 /* CocoaLumberjackSwiftLogBackend in Frameworks */,
 				F5E515F72C3C49EF0026FC07 /* CocoaLumberjack in Frameworks */,
+				7558809AE4A6B1599F5AAC84 /* Pods_Todotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,18 +144,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98999DAEF0351B392438ADAE /* Pods_TodotifyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08AB176F0433AB50D11AAD05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70946EF8126F7B2603310B92 /* Pods_Todotify.framework */,
+				AC620C45FE382A549C355E01 /* Pods_TodotifyTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		756B73C1EFFCA1ABC88D7CAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8AA23DB9F0C9E94B503C33EE /* Pods-Todotify.debug.xcconfig */,
+				10724FDE1A45C1D8254A9505 /* Pods-Todotify.release.xcconfig */,
+				0E74F97E4119921D20868FB9 /* Pods-TodotifyTests.debug.xcconfig */,
+				2BC6CF6314719B8319F55576 /* Pods-TodotifyTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8429059A2C1FF34A00159210 = {
 			isa = PBXGroup;
 			children = (
 				842905A52C1FF34A00159210 /* Todotify */,
 				842905EA2C253B4700159210 /* TodotifyTests */,
 				842905A42C1FF34A00159210 /* Products */,
+				756B73C1EFFCA1ABC88D7CAB /* Pods */,
+				08AB176F0433AB50D11AAD05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -331,6 +363,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 842905B22C1FF34B00159210 /* Build configuration list for PBXNativeTarget "Todotify" */;
 			buildPhases = (
+				62124F647E094A06CCB9DB0E /* [CP] Check Pods Manifest.lock */,
 				8429059F2C1FF34A00159210 /* Sources */,
 				842905A02C1FF34A00159210 /* Frameworks */,
 				842905A12C1FF34A00159210 /* Resources */,
@@ -353,6 +386,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 842905F12C253B4700159210 /* Build configuration list for PBXNativeTarget "TodotifyTests" */;
 			buildPhases = (
+				FB96A69638AD0B8E65E6096C /* [CP] Check Pods Manifest.lock */,
 				842905E52C253B4700159210 /* Sources */,
 				842905E62C253B4700159210 /* Frameworks */,
 				842905E72C253B4700159210 /* Resources */,
@@ -427,6 +461,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		62124F647E094A06CCB9DB0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Todotify-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB96A69638AD0B8E65E6096C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodotifyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8429059F2C1FF34A00159210 /* Sources */ = {
@@ -550,6 +631,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -607,6 +689,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -618,6 +701,7 @@
 		};
 		842905B32C1FF34B00159210 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AA23DB9F0C9E94B503C33EE /* Pods-Todotify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -649,6 +733,7 @@
 		};
 		842905B42C1FF34B00159210 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10724FDE1A45C1D8254A9505 /* Pods-Todotify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -680,6 +765,7 @@
 		};
 		842905EF2C253B4700159210 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E74F97E4119921D20868FB9 /* Pods-TodotifyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -699,6 +785,7 @@
 		};
 		842905F02C253B4700159210 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BC6CF6314719B8319F55576 /* Pods-TodotifyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

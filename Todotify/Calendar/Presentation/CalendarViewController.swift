@@ -14,7 +14,7 @@ final class CalendarViewController: UIViewController {
     private var store: Store
     private var viewModel: CalendarViewModel
     private var sections: TodosGrouped = []
-    
+
     init(for viewModel: CalendarViewModel, store: Store) {
         self.viewModel = viewModel
         self.store = store
@@ -22,13 +22,13 @@ final class CalendarViewController: UIViewController {
         bind()
         viewModel.loadTodos()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private var calendarView: HorizontalCalendar!
-    
+
     private lazy var tableView: UITableView = {
         let tableView  = UITableView(frame: self.view.frame, style: .insetGrouped)
         tableView.register(TodoCell.self, forCellReuseIdentifier: TodoCell.identifier)
@@ -38,7 +38,7 @@ final class CalendarViewController: UIViewController {
         tableView.contentInset.bottom = 500
         return tableView
     }()
-    
+
     private lazy var plusButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "custom.plus.circle.fill"), for: .normal)
@@ -49,20 +49,20 @@ final class CalendarViewController: UIViewController {
         button.layer.shadowRadius = 4
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.delegate = self
         setupViews()
         setupConstraints()
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calendarView.scrollToItem(at: 0)
     }
-    
+
     // кажется это не круто, но пока так
     func updateData(store: Store) {
         viewModel.updateTodos(store: store)
@@ -70,7 +70,7 @@ final class CalendarViewController: UIViewController {
         calendarView.updateData(days: viewModel.convertTitles(sections: sections))
         calendarView.scrollToItem(at: 0)
     }
-    
+
     private func bind() {
         viewModel.todosBinding = { [weak self] sections in
             guard let self else { return }
@@ -80,11 +80,11 @@ final class CalendarViewController: UIViewController {
             }
         }
     }
-    
+
     @objc private func didTapPlusButton() {
         let model = TodoDetailModel(store: store)
         let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
-        let swiftUIView = TodoDetail(store: store, viewModel:viewModel)
+        let swiftUIView = TodoDetail(store: store, viewModel: viewModel)
         let hostingController = UIHostingController(rootView: swiftUIView)
         navigationController?.present(hostingController, animated: true)
     }
@@ -96,11 +96,11 @@ extension CalendarViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         sections[section].1.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TodoCell.identifier, for: indexPath)
         guard let trackerCell = cell as? TodoCell else { return UITableViewCell() }
@@ -112,7 +112,7 @@ extension CalendarViewController: UITableViewDataSource {
         )
         return trackerCell
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         viewModel.convertTitles(sections: [sections[section]]).first
     }
@@ -125,7 +125,7 @@ extension CalendarViewController: UITableViewDelegate {
         let todoItem = sections[indexPath.section].1[indexPath.row]
         let model = TodoDetailModel(store: store)
         let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
-        let swiftUIView = TodoDetail(store: store, viewModel:viewModel)
+        let swiftUIView = TodoDetail(store: store, viewModel: viewModel)
         let hostingController = UIHostingController(rootView: swiftUIView)
         navigationController?.present(hostingController, animated: true)
     }
@@ -144,7 +144,7 @@ extension CalendarViewController: CalendarCellDelegate {
 
 extension CalendarViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating) { // игнорим скролл из кода
+        if scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating { // игнорим скролл из кода
             if let topSection = tableView.indexPathsForVisibleRows?.first {
                 calendarView.scrollToItem(at: topSection.section)
             }
@@ -155,9 +155,9 @@ extension CalendarViewController {
 // MARK: - UISwipeActionsConfiguration
 
 extension CalendarViewController {
-    
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
+        let action = UIContextualAction(style: .normal, title: "") { (_, _, _) in
             let todo = self.sections[indexPath.section].1[indexPath.row]
             self.viewModel.setCompleted(todo: todo, isCompleted: true)
             tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -166,9 +166,9 @@ extension CalendarViewController {
         action.backgroundColor = UIColor(Color.green)
         return UISwipeActionsConfiguration(actions: [action])
     }
-    
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
+        let action = UIContextualAction(style: .normal, title: "") { (_, _, _) in
             let todo = self.sections[indexPath.section].1[indexPath.row]
             self.viewModel.setCompleted(todo: todo, isCompleted: false)
             tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -187,21 +187,21 @@ extension CalendarViewController {
         view.setupView(tableView)
         view.setupView(plusButton)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             calendarView.heightAnchor.constraint(equalToConstant: 100),
             calendarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             calendarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             calendarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
+
             tableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             plusButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            plusButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            plusButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 }

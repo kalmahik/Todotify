@@ -11,10 +11,10 @@ struct TodoDetail: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
-        
+
     @ObservedObject var store: Store
     @ObservedObject var viewModel: TodoDetailViewModel
-    
+
     @State private var isCategoryModalPresented = false
 
     var body: some View {
@@ -25,19 +25,19 @@ struct TodoDetail: View {
                         TextEditor(text: $viewModel.text)
                             .frame(minHeight: 120)
                             .contentMargins(.all, 16)
-                        
+
                         Rectangle()
                             .fill(viewModel.hexColor)
                             .frame(width: 5)
                     }
                     .listRowInsets(EdgeInsets())
                 }
-                
-                Section() {
+
+                Section {
                     RowItem(title: "Важность") {
                         ImportancePicker(importance: $viewModel.importance)
                     }
-                    
+
                     RowItem(
                         title: "Цвет",
                         subtitle: viewModel.hexColor.toHex()
@@ -46,9 +46,9 @@ struct TodoDetail: View {
                             .fill(viewModel.hexColor)
                             .frame(width: 24, height: 24)
                     }
-                    
+
                     ColorPicker(selectedColor: $viewModel.hexColor)
-                    
+
                     VStack {
                         RowItem(
                             title: "Выберите категорию",
@@ -56,7 +56,7 @@ struct TodoDetail: View {
                             action: {  }
                         ) {
                             CategoryView(category: viewModel.category)
-                            
+
                             Button {
                                 isCategoryModalPresented = true
                             } label: {
@@ -66,14 +66,14 @@ struct TodoDetail: View {
                                     .frame(width: 24)
                                     .foregroundColor(.blue)
                             }
-                            
+
                         }
                         CategoryPicker(selectedCategory: $viewModel.category, categories: store.categories)
                     }
                     .sheet(isPresented: $isCategoryModalPresented) {
                         CategoryList(store: store)
                     }
-                    
+
                     RowItem(
                         title: "Сделать до",
                         subtitle: viewModel.getDeadlineString(),
@@ -84,7 +84,7 @@ struct TodoDetail: View {
                                 viewModel.showDatePicker()
                             }
                     }
-                    
+
                     if viewModel.isDeadlineEnabled && viewModel.isDatePickerShowed {
                         DeadlinePicker(deadline: $viewModel.deadline)
                             .animation(.easeInOut, value: viewModel.isDatePickerShowed)
@@ -92,7 +92,7 @@ struct TodoDetail: View {
                             .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     }
                 }
-                
+
                 Section {
                     Button(role: .destructive, action: {
                         viewModel.deleteTodo()
@@ -105,7 +105,7 @@ struct TodoDetail: View {
                     .listRowInsets(EdgeInsets())
                     .disabled(viewModel.todoItem?.id == nil)
                 }
-                
+
             }
             .navigationTitle("Дело")
             .navigationBarTitleDisplayMode(.inline)
@@ -115,7 +115,7 @@ struct TodoDetail: View {
                         dismiss()
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Сохранить") {
                         viewModel.saveTodo()

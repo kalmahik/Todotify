@@ -8,16 +8,16 @@
 import UIKit
 
 final class CalendarCell: UICollectionViewCell {
-    
+
     static let identifier = "CalendarCell"
-    
+
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
     }()
-    
+
     func setupCell(label: String) {
         dateLabel.text = label.split(separator: " ").joined(separator: "\n")
         layer.borderColor = UIColor.lightGray.cgColor
@@ -25,7 +25,7 @@ final class CalendarCell: UICollectionViewCell {
         setupViews()
         setupConstraints()
     }
-    
+
     override var isSelected: Bool {
         didSet {
             backgroundColor = isSelected ? .gray.withAlphaComponent(0.4) : .clear
@@ -46,7 +46,7 @@ extension CalendarCell {
             dateLabel.topAnchor.constraint(equalTo: topAnchor),
             dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

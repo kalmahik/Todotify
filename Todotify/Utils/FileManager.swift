@@ -20,7 +20,7 @@ extension FileManager {
         }
         return dir.appendingPathComponent(name)
     }
-    
+
     static func isFileExist(name: String) -> Bool {
          do {
              let fileURL = try getFileURL(name: name)

@@ -14,7 +14,7 @@ enum Format {
 
 final class FileCache: ObservableObject, Cacheable {
     @Published var todos: [TodoItem] = MockTodoItems.items
-    
+
     func add(todo: TodoItem) {
         if let existedIndex = todos.firstIndex(where: { $0.id == todo.id }) {
             Logger.shared.info("TODO EXIST, REPLACING")
@@ -23,11 +23,11 @@ final class FileCache: ObservableObject, Cacheable {
             todos.append(todo)
         }
     }
-    
+
     func removeTodo(by id: String) {
         todos.removeAll { $0.id == id }
     }
-    
+
     func saveToFile(fileName: String, format: Format = .json) throws {
         guard let filename = try? FileManager.getFileURL(name: fileName) else {
             throw FileManagerError.fileNotFound
@@ -51,7 +51,7 @@ final class FileCache: ObservableObject, Cacheable {
             try CSVString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
         }
     }
-    
+
     func readFromFile(fileName: String, format: Format = .json) throws {
         let filename = try FileManager.getFileURL(name: fileName)
         let isFileExist = FileManager.isFileExist(name: fileName)

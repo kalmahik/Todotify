@@ -18,12 +18,12 @@ final class CalendarViewModel {
     init(for model: CalendarModel) {
         self.model = model
     }
-    
+
     // чет сложно, надо упростить
     func loadTodos() {
         self.todosBinding?(convertData(todos: model.getTodos()))
     }
-    
+
     func updateTodos(store: Store) {
         self.todosBinding?(convertData(todos: store.todos))
     }
@@ -32,7 +32,7 @@ final class CalendarViewModel {
         var sections: TodosGrouped = []
         todos.forEach { todo in
             let deadline = todo.deadline ?? .zeroDay
-        
+
             if let existedIndex = sections.firstIndex(where: { Calendar.current.isDate($0.0, equalTo: deadline, toGranularity: .day) }) {
                 sections[existedIndex].1.append(todo)
             } else {
@@ -46,17 +46,16 @@ final class CalendarViewModel {
         }
         return sections
     }
-    
+
     func convertTitles(sections: TodosGrouped) -> [String] {
         sections.map {
             let isOtherSection = $0.0 == .zeroDay
             return isOtherSection ? "Другое" : $0.0.asHumanString(format: Date.calendarFormatCell)
         }
     }
-    
+
     func setCompleted(todo: TodoItem, isCompleted: Bool) {
         model.setCompleted(todo: todo, isCompleted: isCompleted)
         self.todosBinding?(convertData(todos: model.getTodos()))
     }
 }
-

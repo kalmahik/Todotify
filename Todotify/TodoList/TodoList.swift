@@ -9,17 +9,17 @@ import SwiftUI
 
 struct TodoList: View {
     @StateObject var store = Store()
-        
+
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
-    
+
     var body: some View {
         NavigationSplitView {
             ZStack(alignment: .bottom) {
                 Color.background
                     .edgesIgnoringSafeArea(.all)
-                
-                List() {
+
+                List {
                     Section {
                         ForEach(store.todos) { todoItem in
                             Button(action: {
@@ -36,7 +36,7 @@ struct TodoList: View {
                                     Image(systemName: "trash.fill")
                                 }
                                 .tint(.red)
-                                
+
                                 Button(action: { selectedTodoItem = todoItem }) {
                                     Image(systemName: "info.circle.fill")
                                 }
@@ -52,7 +52,7 @@ struct TodoList: View {
                             }
                             .listRowInsets(EdgeInsets(.zero))
                         }
-                        
+
                     } header: {
                         HStack {
                             Text("Выполнено – \(store.todos.filter { $0.isCompleted}.count)")
@@ -61,7 +61,7 @@ struct TodoList: View {
                                 .foregroundColor(.accentColor)
                         }
                     }
-                    
+
                 }
                 .safeAreaPadding(.bottom, 66)
                 .overlay(Group {
@@ -73,8 +73,8 @@ struct TodoList: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        if (!store.todos.isEmpty) {
-                            NavigationLink() {
+                        if !store.todos.isEmpty {
+                            NavigationLink {
                                 CalendarWrapper(store: store)
                                     .navigationTitle("Мои дела")
                                     .toolbarRole(.editor)
@@ -85,7 +85,7 @@ struct TodoList: View {
                         }
                     }
                 })
-                
+
                 Button {
                     isCreationModalPresented = true
                 } label: {
@@ -106,12 +106,12 @@ struct TodoList: View {
         .sheet(item: $selectedTodoItem) { todoItem in
             let model = TodoDetailModel(store: store)
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
-            TodoDetail(store: store, viewModel:viewModel)
+            TodoDetail(store: store, viewModel: viewModel)
         }
         .sheet(isPresented: $isCreationModalPresented) {
             let model = TodoDetailModel(store: store)
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
-            TodoDetail(store: store, viewModel:viewModel)
+            TodoDetail(store: store, viewModel: viewModel)
         }
         .environmentObject(store)
     }

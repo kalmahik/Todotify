@@ -9,13 +9,13 @@ import UIKit
 
 final class TodoCell: UITableViewCell {
     static let identifier = "TodoCell"
-        
+
     lazy var title: UILabel = {
         let label = UILabel()
         label.numberOfLines = 3
         return label
     }()
-    
+
     private lazy var dot: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 6
@@ -30,7 +30,7 @@ final class TodoCell: UITableViewCell {
         let attributes: [NSAttributedString.Key: Any] = isCompleted ?
         [ .strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray] :
         [ .foregroundColor: UIColor.label ]
-               
+
         title.attributedText = NSAttributedString(string: text, attributes: attributes)
         title.textColor = isCompleted ? .gray : .label
         dot.backgroundColor = color
@@ -53,12 +53,12 @@ extension TodoCell {
             title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             title.trailingAnchor.constraint(equalTo: dot.leadingAnchor, constant: -8),
-            
+
             dot.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 8),
             dot.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             dot.heightAnchor.constraint(equalToConstant: 12),
             dot.widthAnchor.constraint(equalToConstant: 12),
-            dot.centerYAnchor.constraint(equalTo: centerYAnchor),
+            dot.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

@@ -11,28 +11,28 @@ struct CategoryList: View {
     @ObservedObject var store: Store
     @State private var newCategoryName: String = ""
     @State private var newCategoryColor: Color = .clear
-    
+
     var body: some View {
         NavigationSplitView {
             ZStack(alignment: .bottom) {
                 Color.background
                     .edgesIgnoringSafeArea(.all)
-                
-                List() {
+
+                List {
                     Section {
                         ForEach(store.categories) { category in
                             CategoryRow(category: category)
                         }
                     }
-                    
+
                     Section {
                         VStack {
                             TextField("Введите имя новой категориии", text: $newCategoryName)
                                 .padding()
-                            
+
                             ColorPicker(selectedColor: $newCategoryColor)
                                 .padding(.horizontal, 20)
-                            
+
                             HStack {
                                 let disabled = newCategoryName.isEmpty || newCategoryColor == .clear
 
@@ -43,9 +43,9 @@ struct CategoryList: View {
                                         Circle()
                                             .stroke(.black, lineWidth: 2)
                                     )
-                                
+
                                 Spacer()
-                                
+
                                 Button(action: {
                                     if !newCategoryName.isEmpty {
                                         store.add(category: Category(name: newCategoryName, hexColor: newCategoryColor.toHex()))
@@ -58,7 +58,7 @@ struct CategoryList: View {
                                 }
                                 .disabled(disabled)
                                 .opacity(disabled ? 0.5 : 1.0)
-                                
+
                             }
                             .padding()
                         }
@@ -67,7 +67,7 @@ struct CategoryList: View {
                 }
                 .navigationTitle("Категории")
                 .navigationBarTitleDisplayMode(.inline)
-                
+
             }
         } detail: {
             Text("")

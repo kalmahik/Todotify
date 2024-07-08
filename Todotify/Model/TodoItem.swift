@@ -23,7 +23,7 @@ struct TodoItem: Identifiable {
     let editedAt: Date?
     let hexColor: String
     let category: Category
-    
+
     init(
         id: String? = nil,
         text: String,

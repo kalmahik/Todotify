@@ -61,7 +61,7 @@ extension CategoryCell {
             checkImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             checkImage.widthAnchor.constraint(equalToConstant: 24),
             checkImage.heightAnchor.constraint(equalToConstant: 24),
-            checkImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            checkImage.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

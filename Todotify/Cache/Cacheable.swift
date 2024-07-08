@@ -9,7 +9,7 @@ import Foundation
 
 protocol Cacheable {
     var todos: [TodoItem] { get }
-    
+
     func add(todo: TodoItem)
     func removeTodo(by id: String)
     func saveToFile(fileName: String, format: Format) throws

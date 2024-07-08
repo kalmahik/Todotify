@@ -17,9 +17,9 @@ final class TodoDetailViewModel: ObservableObject {
     @Published var isDeadlineEnabled: Bool
     @Published var todoItem: TodoItem?
     @Published var category: Category
-    
+
     private var todoDetailModel: TodoDetailModel
-    
+
     init(todoDetailModel: TodoDetailModel, todoItem: TodoItem?) {
         self.todoItem = todoItem
         self.todoDetailModel = todoDetailModel
@@ -31,7 +31,7 @@ final class TodoDetailViewModel: ObservableObject {
         self.isDeadlineEnabled = todoItem?.deadline != nil
         self.category = todoItem?.category ?? Category.defaultCategory
     }
-    
+
     func saveTodo() {
         let todo = TodoItem(
             id: todoItem?.id,
@@ -46,12 +46,12 @@ final class TodoDetailViewModel: ObservableObject {
         )
         todoDetailModel.add(todo: todo)
     }
-    
+
     func deleteTodo() {
         guard let id = todoItem?.id else { return }
         todoDetailModel.removeTodo(by: id)
     }
-    
+
     func completeToggle() {
         let todo = TodoItem(
             id: todoItem?.id,
@@ -66,27 +66,27 @@ final class TodoDetailViewModel: ObservableObject {
         )
         todoDetailModel.add(todo: todo)
     }
-    
+
     func getDeadlineString() -> String? {
         isDeadlineEnabled ? deadline.asHumanString() : nil
     }
-    
+
     func datePickerToggle() {
         isDatePickerShowed = !isDatePickerShowed
     }
-    
+
     func showDatePicker() {
         isDatePickerShowed = true
     }
-    
+
     func deadlineToggle() {
         isDeadlineEnabled = !isDeadlineEnabled
     }
-    
+
     func isSaveDisabled() -> Bool {
         text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
-    
+
     func getCategories() -> [Category] {
         todoDetailModel.getCategories()
     }

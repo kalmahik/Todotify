@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct CalendarWrapper : UIViewControllerRepresentable {
+struct CalendarWrapper: UIViewControllerRepresentable {
     @ObservedObject var store: Store
-    
+
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        if let view = uiViewController as? CalendarViewController  {
+        if let view = uiViewController as? CalendarViewController {
             view.updateData(store: store)
         }
     }
-    
+
     func makeUIViewController(context: Context) -> some UIViewController {
         let model = CalendarModel(store: store)
         let viewModel = CalendarViewModel(for: model)

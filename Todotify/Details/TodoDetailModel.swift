@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 final class TodoDetailModel {
     private let store: Store
-    
+
     init(store: Store) {
         self.store = store
     }
@@ -18,11 +17,11 @@ final class TodoDetailModel {
     func getTodos() -> [TodoItem] {
         store.todos
     }
-    
+
     func add(todo: TodoItem) {
         store.add(todo: todo)
     }
-    
+
     func setCompleted(todo: TodoItem, isCompleted: Bool) {
         let updatedTodo = TodoItem(
             id: todo.id,
@@ -37,11 +36,11 @@ final class TodoDetailModel {
         )
         store.add(todo: updatedTodo)
     }
-    
+
     func removeTodo(by id: String) {
         store.removeTodo(by: id)
     }
-    
+
     func getCategories() -> [Category] {
         store.categories
     }

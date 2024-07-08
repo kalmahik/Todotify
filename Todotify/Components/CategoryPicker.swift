@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoryPicker: View {
     @Binding var selectedCategory: Category
     var categories: [Category]
-    
+
     var body: some View {
         VStack {
             ForEach(categories) { category in
@@ -33,7 +33,7 @@ struct CategoryPicker: View {
 
 struct CategoryView: View {
     let category: Category
-    
+
     var body: some View {
         Circle()
             .fill(Color(hex: category.hexColor) ?? .clear)

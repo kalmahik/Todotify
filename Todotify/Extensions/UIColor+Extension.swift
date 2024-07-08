@@ -29,7 +29,7 @@ extension UIColor {
                     return
                 }
             }
-            
+
             if hexColor.count == 6 {
                 let scanner = Scanner(string: hexColor)
                 var hexNumber: UInt64 = 0
@@ -56,7 +56,7 @@ extension UIColor {
         let b: CGFloat = components?[2] ?? 0.0
         let a: CGFloat = components?[3] ?? 0.0
 
-        let hexString = String.init(format: "#%02lX%02lX%02lX%02lX", 
+        let hexString = String.init(format: "#%02lX%02lX%02lX%02lX",
                                     lroundf(Float(r * 255)),
                                     lroundf(Float(g * 255)),
                                     lroundf(Float(b * 255)),

@@ -9,7 +9,7 @@ import XCTest
 @testable import Todotify
 
 final class TodotifyTests: XCTestCase {
-    
+
     func testTodoItemMinimal() {
         let text = TodoItemTestValues.text
         let todo = TodoItem(text: text)
@@ -21,7 +21,7 @@ final class TodotifyTests: XCTestCase {
         XCTAssertNotNil(todo.createdAt)
         XCTAssertNil(todo.editedAt)
     }
-    
+
     func testTodoItemFull() {
         let id = TodoItemTestValues.id
         let text = TodoItemTestValues.text
@@ -30,7 +30,7 @@ final class TodotifyTests: XCTestCase {
         let isCompleted = true
         let createdAt = Date()
         let editedAt = Date()
-        
+
         let todo = TodoItem(
             id: id,
             text: text,
@@ -40,7 +40,7 @@ final class TodotifyTests: XCTestCase {
             createdAt: createdAt,
             editedAt: editedAt
         )
-        
+
         XCTAssertEqual(todo.id, id)
         XCTAssertEqual(todo.text, text)
         XCTAssertEqual(todo.importance, importance)
@@ -49,5 +49,5 @@ final class TodotifyTests: XCTestCase {
         XCTAssertEqual(todo.createdAt, createdAt)
         XCTAssertEqual(todo.editedAt, editedAt)
     }
-    
+
 }

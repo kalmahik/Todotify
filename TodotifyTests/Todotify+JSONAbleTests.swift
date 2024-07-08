@@ -9,7 +9,7 @@ import XCTest
 @testable import Todotify
 
 final class TodotifyJSONAbleTests: XCTestCase {
-    
+
     // хороший случай, когда есть все поля JSON-a, и их тип соответствует модели
     func testParseValidAndFullJSONDictionary() {
         let jsonDictionary: JSONDictionary = [
@@ -21,9 +21,9 @@ final class TodotifyJSONAbleTests: XCTestCase {
             TodoCodingKeys.deadline.rawValue: TodoItemTestValues.date,
             TodoCodingKeys.editedAt.rawValue: TodoItemTestValues.date
         ]
-        
+
         let todoItem = TodoItem.parse(jsonDictionary: jsonDictionary)
-        
+
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.id, TodoItemTestValues.id)
         XCTAssertEqual(todoItem?.text, TodoItemTestValues.text)
@@ -32,19 +32,19 @@ final class TodotifyJSONAbleTests: XCTestCase {
         XCTAssertEqual(todoItem?.createdAt, Date.fromString(TodoItemTestValues.date))
         XCTAssertEqual(todoItem?.deadline, Date.fromString(TodoItemTestValues.date))
         XCTAssertEqual(todoItem?.editedAt, Date.fromString(TodoItemTestValues.date))
-    }  
-    
+    }
+
     // хороший случай, когда есть только обязательные поля JSON-a, и их тип соответствует модели
     func testParseValidAndMinimalJSONDictionary() {
         let jsonDictionary: JSONDictionary = [
             TodoCodingKeys.id.rawValue: TodoItemTestValues.id,
             TodoCodingKeys.text.rawValue: TodoItemTestValues.text,
             TodoCodingKeys.isCompleted.rawValue: true,
-            TodoCodingKeys.createdAt.rawValue: TodoItemTestValues.date,
+            TodoCodingKeys.createdAt.rawValue: TodoItemTestValues.date
         ]
-        
+
         let todoItem = TodoItem.parse(jsonDictionary: jsonDictionary)
-        
+
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.id, TodoItemTestValues.id)
         XCTAssertEqual(todoItem?.text, TodoItemTestValues.text)
@@ -54,18 +54,18 @@ final class TodotifyJSONAbleTests: XCTestCase {
         XCTAssertNil(todoItem?.deadline)
         XCTAssertNil(todoItem?.editedAt)
     }
-    
+
     // хороший случай, когда есть только обязательные поля JSON-a, но один (некритичный) тип не соответствует модели
     func testParseInValidAndMinimalJSONDictionary() {
         let jsonDictionary: JSONDictionary = [
             TodoCodingKeys.id.rawValue: TodoItemTestValues.id,
             TodoCodingKeys.text.rawValue: TodoItemTestValues.text,
-            TodoCodingKeys.isCompleted.rawValue: TodoItemTestValues.text, //<-- вот тут
-            TodoCodingKeys.createdAt.rawValue: TodoItemTestValues.date,
+            TodoCodingKeys.isCompleted.rawValue: TodoItemTestValues.text, // <-- вот тут
+            TodoCodingKeys.createdAt.rawValue: TodoItemTestValues.date
         ]
-        
+
         let todoItem = TodoItem.parse(jsonDictionary: jsonDictionary)
-        
+
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.id, TodoItemTestValues.id)
         XCTAssertEqual(todoItem?.text, TodoItemTestValues.text)
@@ -75,7 +75,7 @@ final class TodotifyJSONAbleTests: XCTestCase {
         XCTAssertNil(todoItem?.deadline)
         XCTAssertNil(todoItem?.editedAt)
     }
-    
+
     // плохой случай, отсутствует обязательное поле text
     func testParseInValidJSONDictionary() {
         let jsonDictionary: JSONDictionary = [
@@ -86,12 +86,12 @@ final class TodotifyJSONAbleTests: XCTestCase {
             TodoCodingKeys.deadline.rawValue: TodoItemTestValues.date,
             TodoCodingKeys.editedAt.rawValue: TodoItemTestValues.date
         ]
-        
+
         let todoItem = TodoItem.parse(jsonDictionary: jsonDictionary)
-        
+
         XCTAssertNil(todoItem)
     }
-    
+
     // хороший случай, есть все поля
     func testTodoItemFullToJSON() {
         let todoItem = TodoItem(
@@ -103,9 +103,9 @@ final class TodotifyJSONAbleTests: XCTestCase {
             createdAt: Date.fromString(TodoItemTestValues.date)!,
             editedAt: Date.fromString(TodoItemTestValues.date)
         )
-        
+
         let json = todoItem.json as? JSONDictionary
-        
+
         XCTAssertNotNil(json)
         XCTAssertEqual(json?[TodoCodingKeys.id.rawValue] as? String, TodoItemTestValues.id)
         XCTAssertEqual(json?[TodoCodingKeys.text.rawValue] as? String, TodoItemTestValues.text)
@@ -115,15 +115,15 @@ final class TodotifyJSONAbleTests: XCTestCase {
         XCTAssertEqual(json?[TodoCodingKeys.deadline.rawValue] as? String, TodoItemTestValues.date)
         XCTAssertEqual(json?[TodoCodingKeys.editedAt.rawValue] as? String, TodoItemTestValues.date)
     }
-    
+
     // хороший случай, есть только обязательные поля
     func testTodoItemMinimalToJSON() {
         let todoItem = TodoItem(
             text: TodoItemTestValues.text
         )
-        
+
         let json = todoItem.json as? JSONDictionary
-        
+
         XCTAssertNotNil(json)
         XCTAssertEqual(json?[TodoCodingKeys.id.rawValue] as? String, todoItem.id)
         XCTAssertEqual(json?[TodoCodingKeys.text.rawValue] as? String, TodoItemTestValues.text)

@@ -12,14 +12,14 @@ struct RowItem<Content: View>: View {
     let subtitle: String?
     let component: Content?
     let action: (() -> Void)?
-    
-    init(title: String, subtitle: String? = nil, action: (() -> Void)? = nil,  @ViewBuilder component: () -> Content) {
+
+    init(title: String, subtitle: String? = nil, action: (() -> Void)? = nil, @ViewBuilder component: () -> Content) {
         self.title = title
         self.subtitle = subtitle
         self.component = component()
         self.action = action
     }
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {

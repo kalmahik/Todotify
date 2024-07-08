@@ -17,7 +17,7 @@ extension TodoItem: JSONable {
         }
         return nil
     }
-    
+
     static func parse(jsonData: Data) -> TodoItem? {
         do {
             if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JSONDictionary {
@@ -30,7 +30,7 @@ extension TodoItem: JSONable {
             return nil
         }
     }
-    
+
     static func parse(jsonDictionary: JSONDictionary) -> TodoItem? {
         let id = jsonDictionary[TodoCodingKeys.id.rawValue] as? String ?? UUID().uuidString
         let text = jsonDictionary[TodoCodingKeys.text.rawValue] as? String
@@ -40,7 +40,7 @@ extension TodoItem: JSONable {
         let editedAt = jsonDictionary[TodoCodingKeys.editedAt.rawValue] as? String
         let importanceString = jsonDictionary[TodoCodingKeys.importance.rawValue] as? String ?? Importance.usual.rawValue
         let importance = Importance(rawValue: importanceString) ?? .usual
-        
+
         guard let text else {
             Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
             return nil
@@ -56,7 +56,7 @@ extension TodoItem: JSONable {
             editedAt: Date.fromString(editedAt)
         )
     }
-    
+
     var json: Any {
         var dictionary: JSONDictionary = [:]
         dictionary[TodoCodingKeys.id.rawValue] = id

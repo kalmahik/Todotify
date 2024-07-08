@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 final class CalendarModel {
     private let store: Store
-    
+
     init(store: Store) {
         self.store = store
     }
@@ -18,11 +17,11 @@ final class CalendarModel {
     func getTodos() -> [TodoItem] {
         store.todos
     }
-    
+
     func addTodo(todo: TodoItem) {
         store.add(todo: todo)
     }
-    
+
     func setCompleted(todo: TodoItem, isCompleted: Bool) {
         let updatedTodo = TodoItem(
             id: todo.id,
