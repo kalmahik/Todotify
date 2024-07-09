@@ -5,6 +5,7 @@
 //  Created by Murad Azimov on 20.06.2024.
 //
 
+import CocoaLumberjackSwift
 import Foundation
 
 extension String {
@@ -37,7 +38,7 @@ extension String {
             return substrings
 
         } catch let error {
-            Logger.shared.info(error.localizedDescription)
+            DDLogWarn("\(error.localizedDescription)")
             return []
         }
     }

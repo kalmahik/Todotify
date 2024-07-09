@@ -5,6 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
+import CocoaLumberjackSwift
 import Foundation
 
 extension TodoItem: CSVable {
@@ -46,7 +47,7 @@ extension TodoItem: CSVable {
                 editedAt: Date.fromString(editedAt)
             )
         } else {
-            Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
+            DDLogWarn("THIS IS NOT VALID TODO ITEM")
             return nil
         }
     }

@@ -31,13 +31,13 @@
 		F55E93212C3488980015AA98 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E931B2C3488980015AA98 /* TodoCell.swift */; };
 		F55E93222C3488980015AA98 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E931C2C3488980015AA98 /* CalendarCell.swift */; };
 		F55E93242C3488C20015AA98 /* CalendarWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E93232C3488C20015AA98 /* CalendarWrapper.swift */; };
-		F58F511E2C2342730058B2E5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511D2C2342730058B2E5 /* Logger.swift */; };
 		F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */; };
 		F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51212C29447C0058B2E5 /* ImportancePicker.swift */; };
 		F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51242C2949D50058B2E5 /* RowItem.swift */; };
 		F58F51272C29C2A80058B2E5 /* TodoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51262C29C2A80058B2E5 /* TodoDetail.swift */; };
 		F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51292C29C5130058B2E5 /* TodoRow.swift */; };
 		F58F51602C29F6360058B2E5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F515F2C29F6360058B2E5 /* TodoList.swift */; };
+		F5BEFE322C3C6DF30020E4F6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFE312C3C6DF30020E4F6 /* Logger.swift */; };
 		F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */; };
 		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
 		F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */; };
@@ -101,7 +101,6 @@
 		F55E931B2C3488980015AA98 /* TodoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		F55E931C2C3488980015AA98 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		F55E93232C3488C20015AA98 /* CalendarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWrapper.swift; sourceTree = "<group>"; };
-		F58F511D2C2342730058B2E5 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F58F51212C29447C0058B2E5 /* ImportancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancePicker.swift; sourceTree = "<group>"; };
 		F58F51242C2949D50058B2E5 /* RowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
@@ -109,6 +108,7 @@
 		F58F51292C29C5130058B2E5 /* TodoRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRow.swift; sourceTree = "<group>"; };
 		F58F51572C29D7CD0058B2E5 /* Todotify.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Todotify.entitlements; path = Todotify/Todotify.entitlements; sourceTree = SOURCE_ROOT; };
 		F58F515F2C29F6360058B2E5 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		F5BEFE312C3C6DF30020E4F6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
 		F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
@@ -260,8 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				842905E02C22BCF300159210 /* FileManager.swift */,
-				F58F511D2C2342730058B2E5 /* Logger.swift */,
 				F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */,
+				F5BEFE312C3C6DF30020E4F6 /* Logger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -502,7 +502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\n    exit 1\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint --fix\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\n    exit 1\nfi\n";
 		};
 		F5BEFE302C3C61010020E4F6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -519,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\n    exit 1\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint --fix\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\n    exit 1\nfi\n";
 		};
 		FB96A69638AD0B8E65E6096C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -554,13 +554,13 @@
 				F5E515D52C37DA6B0026FC07 /* CategoryPicker.swift in Sources */,
 				F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */,
 				F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */,
-				F58F511E2C2342730058B2E5 /* Logger.swift in Sources */,
 				F55E93202C3488980015AA98 /* HorizontalCalendar.swift in Sources */,
 				F5E515F22C38864B0026FC07 /* CategoryList.swift in Sources */,
 				F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
 				F5E515F42C3887800026FC07 /* CategoryRow.swift in Sources */,
+				F5BEFE322C3C6DF30020E4F6 /* Logger.swift in Sources */,
 				F55E93242C3488C20015AA98 /* CalendarWrapper.swift in Sources */,
 				F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */,
 				F5E515C62C365FB30026FC07 /* CalendarModel.swift in Sources */,

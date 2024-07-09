@@ -5,6 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
+import CocoaLumberjackSwift
 import Foundation
 
 extension TodoItem: JSONable {
@@ -23,10 +24,10 @@ extension TodoItem: JSONable {
             if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JSONDictionary {
                 return parse(jsonDictionary: jsonObject)
             }
-            Logger.shared.warning("THIS IS NOT JSON")
+            DDLogWarn("THIS IS NOT JSON")
             return nil
         } catch let error as NSError {
-            Logger.shared.error(error.localizedDescription)
+            DDLogWarn("\(error.localizedDescription)")
             return nil
         }
     }
@@ -42,7 +43,7 @@ extension TodoItem: JSONable {
         let importance = Importance(rawValue: importanceString) ?? .usual
 
         guard let text else {
-            Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
+            DDLogWarn("THIS IS NOT VALID TODO ITEM")
             return nil
         }
 

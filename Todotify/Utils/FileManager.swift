@@ -16,7 +16,7 @@ enum FileManagerError: Error {
 extension FileManager {
     static func getFileURL(name: String) throws -> URL {
         guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            throw FileManagerError.error("DOCUMENTS DIRECTORY DONT EXIST")
+            throw FileManagerError.error("DOCUMENTS DIRECTORY DON'T EXIST")
         }
         return dir.appendingPathComponent(name)
     }

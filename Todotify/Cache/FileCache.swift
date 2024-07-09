@@ -5,6 +5,7 @@
 //  Created by kalmahik on 18.06.2024.
 //
 
+import CocoaLumberjackSwift
 import Foundation
 
 enum Format {
@@ -14,10 +15,11 @@ enum Format {
 
 final class FileCache: ObservableObject, Cacheable {
     @Published var todos: [TodoItem] = MockTodoItems.items
+    let consoleLogger = DDOSLogger.sharedInstance
 
     func add(todo: TodoItem) {
         if let existedIndex = todos.firstIndex(where: { $0.id == todo.id }) {
-            Logger.shared.info("TODO EXIST, REPLACING")
+            DDLogInfo("TODO EXIST, UPDATING")
             todos[existedIndex] = todo
         } else {
             todos.append(todo)
@@ -34,7 +36,7 @@ final class FileCache: ObservableObject, Cacheable {
         }
         let isFileExist = FileManager.isFileExist(name: fileName)
         if isFileExist {
-            Logger.shared.info("FILE EXIST, REPLACING")
+            DDLogWarn("FILE EXIST, REWRITE")
         }
         // что-то мне кажется, что лучше это вынести из этого класса...
         switch format {
