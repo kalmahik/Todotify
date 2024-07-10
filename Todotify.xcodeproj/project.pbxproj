@@ -64,13 +64,6 @@
 			remoteGlobalIDString = 842905A22C1FF34A00159210;
 			remoteInfo = Todotify;
 		};
-		F57BB20C2C3E5DDD005B639D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8429059B2C1FF34A00159210 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 842905A22C1FF34A00159210;
-			remoteInfo = Todotify;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -99,7 +92,6 @@
 		F55E931B2C3488980015AA98 /* TodoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		F55E931C2C3488980015AA98 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		F55E93232C3488C20015AA98 /* CalendarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWrapper.swift; sourceTree = "<group>"; };
-		F57BB2082C3E5DDD005B639D /* TodotifyTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodotifyTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F58F51212C29447C0058B2E5 /* ImportancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancePicker.swift; sourceTree = "<group>"; };
 		F58F51242C2949D50058B2E5 /* RowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
@@ -146,13 +138,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F57BB2052C3E5DDD005B639D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -190,7 +175,6 @@
 			children = (
 				842905A32C1FF34A00159210 /* Todotify.app */,
 				842905E92C253B4700159210 /* TodotifyTests.xctest */,
-				F57BB2082C3E5DDD005B639D /* TodotifyTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -405,24 +389,6 @@
 			productReference = 842905E92C253B4700159210 /* TodotifyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F57BB2072C3E5DDD005B639D /* TodotifyTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F57BB2102C3E5DDD005B639D /* Build configuration list for PBXNativeTarget "TodotifyTest" */;
-			buildPhases = (
-				F57BB2042C3E5DDD005B639D /* Sources */,
-				F57BB2052C3E5DDD005B639D /* Frameworks */,
-				F57BB2062C3E5DDD005B639D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F57BB20D2C3E5DDD005B639D /* PBXTargetDependency */,
-			);
-			name = TodotifyTest;
-			productName = TodotifyTest;
-			productReference = F57BB2082C3E5DDD005B639D /* TodotifyTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -438,10 +404,6 @@
 					};
 					842905E82C253B4700159210 = {
 						CreatedOnToolsVersion = 15.2;
-						TestTargetID = 842905A22C1FF34A00159210;
-					};
-					F57BB2072C3E5DDD005B639D = {
-						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 842905A22C1FF34A00159210;
 					};
 				};
@@ -466,7 +428,6 @@
 			targets = (
 				842905A22C1FF34A00159210 /* Todotify */,
 				842905E82C253B4700159210 /* TodotifyTests */,
-				F57BB2072C3E5DDD005B639D /* TodotifyTest */,
 			);
 		};
 /* End PBXProject section */
@@ -482,13 +443,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		842905E72C253B4700159210 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F57BB2062C3E5DDD005B639D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -552,7 +506,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint --fix\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\n    exit 1\nfi\n";
+			shellScript = "
+";
 		};
 		FB96A69638AD0B8E65E6096C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -634,13 +589,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F57BB2042C3E5DDD005B639D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -648,11 +596,6 @@
 			isa = PBXTargetDependency;
 			target = 842905A22C1FF34A00159210 /* Todotify */;
 			targetProxy = 842905ED2C253B4700159210 /* PBXContainerItemProxy */;
-		};
-		F57BB20D2C3E5DDD005B639D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 842905A22C1FF34A00159210 /* Todotify */;
-			targetProxy = F57BB20C2C3E5DDD005B639D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -886,47 +829,6 @@
 			};
 			name = Release;
 		};
-		F57BB20E2C3E5DDD005B639D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WTG2YTFRGL;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kalmahik.TodotifyTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todotify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Todotify";
-			};
-			name = Debug;
-		};
-		F57BB20F2C3E5DDD005B639D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WTG2YTFRGL;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kalmahik.TodotifyTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todotify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Todotify";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -953,15 +855,6 @@
 			buildConfigurations = (
 				842905EF2C253B4700159210 /* Debug */,
 				842905F02C253B4700159210 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F57BB2102C3E5DDD005B639D /* Build configuration list for PBXNativeTarget "TodotifyTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F57BB20E2C3E5DDD005B639D /* Debug */,
-				F57BB20F2C3E5DDD005B639D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
