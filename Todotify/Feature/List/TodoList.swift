@@ -75,7 +75,7 @@ struct TodoList: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if !store.todos.isEmpty {
                             NavigationLink {
-                                CalendarWrapper(store: store)
+                                CalendarRepresentable(store: store)
                                     .navigationTitle("Мои дела")
                                     .toolbarRole(.editor)
                                     .ignoresSafeArea()

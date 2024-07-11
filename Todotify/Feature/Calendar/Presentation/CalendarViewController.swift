@@ -5,6 +5,7 @@
 //  Created by Murad Azimov on 01.07.2024.
 //
 
+import CocoaLumberjackSwift
 import SwiftUI
 import UIKit
 
@@ -55,7 +56,7 @@ final class CalendarViewController: UIViewController {
         calendarView.delegate = self
         setupViews()
         setupConstraints()
-
+        DDLogInfo("CALENDAR MODE OPENED")
     }
 
     override func viewWillAppear(_ animated: Bool) {

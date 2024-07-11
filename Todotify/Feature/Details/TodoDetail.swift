@@ -5,6 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
+import CocoaLumberjackSwift
 import SwiftUI
 
 struct TodoDetail: View {
@@ -124,6 +125,9 @@ struct TodoDetail: View {
                     .disabled(viewModel.isSaveDisabled())
                 }
             })
+            .onAppear {
+                DDLogInfo("TODO DETAIL OPENED")
+            }
         }
     }
 }

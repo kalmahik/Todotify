@@ -5,6 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
+import CocoaLumberjackSwift
 import SwiftUI
 
 struct CategoryList: View {
@@ -67,6 +68,9 @@ struct CategoryList: View {
                 }
                 .navigationTitle("Категории")
                 .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    DDLogInfo("CATEGORY EDITION OPENED")
+                }
 
             }
         } detail: {
