@@ -8,20 +8,25 @@
 import Foundation
 
 extension URLSession {
-    func dataTask(for urlRequest: URLRequest) async throws -> (Data, URLResponse) {
-        return try await withCheckedThrowingContinuation { continuation in
-            let task = self.dataTask(with: urlRequest) { data, response, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let data, let response {
-                    continuation.resume(returning: (data, response))
-                } else {
-                    continuation.resume(throwing: URLError(.badServerResponse))
-                }
-            }
-            task.resume()
+    func dataTask(for request: URLRequest) async throws -> (Data, URLResponse) {
+        var task: URLSessionDataTask?
+        let onCancel = { task?.cancel() }
 
-            task.cancel()
-        }
+        return try await withTaskCancellationHandler(operation: {
+            try await withCheckedThrowingContinuation { continuation in
+                task = dataTask(with: request) { data, response, error in
+                    if let error {
+                        continuation.resume(throwing: error)
+                    } else if let data, let response {
+                        continuation.resume(returning: (data, response))
+                    } else {
+                        continuation.resume(throwing: URLError(.unknown))
+                    }
+                }
+                task?.resume()
+            }
+        }, onCancel: {
+            onCancel()
+        })
     }
 }

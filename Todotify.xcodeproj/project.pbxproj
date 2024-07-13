@@ -28,6 +28,7 @@
 		F55E93242C3488C20015AA98 /* CalendarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E93232C3488C20015AA98 /* CalendarRepresentable.swift */; };
 		F57BB2132C3E5F2A005B639D /* FileCacheUtils in Frameworks */ = {isa = PBXBuildFile; productRef = F57BB2122C3E5F2A005B639D /* FileCacheUtils */; };
 		F57BB21A2C3FA35E005B639D /* URLSession+Eхtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BB2192C3FA35E005B639D /* URLSession+Eхtentions.swift */; };
+		F57BB2242C4233D5005B639D /* Todotify+URLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BB2232C4233D5005B639D /* Todotify+URLSessionTests.swift */; };
 		F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */; };
 		F58F51222C29447C0058B2E5 /* ImportancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51212C29447C0058B2E5 /* ImportancePicker.swift */; };
 		F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51242C2949D50058B2E5 /* RowItem.swift */; };
@@ -93,12 +94,12 @@
 		F55E931C2C3488980015AA98 /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		F55E93232C3488C20015AA98 /* CalendarRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepresentable.swift; sourceTree = "<group>"; };
 		F57BB2192C3FA35E005B639D /* URLSession+Eхtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Eхtentions.swift"; sourceTree = "<group>"; };
+		F57BB2232C4233D5005B639D /* Todotify+URLSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todotify+URLSessionTests.swift"; sourceTree = "<group>"; };
 		F58F511F2C24A55C0058B2E5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F58F51212C29447C0058B2E5 /* ImportancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancePicker.swift; sourceTree = "<group>"; };
 		F58F51242C2949D50058B2E5 /* RowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowItem.swift; sourceTree = "<group>"; };
 		F58F51262C29C2A80058B2E5 /* TodoDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoDetail.swift; sourceTree = "<group>"; };
 		F58F51292C29C5130058B2E5 /* TodoRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRow.swift; sourceTree = "<group>"; };
-		F58F51572C29D7CD0058B2E5 /* Todotify.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = Todotify.entitlements; path = Todotify/Store/Todotify.entitlements; sourceTree = SOURCE_ROOT; };
 		F58F515F2C29F6360058B2E5 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		F5BEFE312C3C6DF30020E4F6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
@@ -220,7 +221,6 @@
 		842905DC2C22B39300159210 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				F58F51572C29D7CD0058B2E5 /* Todotify.entitlements */,
 				F5E515C72C3660230026FC07 /* Store.swift */,
 				F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */,
 			);
@@ -254,6 +254,7 @@
 			children = (
 				842905EB2C253B4700159210 /* TodotifyTests.swift */,
 				842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */,
+				F57BB2232C4233D5005B639D /* Todotify+URLSessionTests.swift */,
 				842905F42C25536B00159210 /* DefaultValues.swift */,
 			);
 			path = TodotifyTests;
@@ -599,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F57BB2242C4233D5005B639D /* Todotify+URLSessionTests.swift in Sources */,
 				842905EC2C253B4700159210 /* TodotifyTests.swift in Sources */,
 				842905F52C25536B00159210 /* DefaultValues.swift in Sources */,
 				842905F32C25486000159210 /* Todotify+JSONAbleTests.swift in Sources */,
