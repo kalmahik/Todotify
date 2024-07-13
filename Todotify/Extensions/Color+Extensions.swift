@@ -5,6 +5,8 @@
 //  Created by Murad Azimov on 22.06.2024.
 //
 
+// swiftlint:disable identifier_name
+
 import SwiftUI
 
 extension Color {
@@ -33,7 +35,7 @@ extension Color {
             g = CGFloat((rgb & 0x00FF0000) >> 16) / 255.0
             b = CGFloat((rgb & 0x0000FF00) >> 8) / 255.0
             a = CGFloat(rgb & 0x000000FF) / 255.0
-            
+
         } else {
             return nil
         }

@@ -5,6 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
+import CocoaLumberjackSwift
 import Foundation
 
 extension TodoItem: JSONable {
@@ -17,20 +18,20 @@ extension TodoItem: JSONable {
         }
         return nil
     }
-    
+
     static func parse(jsonData: Data) -> TodoItem? {
         do {
             if let jsonObject = try JSONSerialization.jsonObject(with: jsonData) as? JSONDictionary {
                 return parse(jsonDictionary: jsonObject)
             }
-            Logger.shared.warning("THIS IS NOT JSON")
+            DDLogWarn("THIS IS NOT JSON")
             return nil
         } catch let error as NSError {
-            Logger.shared.error(error.localizedDescription)
+            DDLogWarn("\(error.localizedDescription)")
             return nil
         }
     }
-    
+
     static func parse(jsonDictionary: JSONDictionary) -> TodoItem? {
         let id = jsonDictionary[TodoCodingKeys.id.rawValue] as? String ?? UUID().uuidString
         let text = jsonDictionary[TodoCodingKeys.text.rawValue] as? String
@@ -40,9 +41,9 @@ extension TodoItem: JSONable {
         let editedAt = jsonDictionary[TodoCodingKeys.editedAt.rawValue] as? String
         let importanceString = jsonDictionary[TodoCodingKeys.importance.rawValue] as? String ?? Importance.usual.rawValue
         let importance = Importance(rawValue: importanceString) ?? .usual
-        
+
         guard let text else {
-            Logger.shared.warning("THIS IS NOT VALID TODO ITEM")
+            DDLogWarn("THIS IS NOT VALID TODO ITEM")
             return nil
         }
 
@@ -56,7 +57,7 @@ extension TodoItem: JSONable {
             editedAt: Date.fromString(editedAt)
         )
     }
-    
+
     var json: Any {
         var dictionary: JSONDictionary = [:]
         dictionary[TodoCodingKeys.id.rawValue] = id

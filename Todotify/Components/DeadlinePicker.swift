@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeadlinePicker: View {
     @Binding var deadline: Date
-    
+
     var body: some View {
         DatePicker("", selection: $deadline, in: Date()..., displayedComponents: .date)
             .datePickerStyle(.graphical)

@@ -1,0 +1,33 @@
+{
+  "originHash" : "c9219c5fe8cf0c2325ef3017541e6d42474f9734be1aba6823b18f7d08c0b1dd",
+  "pins" : [
+    {
+      "identity" : "cocoalumberjack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CocoaLumberjack/CocoaLumberjack.git",
+      "state" : {
+        "revision" : "4b8714a7fb84d42393314ce897127b3939885ec3",
+        "version" : "3.8.5"
+      }
+    },
+    {
+      "identity" : "filecacheutils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kalmahik/FileCacheUtils.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5ced3698d08f9ac5ae8edd03d5f616a39becd47d"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log",
+      "state" : {
+        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
+        "version" : "1.6.1"
+      }
+    }
+  ],
+  "version" : 3
+}
