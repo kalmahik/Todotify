@@ -85,6 +85,13 @@ struct TodoList: View {
                         }
                     }
                 })
+                .onAppear {
+//                         viewModel.fetchItems()
+                    Task {
+                        let list = try await DefaultNetworkingService.shared.fetchListOfTodos()
+                        store.addAll(todos: list)
+                    }
+                }
 
                 Button {
                     isCreationModalPresented = true

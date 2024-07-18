@@ -18,27 +18,21 @@ final class TodoDetailModel {
         store.todos
     }
 
-    func add(todo: TodoItem) {
+    func create(todo: TodoItem) {
+        store.add(todo: todo)
+    }
+
+    func edit(todo: TodoItem) {
         store.add(todo: todo)
     }
 
     func setCompleted(todo: TodoItem, isCompleted: Bool) {
-        let updatedTodo = TodoItem(
-            id: todo.id,
-            text: todo.text,
-            importance: todo.importance,
-            deadline: todo.deadline,
-            isCompleted: isCompleted,
-            createdAt: todo.createdAt,
-            editedAt: todo.editedAt,
-            hexColor: todo.hexColor,
-            category: todo.category
-        )
+        let updatedTodo = todo.copy(isCompleted: isCompleted)
         store.add(todo: updatedTodo)
     }
 
-    func removeTodo(by id: String) {
-        store.removeTodo(by: id)
+    func removeTodo(todo: TodoItem) {
+        store.removeTodo(todo: todo)
     }
 
     func getCategories() -> [Category] {
