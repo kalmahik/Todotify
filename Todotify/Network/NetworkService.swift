@@ -8,7 +8,9 @@
 import Foundation
 
 protocol NetworkService: ObservableObject {
-    func fetchListOfTodos() async -> [TodoItem]
-    func fetchCreateTodo(todo: TodoItem) async -> TodoItem?
+    func fetchTodos() async -> [TodoItem]
     func fetchTodo(todoId: String) async -> TodoItem?
+    func fetchCreateTodo(todo: TodoItem) async -> TodoItem?
+    func fetchEditTodo(todo: TodoItem) async -> TodoItem?
+    func fetchDeleteTodo(todo: TodoItem) async -> TodoItem?
 }

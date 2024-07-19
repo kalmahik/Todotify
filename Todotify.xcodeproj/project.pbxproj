@@ -43,6 +43,7 @@
 		F59DED0E2C4870C200A7E7C3 /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED0D2C4870C200A7E7C3 /* DefaultNetworkingService.swift */; };
 		F59DED102C4870E000A7E7C3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */; };
 		F59DED122C48D5B100A7E7C3 /* token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED112C48D5B100A7E7C3 /* token.swift */; };
+		F59DED142C4A2EA200A7E7C3 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */; };
 		F5BEFE322C3C6DF30020E4F6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFE312C3C6DF30020E4F6 /* Logger.swift */; };
 		F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */; };
 		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
@@ -116,6 +117,7 @@
 		F59DED0D2C4870C200A7E7C3 /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
 		F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F59DED112C48D5B100A7E7C3 /* token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = token.swift; sourceTree = "<group>"; };
+		F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F5BEFE312C3C6DF30020E4F6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
@@ -291,13 +293,14 @@
 		F57BB2162C3FA098005B639D /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F59DED092C486FAB00A7E7C3 /* NetworkConstants.swift */,
-				F57BB2192C3FA35E005B639D /* URLSession+Eхtentions.swift */,
-				F59DED072C486ED100A7E7C3 /* TodoItemDTO.swift */,
-				F59DED0B2C48709F00A7E7C3 /* URLRequest+Extension.swift */,
 				F59DED0D2C4870C200A7E7C3 /* DefaultNetworkingService.swift */,
+				F59DED092C486FAB00A7E7C3 /* NetworkConstants.swift */,
+				F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */,
 				F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */,
+				F59DED072C486ED100A7E7C3 /* TodoItemDTO.swift */,
 				F59DED112C48D5B100A7E7C3 /* token.swift */,
+				F59DED0B2C48709F00A7E7C3 /* URLRequest+Extension.swift */,
+				F57BB2192C3FA35E005B639D /* URLSession+Eхtentions.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				F5E515D72C37E1960026FC07 /* Category.swift in Sources */,
 				F58F51272C29C2A80058B2E5 /* TodoDetail.swift in Sources */,
 				F59DED122C48D5B100A7E7C3 /* token.swift in Sources */,
+				F59DED142C4A2EA200A7E7C3 /* NetworkResponse.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
 				F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */,
 			);

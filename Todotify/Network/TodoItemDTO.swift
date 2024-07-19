@@ -7,22 +7,6 @@
 
 import Foundation
 
-struct ListResponse: Decodable {
-    let status: String
-    let list: [TodoItemDTO]
-    let revision: Int
-}
-
-struct ListRequest: Codable {
-    let element: TodoItemDTO
-}
-
-struct ElementResponse: Decodable {
-    let status: String
-    let element: TodoItemDTO
-    let revision: Int
-}
-
 struct TodoItemDTO: Codable {
     let id: String
     let text: String
