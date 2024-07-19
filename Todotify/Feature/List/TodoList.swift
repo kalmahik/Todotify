@@ -11,6 +11,7 @@ struct TodoList: View {
     @EnvironmentObject private var store: Store
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
+    @ObservedObject var viewModel: TodoListViewModel
 
     var body: some View {
         NavigationSplitView {
@@ -85,11 +86,7 @@ struct TodoList: View {
                     }
                 })
                 .onAppear {
-//                         viewModel.fetchItems()
-                    Task {
-                        let list = try await DefaultNetworkingService.shared.fetchTodos()
-                        store.replace(todos: list)
-                    }
+                    viewModel.fetchTodos()
                 }
 
                 Button {
@@ -123,5 +120,7 @@ struct TodoList: View {
 }
 
 #Preview {
-    TodoList()
+    let store = Store.shared
+    let viewModel = TodoListViewModel(store: store)
+    return TodoList(viewModel: viewModel)
 }

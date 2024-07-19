@@ -62,5 +62,7 @@ struct TodoRow: View {
 }
 
 #Preview {
-    TodoList()
+    let store = Store.shared
+    let viewModel = TodoListViewModel(store: store)
+    return TodoList(viewModel: viewModel)
 }

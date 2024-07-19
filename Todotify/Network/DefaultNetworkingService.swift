@@ -33,7 +33,7 @@ final actor DefaultNetworkingService: NetworkService, ObservableObject {
     func fetchTodos() async -> [TodoItem] {
         let request = URLRequest.makeRequest(path: PathKeys.listOfTodos)
 
-        let response: ListResponse? = await fetch(request: request, ignoreDirtyLogic: true)
+        let response: ListResponse? = await fetch(request: request)
 
         return (response?.list ?? []).map { TodoItem(from: $0) }
     }
@@ -104,35 +104,27 @@ final actor DefaultNetworkingService: NetworkService, ObservableObject {
 
     private func fetch<T: Response>(request: URLRequest, ignoreDirtyLogic: Bool? = false) async -> T? {
         do {
-            if isDirty && ignoreDirtyLogic == false {
-                DDLogInfo("START SYNC")
-                let todos = Store.shared.todos
-                _ = await fetchTodos() // чтобы получить актуальную ревизию
-                let updatedTodos = await fetchSync(todos: todos)
-                await MainActor.run {
-                    Store.shared.replace(todos: updatedTodos)
-                }
-                isDirty = false
-                DDLogInfo("STOP SYNC")
+            if isDirty && ignoreDirtyLogic != true {
+                await sync()
             }
 
             let (data, response) = try await URLSession.shared.dataTask(for: request)
 
-            guard let httpResponse = response as? HTTPURLResponse else {
-                DDLogError("BAD RESPONSE: \(response)")
-                return nil
-            }
+            guard let httpResponse = response as? HTTPURLResponse else { return nil }
+
+            DDLogInfo("METHOD:\(request.httpMethod!), STATUS:\(httpResponse.statusCode), REVISION:\(revision)")
 
             if httpResponse.statusCode == StatusCode.OK.rawValue {
                 let result = try decoder.decode(T.self, from: data)
                 revision = result.revision
-                DDLogInfo("NEW REVISION: \(revision)")
+                DDLogInfo("NEW REVISION:\(revision)")
+                isDirty = false
                 return result
             }
 
             if httpResponse.statusCode == StatusCode.SYNC_ERROR.rawValue {
+                await sync()
                 isDirty = true
-                DDLogWarn("SET DIRTY: \(httpResponse.statusCode)")
                 return nil
             }
 
@@ -141,5 +133,16 @@ final actor DefaultNetworkingService: NetworkService, ObservableObject {
             DDLogError("\(error.localizedDescription)")
             return nil
         }
+    }
+
+    func sync() async {
+        DDLogInfo("START SYNC")
+        let todos = Store.shared.todos
+        let updatedTodos = await fetchSync(todos: todos)
+        await MainActor.run {
+            Store.shared.replace(todos: updatedTodos)
+        }
+        isDirty = false
+        DDLogInfo("STOP SYNC")
     }
 }

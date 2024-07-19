@@ -15,6 +15,6 @@ class Logger: NSObject, DDLogFormatter {
         let timestamp = dateFormatter.string(from: logMessage.timestamp)
         let logLevel = logMessage.level
         let logText = logMessage.message
-        return "\(timestamp) [\(logLevel)] - \(logText)"
+        return "\(timestamp) - \(logText)"
     }
 }

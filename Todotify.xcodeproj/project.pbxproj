@@ -44,6 +44,7 @@
 		F59DED102C4870E000A7E7C3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */; };
 		F59DED122C48D5B100A7E7C3 /* token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED112C48D5B100A7E7C3 /* token.swift */; };
 		F59DED142C4A2EA200A7E7C3 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */; };
+		F59DED162C4AFD0100A7E7C3 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED152C4AFD0100A7E7C3 /* TodoListViewModel.swift */; };
 		F5BEFE322C3C6DF30020E4F6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFE312C3C6DF30020E4F6 /* Logger.swift */; };
 		F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */; };
 		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
@@ -118,6 +119,7 @@
 		F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F59DED112C48D5B100A7E7C3 /* token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = token.swift; sourceTree = "<group>"; };
 		F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		F59DED152C4AFD0100A7E7C3 /* TodoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		F5BEFE312C3C6DF30020E4F6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			children = (
 				F5E515CA2C3663550026FC07 /* Components */,
 				F58F515F2C29F6360058B2E5 /* TodoList.swift */,
+				F59DED152C4AFD0100A7E7C3 /* TodoListViewModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				F5E515D52C37DA6B0026FC07 /* CategoryPicker.swift in Sources */,
 				F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */,
 				F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */,
+				F59DED162C4AFD0100A7E7C3 /* TodoListViewModel.swift in Sources */,
 				F59DED102C4870E000A7E7C3 /* NetworkService.swift in Sources */,
 				F55E93202C3488980015AA98 /* HorizontalCalendar.swift in Sources */,
 				F59DED082C486ED100A7E7C3 /* TodoItemDTO.swift in Sources */,
