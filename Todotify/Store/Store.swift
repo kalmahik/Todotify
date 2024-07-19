@@ -9,11 +9,13 @@ import CocoaLumberjackSwift
 import SwiftUI
 
 final class Store: ObservableObject {
+    static let shared = Store()
+
+    private init() {}
+
     @Published var todos: [TodoItem] = []
 
     private let networkService = DefaultNetworkingService.shared
-
-    let consoleLogger = DDOSLogger.sharedInstance
 
     @Published var categories: [Category] = [
         Category(name: "Работа", hexColor: Color.red.toHex()),
@@ -22,8 +24,8 @@ final class Store: ObservableObject {
         Category.defaultCategory
     ]
 
-    func addAll(todos: [TodoItem]) {
-        self.todos.append(contentsOf: todos)
+    func replace(todos: [TodoItem]) {
+        self.todos = todos
     }
 
     func add(todo: TodoItem) {

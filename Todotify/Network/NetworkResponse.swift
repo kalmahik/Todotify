@@ -23,6 +23,10 @@ struct ElementResponse: Response {
     let revision: Int
 }
 
-struct ListRequest: Codable {
+struct ElementRequest: Codable {
     let element: TodoItemDTO
+}
+
+struct ListRequest: Codable {
+    let list: [TodoItemDTO]
 }

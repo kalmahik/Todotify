@@ -23,17 +23,7 @@ final class CalendarModel {
     }
 
     func setCompleted(todo: TodoItem, isCompleted: Bool) {
-        let updatedTodo = TodoItem(
-            id: todo.id,
-            text: todo.text,
-            importance: todo.importance,
-            deadline: todo.deadline,
-            isCompleted: isCompleted,
-            createdAt: todo.createdAt,
-            editedAt: todo.editedAt,
-            hexColor: todo.hexColor,
-            category: todo.category
-        )
+        let updatedTodo = todo.copy(isCompleted: isCompleted)
         store.add(todo: updatedTodo)
     }
 }

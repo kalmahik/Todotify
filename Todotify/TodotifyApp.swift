@@ -10,7 +10,7 @@ import SwiftUI
 
 @main
 struct TodotifyApp: App {
-//    @StateObject private var networkService = DefaultNetworkingService.shared
+    @StateObject private var store = Store.shared
 
     init() {
         initLogger()
@@ -19,7 +19,7 @@ struct TodotifyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .environmentObject(networkService)
+                .environmentObject(store)
         }
     }
 

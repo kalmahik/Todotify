@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct TodoList: View {
-    @StateObject var store = Store()
-
+    @EnvironmentObject private var store: Store
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
 
@@ -89,7 +88,7 @@ struct TodoList: View {
 //                         viewModel.fetchItems()
                     Task {
                         let list = try await DefaultNetworkingService.shared.fetchTodos()
-                        store.addAll(todos: list)
+                        store.replace(todos: list)
                     }
                 }
 
@@ -120,7 +119,6 @@ struct TodoList: View {
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
             TodoDetail(store: store, viewModel: viewModel)
         }
-        .environmentObject(store)
     }
 }
 
