@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TodoList: View {
-    @StateObject var store = Store()
-
+    @EnvironmentObject private var store: Store
     @State private var isCreationModalPresented = false
     @State private var selectedTodoItem: TodoItem?
+    @ObservedObject var viewModel: TodoListViewModel
 
     var body: some View {
         NavigationSplitView {
@@ -85,6 +85,9 @@ struct TodoList: View {
                         }
                     }
                 })
+                .onAppear {
+                    viewModel.fetchTodos()
+                }
 
                 Button {
                     isCreationModalPresented = true
@@ -113,10 +116,11 @@ struct TodoList: View {
             let viewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: nil)
             TodoDetail(store: store, viewModel: viewModel)
         }
-        .environmentObject(store)
     }
 }
 
 #Preview {
-    TodoList()
+    let store = Store.shared
+    let viewModel = TodoListViewModel(store: store)
+    return TodoList(viewModel: viewModel)
 }

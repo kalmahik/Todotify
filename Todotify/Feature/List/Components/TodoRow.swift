@@ -14,7 +14,8 @@ struct TodoRow: View {
     var body: some View {
         let isCompleted = todo.isCompleted
         let isImportant = todo.importance == .important
-        let isUnimportant = todo.importance == .unimportant
+        let isLow = todo.importance == .low
+
         HStack {
             Button(action: completeToggle) {
                 Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
@@ -25,8 +26,8 @@ struct TodoRow: View {
 
             VStack(alignment: .leading) {
                 HStack {
-                    if !isCompleted && (isImportant || isUnimportant) {
-                        Image(isImportant ? "custom.exclamationmark.2" : isUnimportant ? "custom.arrow.down" : "")
+                    if !isCompleted && (isImportant || isLow) {
+                        Image(isImportant ? "custom.exclamationmark.2" : isLow ? "custom.arrow.down" : "")
                             .padding(EdgeInsets())
                     }
 
@@ -61,5 +62,7 @@ struct TodoRow: View {
 }
 
 #Preview {
-    TodoList()
+    let store = Store.shared
+    let viewModel = TodoListViewModel(store: store)
+    return TodoList(viewModel: viewModel)
 }

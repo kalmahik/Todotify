@@ -10,6 +10,7 @@ import SwiftUI
 
 @main
 struct TodotifyApp: App {
+    @StateObject private var store = Store.shared
 
     init() {
         initLogger()
@@ -18,6 +19,7 @@ struct TodotifyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(store)
         }
     }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0029A98D6E2D7D08EA28F831 /* Pods_TodotifyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DEDC53A02DBF8569A7827F3 /* Pods_TodotifyTests.framework */; };
+		6C08B5816412F9A0C8DF62E1 /* Pods_Todotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DE2B6496E9E69FD41155FC /* Pods_Todotify.framework */; };
 		842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905A62C1FF34A00159210 /* TodotifyApp.swift */; };
 		842905A92C1FF34A00159210 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905A82C1FF34A00159210 /* ContentView.swift */; };
 		842905AB2C1FF34B00159210 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842905AA2C1FF34B00159210 /* Assets.xcassets */; };
@@ -35,12 +37,19 @@
 		F58F51272C29C2A80058B2E5 /* TodoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51262C29C2A80058B2E5 /* TodoDetail.swift */; };
 		F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F51292C29C5130058B2E5 /* TodoRow.swift */; };
 		F58F51602C29F6360058B2E5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F515F2C29F6360058B2E5 /* TodoList.swift */; };
+		F59DED082C486ED100A7E7C3 /* TodoItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED072C486ED100A7E7C3 /* TodoItemDTO.swift */; };
+		F59DED0A2C486FAB00A7E7C3 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED092C486FAB00A7E7C3 /* NetworkConstants.swift */; };
+		F59DED0C2C48709F00A7E7C3 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED0B2C48709F00A7E7C3 /* URLRequest+Extension.swift */; };
+		F59DED0E2C4870C200A7E7C3 /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED0D2C4870C200A7E7C3 /* DefaultNetworkingService.swift */; };
+		F59DED102C4870E000A7E7C3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */; };
+		F59DED122C48D5B100A7E7C3 /* token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED112C48D5B100A7E7C3 /* token.swift */; };
+		F59DED142C4A2EA200A7E7C3 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */; };
+		F59DED162C4AFD0100A7E7C3 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59DED152C4AFD0100A7E7C3 /* TodoListViewModel.swift */; };
 		F5BEFE322C3C6DF30020E4F6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEFE312C3C6DF30020E4F6 /* Logger.swift */; };
 		F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */; };
 		F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */; };
 		F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */; };
 		F5E2FFB02C2D38A200776DB5 /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFAF2C2D38A200776DB5 /* Binding+Extensions.swift */; };
-		F5E2FFB42C2F5B7800776DB5 /* MockTodoItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */; };
 		F5E2FFB82C2FA7A400776DB5 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFB72C2FA7A400776DB5 /* ColorPicker.swift */; };
 		F5E2FFBC2C2FB51F00776DB5 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2FFBB2C2FB51F00776DB5 /* Color+Extensions.swift */; };
 		F5E515C42C365DDB0026FC07 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E515C32C365DDB0026FC07 /* CalendarViewModel.swift */; };
@@ -70,7 +79,9 @@
 /* Begin PBXFileReference section */
 		0E74F97E4119921D20868FB9 /* Pods-TodotifyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodotifyTests.debug.xcconfig"; path = "Target Support Files/Pods-TodotifyTests/Pods-TodotifyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		10724FDE1A45C1D8254A9505 /* Pods-Todotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todotify.release.xcconfig"; path = "Target Support Files/Pods-Todotify/Pods-Todotify.release.xcconfig"; sourceTree = "<group>"; };
+		26DE2B6496E9E69FD41155FC /* Pods_Todotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC6CF6314719B8319F55576 /* Pods-TodotifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodotifyTests.release.xcconfig"; path = "Target Support Files/Pods-TodotifyTests/Pods-TodotifyTests.release.xcconfig"; sourceTree = "<group>"; };
+		5DEDC53A02DBF8569A7827F3 /* Pods_TodotifyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodotifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842905A32C1FF34A00159210 /* Todotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842905A62C1FF34A00159210 /* TodotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodotifyApp.swift; sourceTree = "<group>"; };
 		842905A82C1FF34A00159210 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,12 +112,19 @@
 		F58F51262C29C2A80058B2E5 /* TodoDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoDetail.swift; sourceTree = "<group>"; };
 		F58F51292C29C5130058B2E5 /* TodoRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoRow.swift; sourceTree = "<group>"; };
 		F58F515F2C29F6360058B2E5 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		F59DED072C486ED100A7E7C3 /* TodoItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemDTO.swift; sourceTree = "<group>"; };
+		F59DED092C486FAB00A7E7C3 /* NetworkConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		F59DED0B2C48709F00A7E7C3 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		F59DED0D2C4870C200A7E7C3 /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
+		F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F59DED112C48D5B100A7E7C3 /* token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = token.swift; sourceTree = "<group>"; };
+		F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		F59DED152C4AFD0100A7E7C3 /* TodoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		F5BEFE312C3C6DF30020E4F6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F5E2FFA52C2B2D3F00776DB5 /* DeadlinePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		F5E2FFA92C2BDD1600776DB5 /* TodoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewModel.swift; sourceTree = "<group>"; };
 		F5E2FFAD2C2D2A7F00776DB5 /* DeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
 		F5E2FFAF2C2D38A200776DB5 /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
-		F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTodoItems.swift; sourceTree = "<group>"; };
 		F5E2FFB72C2FA7A400776DB5 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		F5E2FFBB2C2FB51F00776DB5 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		F5E515C32C365DDB0026FC07 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -129,6 +147,7 @@
 				F5E515FB2C3C49EF0026FC07 /* CocoaLumberjackSwiftLogBackend in Frameworks */,
 				F5E515F72C3C49EF0026FC07 /* CocoaLumberjack in Frameworks */,
 				F57BB2132C3E5F2A005B639D /* FileCacheUtils in Frameworks */,
+				6C08B5816412F9A0C8DF62E1 /* Pods_Todotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0029A98D6E2D7D08EA28F831 /* Pods_TodotifyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +165,8 @@
 		08AB176F0433AB50D11AAD05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26DE2B6496E9E69FD41155FC /* Pods_Todotify.framework */,
+				5DEDC53A02DBF8569A7827F3 /* Pods_TodotifyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -222,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				F5E515C72C3660230026FC07 /* Store.swift */,
-				F5E2FFB32C2F5B7800776DB5 /* MockTodoItems.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -274,6 +295,13 @@
 		F57BB2162C3FA098005B639D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				F59DED0D2C4870C200A7E7C3 /* DefaultNetworkingService.swift */,
+				F59DED092C486FAB00A7E7C3 /* NetworkConstants.swift */,
+				F59DED132C4A2EA200A7E7C3 /* NetworkResponse.swift */,
+				F59DED0F2C4870E000A7E7C3 /* NetworkService.swift */,
+				F59DED072C486ED100A7E7C3 /* TodoItemDTO.swift */,
+				F59DED112C48D5B100A7E7C3 /* token.swift */,
+				F59DED0B2C48709F00A7E7C3 /* URLRequest+Extension.swift */,
 				F57BB2192C3FA35E005B639D /* URLSession+Eхtentions.swift */,
 			);
 			path = Network;
@@ -326,6 +354,7 @@
 			children = (
 				F5E515CA2C3663550026FC07 /* Components */,
 				F58F515F2C29F6360058B2E5 /* TodoList.swift */,
+				F59DED152C4AFD0100A7E7C3 /* TodoListViewModel.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -559,7 +588,10 @@
 				F5E515D52C37DA6B0026FC07 /* CategoryPicker.swift in Sources */,
 				F58F512F2C29C5130058B2E5 /* TodoRow.swift in Sources */,
 				F58F51202C24A55C0058B2E5 /* String+Extensions.swift in Sources */,
+				F59DED162C4AFD0100A7E7C3 /* TodoListViewModel.swift in Sources */,
+				F59DED102C4870E000A7E7C3 /* NetworkService.swift in Sources */,
 				F55E93202C3488980015AA98 /* HorizontalCalendar.swift in Sources */,
+				F59DED082C486ED100A7E7C3 /* TodoItemDTO.swift in Sources */,
 				F5E515F22C38864B0026FC07 /* CategoryList.swift in Sources */,
 				F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
@@ -571,11 +603,11 @@
 				F5E515C62C365FB30026FC07 /* CalendarModel.swift in Sources */,
 				842905E42C23773A00159210 /* CSVable.swift in Sources */,
 				F5E2FFA62C2B2D3F00776DB5 /* DeadlinePicker.swift in Sources */,
+				F59DED0E2C4870C200A7E7C3 /* DefaultNetworkingService.swift in Sources */,
 				F55E93222C3488980015AA98 /* CalendarCell.swift in Sources */,
 				F5E2FFAA2C2BDD1600776DB5 /* TodoDetailViewModel.swift in Sources */,
 				842905DF2C22B92D00159210 /* TodoItem+CSVable.swift in Sources */,
 				F57BB21A2C3FA35E005B639D /* URLSession+Eхtentions.swift in Sources */,
-				F5E2FFB42C2F5B7800776DB5 /* MockTodoItems.swift in Sources */,
 				842905BA2C21416400159210 /* Date+Extensions.swift in Sources */,
 				F55E93212C3488980015AA98 /* TodoCell.swift in Sources */,
 				F5E2FFBC2C2FB51F00776DB5 /* Color+Extensions.swift in Sources */,
@@ -586,11 +618,15 @@
 				F55E931E2C3488980015AA98 /* CalendarViewController.swift in Sources */,
 				F5E515C82C3660230026FC07 /* Store.swift in Sources */,
 				F55E931F2C3488980015AA98 /* UIView+Extensions.swift in Sources */,
+				F59DED0A2C486FAB00A7E7C3 /* NetworkConstants.swift in Sources */,
 				F5E2FFB02C2D38A200776DB5 /* Binding+Extensions.swift in Sources */,
 				F5E515CC2C36B6110026FC07 /* UIColor+Extensions.swift in Sources */,
+				F59DED0C2C48709F00A7E7C3 /* URLRequest+Extension.swift in Sources */,
 				F5E515D32C3732FD0026FC07 /* TodoDetailModel.swift in Sources */,
 				F5E515D72C37E1960026FC07 /* Category.swift in Sources */,
 				F58F51272C29C2A80058B2E5 /* TodoDetail.swift in Sources */,
+				F59DED122C48D5B100A7E7C3 /* token.swift in Sources */,
+				F59DED142C4A2EA200A7E7C3 /* NetworkResponse.swift in Sources */,
 				842905A72C1FF34A00159210 /* TodotifyApp.swift in Sources */,
 				F58F51252C2949D50058B2E5 /* RowItem.swift in Sources */,
 			);

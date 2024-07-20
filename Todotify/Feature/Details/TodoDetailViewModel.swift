@@ -24,7 +24,7 @@ final class TodoDetailViewModel: ObservableObject {
         self.todoItem = todoItem
         self.todoDetailModel = todoDetailModel
         self.text = todoItem?.text ?? ""
-        self.importance = todoItem?.importance ?? .usual
+        self.importance = todoItem?.importance ?? .basic
         self.hexColor = Color(hex: todoItem?.hexColor ?? Color.clear.toHex()) ?? .clear // отрефакторить!!
         self.deadline = todoItem?.deadline ?? Date().addingTimeInterval(24 * 60 * 60) // TODO: переделать на календарь
         self.isDatePickerShowed = false
@@ -44,27 +44,23 @@ final class TodoDetailViewModel: ObservableObject {
             hexColor: hexColor.toHex(),
             category: category
         )
-        todoDetailModel.add(todo: todo)
+        if todoItem?.id != nil {
+            todoDetailModel.edit(todo: todo)
+        } else {
+            todoDetailModel.create(todo: todo)
+        }
     }
 
     func deleteTodo() {
-        guard let id = todoItem?.id else { return }
-        todoDetailModel.removeTodo(by: id)
+        guard let todoItem else { return }
+        todoDetailModel.removeTodo(todo: todoItem)
     }
 
     func completeToggle() {
-        let todo = TodoItem(
-            id: todoItem?.id,
-            text: text,
-            importance: todoItem?.importance,
-            deadline: todoItem?.deadline,
-            isCompleted: !(todoItem?.isCompleted ?? false),
-            createdAt: todoItem?.createdAt,
-            editedAt: todoItem?.editedAt,
-            hexColor: todoItem?.hexColor,
-            category: todoItem?.category
-        )
-        todoDetailModel.add(todo: todo)
+        if let todoItem {
+            let updatedTodo = todoItem.copy(isCompleted: !(todoItem.isCompleted))
+            todoDetailModel.edit(todo: updatedTodo)
+        }
     }
 
     func getDeadlineString() -> String? {
@@ -89,5 +85,9 @@ final class TodoDetailViewModel: ObservableObject {
 
     func getCategories() -> [Category] {
         todoDetailModel.getCategories()
+    }
+
+    func fetchTodos() {
+
     }
 }

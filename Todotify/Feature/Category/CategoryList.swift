@@ -76,6 +76,5 @@ struct CategoryList: View {
         } detail: {
             Text("")
         }
-        .environmentObject(store)
     }
 }

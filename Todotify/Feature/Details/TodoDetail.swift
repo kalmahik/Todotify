@@ -132,10 +132,10 @@ struct TodoDetail: View {
     }
 }
 
-#Preview {
+ #Preview {
     @State var todoItem = TodoItem(text: "preview") as TodoItem?
-    @State var store = Store()
+    @State var store = Store.shared
     let model = TodoDetailModel(store: store)
     let todoViewModel = TodoDetailViewModel(todoDetailModel: model, todoItem: todoItem)
     return TodoDetail(store: store, viewModel: todoViewModel)
-}
+ }

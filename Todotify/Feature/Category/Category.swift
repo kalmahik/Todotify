@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Category: Identifiable, Equatable {
+struct Category: Identifiable, Equatable, Encodable {
     static let defaultCategory = Category(name: "Другое", hexColor: Color.clear.toHex())
 
     let id = UUID()

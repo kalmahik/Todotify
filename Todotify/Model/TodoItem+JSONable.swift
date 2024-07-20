@@ -39,8 +39,8 @@ extension TodoItem: JSONable {
         let createdAt = jsonDictionary[TodoCodingKeys.createdAt.rawValue] as? String
         let deadline = jsonDictionary[TodoCodingKeys.deadline.rawValue] as? String
         let editedAt = jsonDictionary[TodoCodingKeys.editedAt.rawValue] as? String
-        let importanceString = jsonDictionary[TodoCodingKeys.importance.rawValue] as? String ?? Importance.usual.rawValue
-        let importance = Importance(rawValue: importanceString) ?? .usual
+        let importanceString = jsonDictionary[TodoCodingKeys.importance.rawValue] as? String ?? Importance.basic.rawValue
+        let importance = Importance(rawValue: importanceString) ?? .basic
 
         guard let text else {
             DDLogWarn("THIS IS NOT VALID TODO ITEM")
@@ -64,7 +64,7 @@ extension TodoItem: JSONable {
         dictionary[TodoCodingKeys.text.rawValue] = text
         dictionary[TodoCodingKeys.isCompleted.rawValue] = isCompleted
         dictionary[TodoCodingKeys.createdAt.rawValue] = createdAt.asString()
-        if importance != .usual {
+        if importance != .basic {
             dictionary[TodoCodingKeys.importance.rawValue] = importance.rawValue
         }
         if let deadline {

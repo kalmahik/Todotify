@@ -9,8 +9,13 @@ import CocoaLumberjackSwift
 import SwiftUI
 
 final class Store: ObservableObject {
-    @Published var todos: [TodoItem] = MockTodoItems.items
-    let consoleLogger = DDOSLogger.sharedInstance
+    static let shared = Store()
+
+    private init() {}
+
+    @Published var todos: [TodoItem] = []
+
+    private let networkService = DefaultNetworkingService.shared
 
     @Published var categories: [Category] = [
         Category(name: "Работа", hexColor: Color.red.toHex()),
@@ -19,19 +24,35 @@ final class Store: ObservableObject {
         Category.defaultCategory
     ]
 
+    func replace(todos: [TodoItem]) {
+        self.todos = todos
+    }
+
     func add(todo: TodoItem) {
         if let existedIndex = todos.firstIndex(where: { $0.id == todo.id }) {
             todos[existedIndex] = todo
             DDLogInfo("TODO EXIST, UPDATING")
+
+            Task {
+                _ = await networkService.fetchEditTodo(todo: todo)
+            }
         } else {
             todos.append(todo)
             DDLogInfo("TODO ADDED")
+
+            Task {
+                _ = await networkService.fetchCreateTodo(todo: todo)
+            }
         }
     }
 
-    func removeTodo(by id: String) {
-        todos.removeAll { $0.id == id }
+    func removeTodo(todo: TodoItem) {
+        todos.removeAll { $0.id == todo.id }
         DDLogInfo("TODO REMOVED")
+
+        Task {
+            _ = await networkService.fetchDeleteTodo(todo: todo)
+        }
     }
 
     func add(category: Category) {

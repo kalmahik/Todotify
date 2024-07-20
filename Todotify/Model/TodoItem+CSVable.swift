@@ -35,7 +35,7 @@ extension TodoItem: CSVable {
             let createdAt = columns[4]
             let editedAt = columns[5].isEmpty ? nil : columns[5]
             let deadline = columns[6].isEmpty ? nil : columns[6]
-            let importance = Importance(rawValue: importanceString) ?? .usual
+            let importance = Importance(rawValue: importanceString) ?? .basic
 
             return TodoItem(
                 id: id,

@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-enum Importance: String {
-    case unimportant
-    case usual
+enum Importance: String, Codable {
+    case low
+    case basic
     case important
 }
 
-struct TodoItem: Identifiable {
+struct TodoItem: Identifiable, Encodable {
     let id: String
     let text: String
     let importance: Importance
@@ -23,6 +23,7 @@ struct TodoItem: Identifiable {
     let editedAt: Date?
     let hexColor: String
     let category: Category
+    let lastUpdatedBy: String
 
     init(
         id: String? = nil,
@@ -33,17 +34,58 @@ struct TodoItem: Identifiable {
         createdAt: Date? = nil,
         editedAt: Date? = nil,
         hexColor: String? = nil,
-        category: Category? = nil
+        category: Category? = nil,
+        lastUpdatedBy: String? = nil
     ) {
         self.id = id ?? UUID().uuidString
         self.text = text
-        self.importance = importance ?? .usual
+        self.importance = importance ?? .basic
         self.deadline = deadline
         self.isCompleted = isCompleted ?? false
         self.createdAt = createdAt ?? Date()
         self.editedAt = editedAt
         self.hexColor = hexColor ?? Color.clear.toHex()
         self.category = category ?? Category.defaultCategory
+        self.lastUpdatedBy = "deviceID"
+    }
+
+    init(from: TodoItemDTO) {
+        self.id = from.id
+        self.text = from.text
+        self.importance = from.importance
+        self.deadline = from.deadline != nil ? Date(timeIntervalSince1970: Double(from.deadline!)) : nil
+        self.isCompleted = from.done
+        self.createdAt = Date(timeIntervalSince1970: Double(from.createdAt))
+        self.editedAt = Date(timeIntervalSince1970: Double(from.changedAt))
+        self.hexColor = from.color ?? Color.clear.toHex()
+        self.category = Category.defaultCategory
+        self.lastUpdatedBy = from.lastUpdatedBy
+    }
+
+    func copy(
+        id: String? = nil,
+        text: String? = nil,
+        importance: Importance? = nil,
+        deadline: Date? = nil,
+        isCompleted: Bool? = nil,
+        createdAt: Date? = nil,
+        editedAt: Date? = nil,
+        hexColor: String? = nil,
+        category: Category? = nil,
+        lastUpdatedBy: String? = nil
+    ) -> TodoItem {
+        return TodoItem(
+            id: id ?? self.id,
+            text: text ?? self.text,
+            importance: importance ?? self.importance,
+            deadline: deadline ?? self.deadline,
+            isCompleted: isCompleted ?? self.isCompleted,
+            createdAt: createdAt ?? self.createdAt,
+            editedAt: editedAt ?? self.editedAt,
+            hexColor: hexColor ?? self.hexColor,
+            category: category ?? self.category,
+            lastUpdatedBy: lastUpdatedBy ?? self.lastUpdatedBy
+        )
     }
 }
 

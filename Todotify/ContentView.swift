@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TodoList()
+        let store = Store.shared
+        let viewModel = TodoListViewModel(store: store)
+        TodoList(viewModel: viewModel)
     }
 }
 
