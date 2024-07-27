@@ -22,6 +22,7 @@
 		842905EC2C253B4700159210 /* TodotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905EB2C253B4700159210 /* TodotifyTests.swift */; };
 		842905F32C25486000159210 /* Todotify+JSONAbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */; };
 		842905F52C25536B00159210 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842905F42C25536B00159210 /* DefaultValues.swift */; };
+		F55D80192C53C656004CADF7 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55D80182C53C656004CADF7 /* FileCache.swift */; };
 		F55E931E2C3488980015AA98 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E93182C3488980015AA98 /* CalendarViewController.swift */; };
 		F55E931F2C3488980015AA98 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E93192C3488980015AA98 /* UIView+Extensions.swift */; };
 		F55E93202C3488980015AA98 /* HorizontalCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55E931A2C3488980015AA98 /* HorizontalCalendar.swift */; };
@@ -98,6 +99,7 @@
 		842905F22C25486000159210 /* Todotify+JSONAbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todotify+JSONAbleTests.swift"; sourceTree = "<group>"; };
 		842905F42C25536B00159210 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		8AA23DB9F0C9E94B503C33EE /* Pods-Todotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todotify.debug.xcconfig"; path = "Target Support Files/Pods-Todotify/Pods-Todotify.debug.xcconfig"; sourceTree = "<group>"; };
+		F55D80182C53C656004CADF7 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		F55E93182C3488980015AA98 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		F55E93192C3488980015AA98 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		F55E931A2C3488980015AA98 /* HorizontalCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalCalendar.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				F5E515C72C3660230026FC07 /* Store.swift */,
+				F55D80182C53C656004CADF7 /* FileCache.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				F59DED082C486ED100A7E7C3 /* TodoItemDTO.swift in Sources */,
 				F5E515F22C38864B0026FC07 /* CategoryList.swift in Sources */,
 				F5E2FFAE2C2D2A7F00776DB5 /* DeviceUtils.swift in Sources */,
+				F55D80192C53C656004CADF7 /* FileCache.swift in Sources */,
 				842905A92C1FF34A00159210 /* ContentView.swift in Sources */,
 				842905B62C1FF4BC00159210 /* TodoItem.swift in Sources */,
 				F5E515F42C3887800026FC07 /* CategoryRow.swift in Sources */,

@@ -20,6 +20,7 @@ struct TodotifyApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(store)
+                .modelContainer(for: TodoItem.self)
         }
     }
 
