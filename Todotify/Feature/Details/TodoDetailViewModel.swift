@@ -86,8 +86,4 @@ final class TodoDetailViewModel: ObservableObject {
     func getCategories() -> [Category] {
         todoDetailModel.getCategories()
     }
-
-    func fetchTodos() {
-
-    }
 }

@@ -6,12 +6,23 @@
 //
 
 import CocoaLumberjackSwift
+import SwiftData
 import SwiftUI
 
 final class Store: ObservableObject {
+    var container: ModelContainer
+    var fileCache: FileCache
+
     static let shared = Store()
 
-    private init() {}
+    private init() {
+        do {
+            container = try ModelContainer(for: TodoItem.self)
+            fileCache = FileCache(container: container)
+        } catch {
+            fatalError("Failed to configure SwiftData container.")
+        }
+    }
 
     @Published var todos: [TodoItem] = []
 
@@ -35,12 +46,14 @@ final class Store: ObservableObject {
 
             Task {
                 _ = await networkService.fetchEditTodo(todo: todo)
+                _ = await fileCache.insert(data: todo)
             }
         } else {
             todos.append(todo)
             DDLogInfo("TODO ADDED")
 
             Task {
+                _ = await fileCache.insert(data: todo)
                 _ = await networkService.fetchCreateTodo(todo: todo)
             }
         }
@@ -51,6 +64,8 @@ final class Store: ObservableObject {
         DDLogInfo("TODO REMOVED")
 
         Task {
+            let predicate = #Predicate<TodoItem> { $0.id == todo.id }
+//            _ = try? await fileCache.remove(predicate: predicate)
             _ = await networkService.fetchDeleteTodo(todo: todo)
         }
     }

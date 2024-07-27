@@ -5,6 +5,7 @@
 //  Created by kalmahik on 17.06.2024.
 //
 
+import SwiftData
 import SwiftUI
 
 enum Importance: String, Codable {
@@ -13,7 +14,9 @@ enum Importance: String, Codable {
     case important
 }
 
-struct TodoItem: Identifiable, Encodable {
+@Model
+final class TodoItem: Identifiable {
+    @Attribute(.unique)
     let id: String
     let text: String
     let importance: Importance

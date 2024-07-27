@@ -5,7 +5,7 @@
 //  Created by Murad Azimov on 18.07.2024.
 //
 
-import Combine
+import SwiftData
 import SwiftUI
 
 final class TodoListViewModel: ObservableObject {
@@ -18,11 +18,30 @@ final class TodoListViewModel: ObservableObject {
 
     func fetchTodos() {
         Task {
-            let list = try? await networkService.fetchTodos()
-            if let list {
+            do {
+                var container = try ModelContainer(for: TodoItem.self)
+                var fileCache = FileCache(container: container)
+                let sortDescriptor = SortDescriptor<TodoItem>(\TodoItem.createdAt)
+                let listSD: [TodoItem] = try await fileCache.fetchData(sortBy: [sortDescriptor])
                 await MainActor.run {
-                    store.replace(todos: list)
+                    store.replace(todos: listSD)
                 }
+
+                let listDN = try? await networkService.fetchTodos()
+                if let listDN {
+                    await MainActor.run {
+                        store.replace(todos: listDN)
+                    }
+
+                    for todo in listDN {
+                        await fileCache.insert(data: todo)
+                    }
+
+//                    try? await fileCache.save()
+                }
+
+            } catch {
+                print("Failed to fetch data: \(error)")
             }
         }
     }
